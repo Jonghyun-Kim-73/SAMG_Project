@@ -24,7 +24,7 @@ class MainWindow(QWidget):
         super(MainWindow, self).__init__()
         self.top_window = parent            # ?
 
-        self.setGeometry(300, 300, 1500, 900)
+        self.setGeometry(300, 300, 1900, 1000)
         self.setStyleSheet(self.qss)
         self.setObjectName('MainWin')
 

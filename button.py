@@ -54,10 +54,11 @@ class custom_button(QPushButton):
     def get_info(self):
         """ 위치 출력하기 """
         print(self.geometry())
+        print(self.x, self.y, self.type)
 
     def add_text(self):
         """ 클릭한 위치에 버튼 추가하기 """
-        text, cl = QInputDialog.getText(self, 'Input Dialog', 'Enter your name:')
+        text, cl = QInputDialog.getMultiLineText(self, 'Input Dialog', 'Multi Line Text Input:')
         self.text = text
         # self.update()
 

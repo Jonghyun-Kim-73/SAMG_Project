@@ -33,6 +33,8 @@ class MainRightArea(QWidget):
         self.setStyleSheet(self.qss)
 
         self.setMinimumHeight(self.parent.height() - 40)
+        # self.setMinimumWidth(200)
+        self.setMinimumWidth(int(1900 * (1 / 4)))
 
         layout = QVBoxLayout(self)
         layout.setContentsMargins(0, 5, 5, 5)
