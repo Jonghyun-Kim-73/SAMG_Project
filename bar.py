@@ -13,14 +13,14 @@ class MainTitleBar(QWidget):
     """제목 표시줄 위젯"""
     qss = """
         QWidget {
-            background: rgb(31, 39, 42);
+            background: rgb(0, 0, 0);
         }
         
         QLabel#TitleName{
-            background: rgb(62, 74, 84);
+            background: rgb(165, 165, 165);
             border-radius: 6px;
             font: bold 14px;
-            color: rgb(255, 255, 255);
+            color: rgb(0, 0, 0);
             padding: 4px 4px;
         }
           
@@ -35,6 +35,7 @@ class MainTitleBar(QWidget):
         QPushButton:pressed {
             background: rgb(220, 152, 162);
         }"""
+        # background: rgb(62, 74, 84);
 
     def __init__(self, parent=None):
         super(MainTitleBar, self).__init__()
@@ -77,7 +78,7 @@ class MainTitleBar(QWidget):
         layout.addWidget(widget1)
         layout.addWidget(label2)
         layout.addSpacerItem(QSpacerItem(0, self.bar_height, QSizePolicy.Expanding))
-        layout.addWidget(label3)
+        # layout.addWidget(label3)
         layout.addWidget(btn_close)
 
     def create_btn_with_image(self, icon_path):
@@ -117,13 +118,14 @@ class TimeBar(QWidget):
         }
 
         QLabel#TimeBarLabel{
-            background: rgb(62, 74, 84);
+            background: rgb(165, 165, 165);
             border-radius: 6px;
             font: bold 14px;
-            color: rgb(255, 255, 255);
+            color: rgb(0, 0, 0);
             padding: 4px 4px;
         }
     """
+
 
     def __init__(self, parent, load_realtime: bool = False):
         super(TimeBar, self).__init__()
@@ -169,7 +171,7 @@ class ConditionBar(QLabel):
             background: rgb(62, 74, 84);
             border-radius: 6px;
             font: bold 14px;
-            color: rgb(255, 255, 255);
+            color: rgb(0, 0, 0);
             padding: 4px 4px;
         }
 

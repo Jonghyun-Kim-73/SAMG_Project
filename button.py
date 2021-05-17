@@ -25,7 +25,8 @@ class custom_button(QPushButton):
 
         p = QPainter(self)
         p.setPen(QPen(Qt.black, 1))
-        p.setBrush(Qt.gray)
+        p.setBrush(QColor(91, 91, 91)) # 91, 91, 91
+        p.setFont(QFont('Arial', 13))
 
         if self.type == 1:      # 사각형
             p.drawRect(0, 0, self.w, self.h)
