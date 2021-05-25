@@ -180,6 +180,26 @@ class FlowChart(QWidget):
         self.btn_34 = custom_button(self, x=1570, y=1020, w=300, h=60, text='이전 수행 지침서로 되돌아 감', type=1)
         # ==============================================================================================================
 
+        # self.btn_1.clicked.connect(self.btn_1_clicked)
+
+# ======================================================================================================================
+    # def btn_1_clicked(self):
+    #     print('PPPP')
+
+    # def mouseButtonKind(self, buttons):
+    #     if buttons & Qt.LeftButton:
+    #         print('LEFT')
+    #     if buttons & Qt.MidButton:
+    #         print('MIDDLE')
+    #     if buttons & Qt.RightButton:
+    #         print('RIGHT')
+    #
+    # def mousePressEvent(self, e):
+    #     print('BUTTON PRESS')
+    #     self.mouseButtonKind(e.buttons())
+# ======================================================================================================================
+
+
     def paintEvent(self, event):
         p = QPainter(self)
         p.setPen(QPen(Qt.black))
@@ -274,18 +294,11 @@ class FlowChart(QWidget):
         p.drawLine(1195, 720, 1195, 1020)        # 32-28
         p.drawLine(1195, 720, 1390, 720)         # 32-28
 
-        p.drawLine(1870, 780, 1920, 780)         #
-        p.drawLine(1870, 870, 1920, 870)         #
-        p.drawLine(1870, 960, 1920, 960)         #
-        p.drawLine(1870, 1035, 1920, 1035)         #
-        p.drawLine(1920, 780, 1920, 1035)         #
-
-
-
-
-
-
-
+        p.drawLine(1870, 780, 1920, 780)
+        p.drawLine(1870, 870, 1920, 870)
+        p.drawLine(1870, 960, 1920, 960)
+        p.drawLine(1870, 1035, 1920, 1035)
+        p.drawLine(1920, 780, 1920, 1035)
 
     def contextMenuEvent(self, event) -> None:
         """ FlowChart 에 기능 올리기  """
@@ -310,6 +323,7 @@ class FlowChart(QWidget):
             dig = custom_button(self, x=pos.x(), y=pos.y(), w=200, h=60, text='Start', type=1)
 
         dig.show()
+
 
 
 if __name__ == '__main__':
