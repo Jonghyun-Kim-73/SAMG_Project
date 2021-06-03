@@ -5,8 +5,11 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 
 
+from test_ppp import App
+
 class custom_button(QPushButton):
-    def __init__(self, parent=None, x=None, y=None, w=None, h=None, text=None, type=1):
+    def __init__(self, parent=None, x=None, y=None, w=None, h=None, text=None, type=1, msg_text=None,
+                 connected_btn=None, connected_btn_2=None, connected_btn_3=None):
         super(custom_button, self).__init__(parent)
         self.x = x
         self.y = y
@@ -14,18 +17,74 @@ class custom_button(QPushButton):
         self.h = h
         self.text = text
         self.type = type
+        self.msg_text = msg_text
+
+        self.app = App()
 
         self.setGeometry(self.x, self.y, self.w, self.h)
+        self.setCheckable(True)
 
         self.mouseMovePos = None
         self.is_moved = False
+
+        self.change_color = False
+
+        self.circle_color = QColor(91, 91, 91)
+
+        self.cnt_btn = connected_btn
+        self.cnt_btn_signal = False
+
+        self.cnt_btn_2 = connected_btn_2
+        self.cnt_btn_3 = connected_btn_3
+
+        print(self, '<-', connected_btn)
+
+        self.clicked.connect(self.btn_clicked)
+
+    def btn_clicked(self):
+        if self.change_color:
+            self.change_color = False
+            self.circle_color = QColor(0, 255, 0, 100)
+        else:
+            self.change_color = True
+            self.circle_color = QColor(0, 255, 0, 100)
+
+        if self.type == 1:
+            self.app.show()
+
+        if self.type == 2:
+            reply = QMessageBox.question(self, 'Message', self.msg_text, QMessageBox.Ok)
+            if reply == QMessageBox.Ok:
+                self.cnt_btn.btn_clicked_ver2()
+
+        if self.type == 3:
+            reply = QMessageBox.question(self, 'Message', self.msg_text, QMessageBox.Yes | QMessageBox.No)
+            if reply == QMessageBox.Yes:
+                self.cnt_btn.btn_clicked_ver2()
+                if self.cnt_btn_3:
+                    self.cnt_btn_3.btn_clicked_ver2()
+            if reply == QMessageBox.No:
+                self.cnt_btn_2.btn_clicked_ver2()
+
+    def btn_clicked_ver2(self):
+        print('btn_clicked_ver2 진입')
+        print(self.cnt_btn_signal)
+
+        if self.cnt_btn_signal:
+            self.cnt_btn_signal = False
+            self.circle_color = QColor(255, 0, 0)
+        else:
+            print(self.cnt_btn_signal)
+            self.cnt_btn_signal = True
+            self.circle_color = QColor(255, 0, 0)
+
 
     def paintEvent(self, event):
         rect = QRect(0, 0, self.w, self.h)  # 사각형 정의
 
         p = QPainter(self)
         p.setPen(QPen(Qt.black, 1))
-        p.setBrush(QColor(91, 91, 91)) # 91, 91, 91
+        p.setBrush(self.circle_color) # 91, 91, 91
         p.setFont(QFont('Arial', 13))
 
         if self.type == 1:      # 사각형
@@ -63,24 +122,24 @@ class custom_button(QPushButton):
         self.text = text
         # self.update()
 
-    def mousePressEvent(self, event):
-        """
-        - 마우스 왼쪽 클릭 시 위젯이 움직임.
-        """
-        if event.button() == Qt.LeftButton:
-            self.mouseMovePos = event.globalPos()   # ?
-            self.is_moved = True
-        else:
-            self.is_moved = False
-
-    def mouseMoveEvent(self, event):
-        if self.is_moved:
-            curPos = self.mapToGlobal(self.pos())
-            globalPos = event.globalPos()
-            diff = globalPos - self.mouseMovePos
-            newPos = self.mapFromGlobal(curPos + diff)
-            self.move(newPos)
-            self.mouseMovePos = globalPos
+    # def mousePressEvent(self, event):
+    #     """
+    #     - 마우스 왼쪽 클릭 시 위젯이 움직임.
+    #     """
+    #     if event.button() == Qt.LeftButton:
+    #         self.mouseMovePos = event.globalPos()   # ?
+    #         self.is_moved = True
+    #     else:
+    #         self.is_moved = False
+    #
+    # def mouseMoveEvent(self, event):
+    #     if self.is_moved:
+    #         curPos = self.mapToGlobal(self.pos())
+    #         globalPos = event.globalPos()
+    #         diff = globalPos - self.mouseMovePos
+    #         newPos = self.mapFromGlobal(curPos + diff)
+    #         self.move(newPos)
+    #         self.mouseMovePos = globalPos
 
 
 

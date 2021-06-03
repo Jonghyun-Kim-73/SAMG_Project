@@ -22,19 +22,21 @@ class MainWindow(QWidget):
 
     def __init__(self, parent):
         super(MainWindow, self).__init__()
-        self.top_window = parent            # ?
+        self.top_window = parent
 
-        self.setGeometry(300, 300, 1900, 1050)
+        # Main 기본 속성
+        self.setGeometry(300, 300, 1900, 900)
         self.setStyleSheet(self.qss)
         self.setObjectName('MainWin')
 
-        # Main 프레임 모양 정의  # ?
-        path = QPainterPath()
-        path.addRoundedRect(QRectF(self.rect()), 10, 10)
-        mask = QRegion(path.toFillPolygon().toPolygon())
-        self.setMask(mask)
+        # Main 프레임 모양 정의
+        # path = QPainterPath()
+        # path.addRoundedRect(QRectF(self.rect()), 10, 10)
+        # mask = QRegion(path.toFillPolygon().toPolygon())
+        # self.setMask(mask)
+
         # Main 프레임 특징 정의
-        self.setWindowFlags(Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint)  # 프레임 날리고 | 창은 항상 위 # ?
+        # self.setWindowFlags(Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint)  # 프레임 날리고 | 최상위
         self.setWindowOpacity(0.95)  # 프레임 투명도
 
         # 레이아웃 설정
@@ -52,7 +54,6 @@ class MainWindow(QWidget):
 
         # 1.1] 왼쪽
         self.left_area = MainLeftArea(self)
-
 
         # 1.2] 오른쪽
         self.right_area = MainRightArea(self)

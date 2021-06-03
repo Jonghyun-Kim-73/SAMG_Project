@@ -4,9 +4,12 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 
+from test_ppp import App
+
 
 class custom_button(QPushButton):
-    def __init__(self, parent=None, x=None, y=None, w=None, h=None, text=None, type=1, connected_btn=None):
+    def __init__(self, parent=None, x=None, y=None, w=None, h=None, text=None, type=1, msg_text=None,
+                 connected_btn=None, connected_btn_2=None, connected_btn_3=None):
         super(custom_button, self).__init__(parent)
         self.x = x
         self.y = y
@@ -14,6 +17,9 @@ class custom_button(QPushButton):
         self.h = h
         self.text = text
         self.type = type
+        self.msg_text = msg_text
+
+        self.app = App()
 
         self.setGeometry(self.x, self.y, self.w, self.h)
         self.setCheckable(True)
@@ -22,24 +28,71 @@ class custom_button(QPushButton):
         self.is_moved = False
 
         self.change_color = False
+
         self.circle_color = QColor(91, 91, 91)
-        self.connected_btn = connected_btn
+
+        self.cnt_btn = connected_btn
+        self.cnt_btn_signal = False
+
+        self.cnt_btn_2 = connected_btn_2
+        self.cnt_btn_3 = connected_btn_3
+
         print(self, '<-', connected_btn)
+
         self.clicked.connect(self.btn_clicked)
 
     def btn_clicked(self):
         if self.change_color:
             self.change_color = False
-            self.circle_color = QColor(91, 91, 91)
+            self.circle_color = QColor(0, 255, 0, 100)
         else:
             self.change_color = True
-            self.circle_color = QColor(91, 10, 0)
+            self.circle_color = QColor(0, 255, 0, 100)
 
-            if self.connected_btn is not None:
-                self.connected_btn.change_color = False
-                self.connected_btn.btn_clicked()
+        if self.type == 1:
+            self.app.show()
 
-        self.update()
+            # reply = QMessageBox.question(self, 'Message', self.msg_text, QMessageBox.Ok)
+            # if reply == QMessageBox.Ok:
+            #
+            #     # 네모 박스를 누르면 버튼 창 pop
+            #     print('pp')
+            #     self.app.show()
+            #     # self.cnt_btn.btn_clicked_ver2()
+
+        if self.type == 2:
+            reply = QMessageBox.question(self, 'Message', self.msg_text, QMessageBox.Ok)
+            if reply == QMessageBox.Ok:
+                self.cnt_btn.btn_clicked_ver2()
+
+        if self.type == 3:
+            reply = QMessageBox.question(self, 'Message', self.msg_text, QMessageBox.Yes | QMessageBox.No)
+            if reply == QMessageBox.Yes:
+                self.cnt_btn.btn_clicked_ver2()
+                if self.cnt_btn_3:
+                    self.cnt_btn_3.btn_clicked_ver2()
+            if reply == QMessageBox.No:
+                self.cnt_btn_2.btn_clicked_ver2()
+
+            # if self.cnt_btn is not None:
+            #     self.cnt_btn.change_color = False
+            #     print(self.cnt_btn.change_color)
+            #     self.cnt_btn.btn_clicked()
+            #     self.connected_btn.btn_clicked_ver2()
+
+        # self.update()
+
+    def btn_clicked_ver2(self):
+        print('btn_clicked_ver2 진입')
+        print(self.cnt_btn_signal)
+
+        if self.cnt_btn_signal:
+            self.cnt_btn_signal = False
+            self.circle_color = QColor(255, 0, 0)
+        else:
+            print(self.cnt_btn_signal)
+            self.cnt_btn_signal = True
+            self.circle_color = QColor(255, 0, 0)
 
     def paintEvent(self, event):
         rect = QRect(0, 0, self.w, self.h)  # 사각형 정의
