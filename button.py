@@ -5,7 +5,7 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 
 
-from test_ppp import App
+# from test_ppp import App
 
 class custom_button(QPushButton):
     def __init__(self, parent=None, x=None, y=None, w=None, h=None, text=None, type=1, msg_text=None,

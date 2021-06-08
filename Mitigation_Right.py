@@ -37,7 +37,7 @@ class MitigationRightArea(QWidget):
 
         # 크기 조정
         self.setMinimumHeight(860)
-        self.setFixedWidth(800)
+        self.setMinimumWidth(1900/2)
 
         # 레이어 셋업
         layout = QVBoxLayout(self)

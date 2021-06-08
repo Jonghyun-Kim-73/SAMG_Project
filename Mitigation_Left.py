@@ -38,20 +38,24 @@ class MitigationLeftArea(QWidget):
         self.setStyleSheet(self.qss)
 
         # 크기 조정
-        self.setMinimumHeight(860)
-        self.setFixedWidth(400)
+        self.setMinimumHeight(50)
+        # self.setFixedWidth(400)
 
         # 레이어 셋업
-        layout = QVBoxLayout(self)
+        layout = QHBoxLayout(self)
         layout.setContentsMargins(5, 5, 5, 5)
 
         label1 = QPushButton('1')
         label2 = QPushButton('2')
         label3 = QPushButton('3')
+        label4 = QPushButton('3')
+        label5 = QPushButton('3')
 
         layout.addWidget(label1)
         layout.addWidget(label2)
         layout.addWidget(label3)
+        layout.addWidget(label4)
+        layout.addWidget(label5)
 
         self.setLayout(layout)
 
