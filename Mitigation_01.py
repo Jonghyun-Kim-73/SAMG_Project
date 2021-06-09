@@ -57,8 +57,7 @@ class MitigationWindow(QWidget):
         # 각 항목을 레이아웃에 배치
         content_hbox.addWidget(self.GG)
         content_hbox.addWidget(self.DD)
-        #
-        #
+
         window_vbox.addWidget(title)
         window_vbox.addWidget(self.BB)
         window_vbox.addLayout(content_hbox)
