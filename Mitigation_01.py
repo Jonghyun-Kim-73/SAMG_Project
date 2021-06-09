@@ -6,7 +6,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from Mitigation_titlebar import MitigationTitleBar
-from Mitigation_Left import MitigationLeftArea
+from Mitigation_top import MitigationTopArea
 from Mitigation_Middle import MitigationMiddleArea
 from Mitigation_Right import MitigationRightArea
 
@@ -42,9 +42,8 @@ class MitigationWindow(QWidget):
 
         # 타이틀바 위젯
         title = MitigationTitleBar(self)
-        titlebar_widget = MainTitleBar(self)
 
-        self.BB = MitigationLeftArea(self)
+        self.BB = MitigationTopArea(self)
 
         # 하단 섹션
         content_hbox = QHBoxLayout(self)
