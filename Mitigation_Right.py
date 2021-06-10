@@ -37,7 +37,7 @@ class MitigationRightArea(QWidget):
 
         # 크기 조정
         self.setMinimumHeight(860)
-        self.setMinimumWidth(1900/2)
+        self.setMinimumWidth(int(1900/2))
 
         # 레이어 셋업
         layout = QVBoxLayout(self)
@@ -65,6 +65,20 @@ class RightArea(QWidget):
 
         self.setGeometry(0, 0, 300, 300)
         self.setStyleSheet(self.qss)
+
+        print(ROOT_PATH)
+        icon_path = 'plant.png'
+        icon = os.path.join(ROOT_PATH, 'interface_image', icon_path)
+        print(icon)
+
+        self.pixmap = QPixmap(icon)
+
+        self.label = QLabel(self)
+        self.label.setPixmap(self.pixmap)
+        self.label.setContentsMargins(5, 5, 5, 5)
+
+        self.label.resize(self.width(500), self.height(500))
+
 
 
 if __name__ == '__main__':
