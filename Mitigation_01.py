@@ -24,9 +24,10 @@ class MitigationWindow(QWidget):
         }
     """
 
-    def __init__(self, parent):
+    # def __init__(self, parent):
+    def __init__(self):
         super(MitigationWindow, self).__init__()
-        self.top_window = parent
+        # self.top_window = parent
 
         # Main 기본 속성
         self.setGeometry(300, 300, 1900, 900)
@@ -69,6 +70,7 @@ class MitigationWindow(QWidget):
 if __name__ == '__main__':
     print('test')
     app = QApplication(sys.argv)
-    window = MitigationWindow(None)
+    # window = MitigationWindow(None)
+    window = MitigationWindow()
     window.show()
     app.exec_()

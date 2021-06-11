@@ -16,10 +16,16 @@ class App(QWidget):
 
         # 초기 윈도우 프레임
         layout = QVBoxLayout()
+
+        label = QLabel('완화-01에 진입하시겠습니까?')
+        label.setStyleSheet("Color : black; font-size: 14pt; font-weight: bold")
+
+        layout.addWidget(label)
+
         self.setLayout(layout)
 
         # 버튼 추가
-        btn = QPushButton('Button1')
+        btn = QPushButton('Yes')
         btn.move(20, 20)
         btn.clicked.connect(self.show_window)
         # btn.setText()

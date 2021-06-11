@@ -4,7 +4,7 @@ import sys
 import PyQt5.QtWidgets
 import pandas as pd
 from datetime import datetime
-
+from Mitigation_01 import MitigationWindow
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
@@ -199,7 +199,14 @@ class FlowChart(QWidget):
         # ==============================================================================================================
 
         # self.btn_1.clicked.connect(self.btn_1_clicked)
-        self.btn_8.clicked.connect(App)
+        self.App = App()
+        # self.aa = MitigationWindow()
+        self.btn_8.clicked.connect(self.btn8_controller)
+        print(self.btn_8.isChecked())
+
+    def btn8_controller(self):
+        if self.btn_8.isChecked():
+            self.App.show()
 
     def paintEvent(self, event):
         p = QPainter(self)
@@ -339,22 +346,28 @@ class App(QWidget):
 
         # 초기 윈도우 프레임
         layout = QVBoxLayout()
+        label = QLabel('완화-01에 진입하시겠습니까?')
+        label.setStyleSheet("Color : black; font-size: 14pt; font-weight: bold")
+
+        layout.addWidget(label)
+
         self.setLayout(layout)
 
         # 버튼 추가
-        btn = QPushButton('Button1')
+        btn = QPushButton('Yes')
+        btn.setStyleSheet("Color : black; font-size: 14pt; font-weight: bold")
         btn.move(20, 20)
         btn.clicked.connect(self.show_window)
         # btn.setText()
 
         layout.addWidget(btn)
-        print('우끼끼')
-        # self.show()
 
     def show_window(self):
         if self.window is None:
-            self.window = Window()
-            self.window.show()
+            self.aa = MitigationWindow()
+            self.aa.show()
+            # self.window = Window()
+            # self.window.show()
         else:
             self.window = None
 

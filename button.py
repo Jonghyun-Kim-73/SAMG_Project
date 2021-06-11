@@ -19,8 +19,23 @@ class custom_button(QPushButton):
         self.type = type
         self.msg_text = msg_text
 
+        self.setCheckable(True)
 
-        # self.app = App()
+        self.msg_box = QMessageBox()
+
+        # self.font = QFont()
+        # self.font.setFamily("Arial")
+        # self.font.setPointSize(15)
+        #
+        # self.msg_box.setFont(self.font)
+
+        # self.font = QFont()
+        # self.font.setBold(True)
+        # self.msg_box.setGeometry(300, 300, 800, 300)
+        # self.msg_box.setFixedHeight(500)
+        # self.msg_box.setStyleSheet("QMessageBox Question {min-width: 50 px;}")
+        # self.msg_box.setStyleSheet("font-size: 14pt; font-weight: bold")
+        # self.msg_box.setStyleSheet("min-width: 500px; min-height: 200px;")
 
         self.setGeometry(self.x, self.y, self.w, self.h)
         self.setCheckable(True)
@@ -60,17 +75,17 @@ class custom_button(QPushButton):
             print('pp')
 
         if self.type == 2:
-            reply = QMessageBox.question(self, 'Message', self.msg_text, QMessageBox.Ok)
-            if reply == QMessageBox.Ok:
+            reply = self.msg_box.question(self, 'Message', self.msg_text, self.msg_box.Ok)
+            if reply == self.msg_box.Ok:
                 self.cnt_btn.btn_clicked_ver2()
 
         if self.type == 3:
-            reply = QMessageBox.question(self, 'Message', self.msg_text, QMessageBox.Yes | QMessageBox.No)
-            if reply == QMessageBox.Yes:
+            reply = self.msg_box.question(self, 'Message', self.msg_text, self.msg_box.Yes | self.msg_box.No)
+            if reply == self.msg_box.Yes:
                 self.cnt_btn.btn_clicked_ver2()
                 if self.cnt_btn_3:
                     self.cnt_btn_3.btn_clicked_ver2()
-            if reply == QMessageBox.No:
+            if reply == self.msg_box.No:
                 self.cnt_btn_2.btn_clicked_ver2()
 
     def btn_clicked_ver2(self):
