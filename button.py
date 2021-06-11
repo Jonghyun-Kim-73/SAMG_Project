@@ -42,13 +42,18 @@ class custom_button(QPushButton):
 
         self.clicked.connect(self.btn_clicked)
 
+    # def msgbox(self):
+    #     msg = QMessageBox()
+    #     msg.setStyleSheet("QLabel {min-width: 300px; min-height: 200px;")
+    #     msg.exec()
+
     def btn_clicked(self):
         if self.change_color:
             self.change_color = False
-            self.circle_color = QColor(0, 255, 0, 100)
+            self.circle_color = QColor(0, 255, 0, 70)
         else:
             self.change_color = True
-            self.circle_color = QColor(0, 255, 0, 100)
+            self.circle_color = QColor(0, 255, 0, 70)
 
         if self.type == 1:
             # self.app.show()
@@ -61,11 +66,11 @@ class custom_button(QPushButton):
 
         if self.type == 3:
             reply = QMessageBox.question(self, 'Message', self.msg_text, QMessageBox.Yes | QMessageBox.No)
-            if reply == QMessageBox.No:
+            if reply == QMessageBox.Yes:
                 self.cnt_btn.btn_clicked_ver2()
                 if self.cnt_btn_3:
                     self.cnt_btn_3.btn_clicked_ver2()
-            if reply == QMessageBox.Yes:
+            if reply == QMessageBox.No:
                 self.cnt_btn_2.btn_clicked_ver2()
 
     def btn_clicked_ver2(self):
@@ -74,11 +79,11 @@ class custom_button(QPushButton):
 
         if self.cnt_btn_signal:
             self.cnt_btn_signal = False
-            self.circle_color = QColor(255, 0, 0)
+            self.circle_color = QColor(255, 0, 0, 70)
         else:
             print(self.cnt_btn_signal)
             self.cnt_btn_signal = True
-            self.circle_color = QColor(255, 0, 0)
+            self.circle_color = QColor(255, 0, 0, 70)
 
 
     def paintEvent(self, event):
