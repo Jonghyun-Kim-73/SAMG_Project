@@ -71,13 +71,13 @@ class RightArea(QWidget):
         icon = os.path.join(ROOT_PATH, 'interface_image', icon_path)
         print(icon)
 
-        self.pixmap = QPixmap(icon)
+        pixmap = QPixmap(icon)
+        self.pic = pixmap.scaled(950, 860)
 
         self.label = QLabel(self)
-        self.label.setPixmap(self.pixmap)
-        self.label.setContentsMargins(5, 5, 5, 5)
+        self.label.setPixmap(self.pic)
+        self.label.setContentsMargins(0, 0, 0, 0)
 
-        self.label.resize(self.width(500), self.height(500))
 
 
 

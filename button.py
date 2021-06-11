@@ -19,7 +19,8 @@ class custom_button(QPushButton):
         self.type = type
         self.msg_text = msg_text
 
-        self.app = App()
+
+        # self.app = App()
 
         self.setGeometry(self.x, self.y, self.w, self.h)
         self.setCheckable(True)
@@ -50,7 +51,8 @@ class custom_button(QPushButton):
             self.circle_color = QColor(0, 255, 0, 100)
 
         if self.type == 1:
-            self.app.show()
+            # self.app.show()
+            print('pp')
 
         if self.type == 2:
             reply = QMessageBox.question(self, 'Message', self.msg_text, QMessageBox.Ok)
@@ -59,11 +61,11 @@ class custom_button(QPushButton):
 
         if self.type == 3:
             reply = QMessageBox.question(self, 'Message', self.msg_text, QMessageBox.Yes | QMessageBox.No)
-            if reply == QMessageBox.Yes:
+            if reply == QMessageBox.No:
                 self.cnt_btn.btn_clicked_ver2()
                 if self.cnt_btn_3:
                     self.cnt_btn_3.btn_clicked_ver2()
-            if reply == QMessageBox.No:
+            if reply == QMessageBox.Yes:
                 self.cnt_btn_2.btn_clicked_ver2()
 
     def btn_clicked_ver2(self):

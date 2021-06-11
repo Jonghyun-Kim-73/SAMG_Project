@@ -110,10 +110,10 @@ class FlowChart(QWidget):
         # 커스텀버튼 3 dia 2 cir 1 rec
         self.btn_8 = custom_button(self, x=1040, y=390, w=300, h=60, text='완화-01\n"증기발생기 급수 주입" 수행', type=1)
         self.btn_7 = custom_button(self, x=710, y=390, w=300, h=60, text='모든 SG 수위 > 68% NR', type=3,
-                                   msg_text="모든 SG 수위 > 68% NR", connected_btn=self.btn_8)
+                                   msg_text="모든 SG 수위 > 68% NR 입니까?", connected_btn=self.btn_8)
 
         self.btn_6 = custom_button(self, x=380, y=300, w=300, h=100, text='RCS 대형 개구부\n(PZR MW 개방 또는\nRV head 제거)',
-                                   type=3, msg_text="RCS 대형 개구부", connected_btn=self.btn_7)
+                                   type=3, msg_text="RCS 대형 개구부가 열렸습니까?", connected_btn=self.btn_7)
 
         self.btn_4 = custom_button(self, x=380, y=210, w=300, h=60, text='발전소 안전변수\n감시 시작', type=2,
                                    msg_text="발전소 안전변수 감시를 시작합니다.", connected_btn=self.btn_6)
@@ -199,6 +199,7 @@ class FlowChart(QWidget):
         # ==============================================================================================================
 
         # self.btn_1.clicked.connect(self.btn_1_clicked)
+        self.btn_8.clicked.connect(App)
 
     def paintEvent(self, event):
         p = QPainter(self)
@@ -323,6 +324,50 @@ class FlowChart(QWidget):
             dig = custom_button(self, x=pos.x(), y=pos.y(), w=200, h=60, text='Start', type=1)
 
         dig.show()
+
+
+class App(QWidget):
+    def __init__(self):
+        super(App, self).__init__()
+        self.initUI()
+        self.window = None
+        print('잦작')
+
+    def initUI(self):
+        # 초기 윈도우 사이즈
+        self.setGeometry(200, 200, 200, 200)
+
+        # 초기 윈도우 프레임
+        layout = QVBoxLayout()
+        self.setLayout(layout)
+
+        # 버튼 추가
+        btn = QPushButton('Button1')
+        btn.move(20, 20)
+        btn.clicked.connect(self.show_window)
+        # btn.setText()
+
+        layout.addWidget(btn)
+        print('우끼끼')
+        # self.show()
+
+    def show_window(self):
+        if self.window is None:
+            self.window = Window()
+            self.window.show()
+        else:
+            self.window = None
+
+
+class Window(QWidget):
+    def __init__(self):
+        super(Window, self).__init__()
+        self.bb()
+
+    def bb(self):
+        # 초기 윈도우 사이즈
+        self.setGeometry(400, 200, 1000, 800)
+        self.show()
 
 
 

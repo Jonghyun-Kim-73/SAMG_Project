@@ -8,6 +8,7 @@ class App(QWidget):
     def __init__(self):
         super(App, self).__init__()
         self.initUI()
+        self.window = None
 
     def initUI(self):
         # 초기 윈도우 사이즈
@@ -25,14 +26,13 @@ class App(QWidget):
 
         layout.addWidget(btn)
 
-        self.window = None
-
     def show_window(self):
         if self.window is None:
             self.window = Window()
             self.window.show()
         else:
             self.window = None
+
 
 class Window(QWidget):
     def __init__(self):

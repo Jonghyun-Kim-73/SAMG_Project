@@ -6,8 +6,6 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 
-from button import custom_button
-
 ROOT_PATH = os.path.dirname(os.path.abspath(__file__))  # 절대경로>디렉토리명
 
 
