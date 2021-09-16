@@ -39,8 +39,8 @@ class MainRight(QWidget):
         layout = QVBoxLayout(self)
         layout.setContentsMargins(5, 5, 5, 5)
 
-        label1 = MainParaArea(self)
-        label2 = EndCondArea(self)
+        label1 = MainParaArea(self.parent)
+        label2 = EndCondArea(self.parent)
 
         layout.addWidget(label1)
         layout.addWidget(label2)
@@ -52,7 +52,7 @@ class MainParaArea(QWidget):
     def __init__(self, parent=None):
         super(MainParaArea, self).__init__()
         self.setAttribute(Qt.WA_StyledBackground, True)
-
+        self.parent = parent
         # 레이아웃
         layout = QVBoxLayout(self)
         layout.setContentsMargins(0, 0, 0, 0)
@@ -63,7 +63,7 @@ class MainParaArea(QWidget):
         # label.setAlignment(Qt.AlignVCenter | Qt.AlignCenter)  # 텍스트 정렬
         # label.setStyleSheet("Color : white; font-size: 14pt; font-weight: bold")
 
-        para_table = ParaTable(self)
+        para_table = ParaTable(self.parent)
         #
         # layout.addWidget(label)
         layout.addWidget(para_table)
@@ -72,9 +72,14 @@ class MainParaArea(QWidget):
 
 
 class ParaTable(QTableWidget):
-    def __init__(self, parent):
-        super(ParaTable, self).__init__(parent=parent)
+    def __init__(self, parent=None):
+        super(ParaTable, self).__init__()
         self.setAttribute(Qt.WA_StyledBackground, True)
+        self.parent = parent                            # <- main_window.py 파일의 MainWindow class 를 바라봄.
+                                                        #    main_right.py 를 단독으로 실행히 parent 는 None
+        if self.parent is not None:
+            self.shmem = parent.shmem                   # <- shmem 인스턴스 가져옴.
+
         self.setObjectName('ParaTable')
 
         # 테이블 프레임 모양 정의
@@ -114,7 +119,7 @@ class ParaTable(QTableWidget):
         # self.setItem(6, 0, QTableWidgetItem('격납건물 수위'))
 
         item = [0*i for i in range(8)]
-        item2 = [0*i for i in range(8)]
+        self.item2 = [0*i for i in range(8)]
         item[0] = QTableWidgetItem('주요 발전소 변수')
         item[1] = QTableWidgetItem('발전소 부지 경계 선량')
         item[2] = QTableWidgetItem('격납건물 압력')
@@ -128,17 +133,17 @@ class ParaTable(QTableWidget):
             item[i].setFlags(Qt.NoItemFlags)
             item[i].setForeground(QBrush(QColor(0, 0, 0)))
             self.setItem(i, 0, item[i])
-        item2[0] = QTableWidgetItem('현재 발전소 변수')
-        item2[1] = QTableWidgetItem('0 mSv')
-        item2[2] = QTableWidgetItem('0 psig')
-        item2[3] = QTableWidgetItem('0 °C')
-        item2[4] = QTableWidgetItem('0 psig')
-        item2[5] = QTableWidgetItem('0 %')
-        item2[6] = QTableWidgetItem('0 %')
-        item2[7] = QTableWidgetItem('0 %')
+        self.item2[0] = QTableWidgetItem('현재 발전소 변수')
+        self.item2[1] = QTableWidgetItem('0 mSv')
+        self.item2[2] = QTableWidgetItem('0 psig')
+        self.item2[3] = QTableWidgetItem('0 °C')
+        self.item2[4] = QTableWidgetItem('0 psig')
+        self.item2[5] = QTableWidgetItem('0 %')
+        self.item2[6] = QTableWidgetItem('0 %')
+        self.item2[7] = QTableWidgetItem('0 %')
 
         for i in range(8):
-            self.setItem(i, 1, item2[i])
+            self.setItem(i, 1, self.item2[i])
         self.doubleClicked.connect(self.popup)
 
         # self.item1 = QPushButton("value1")
@@ -155,6 +160,13 @@ class ParaTable(QTableWidget):
         fnt.setPointSize(12)
         self.setFont(fnt)
 
+        """ QTimer interval 간격으로 item 디스플레이 업데이트 21.09.16 """
+        # Q Timer ------------------------------------------------------------------------------------------------------
+        timer = QTimer(self)
+        timer.setInterval(500)  # 500 ms run = 0.5 sec
+        timer.timeout.connect(self.local_loop)
+        timer.start()
+
     def popup(self):
         msgBox = QMessageBox()
         msgBox.setWindowTitle("Pop up")  # 메세지창의 상단 제목
@@ -164,12 +176,32 @@ class ParaTable(QTableWidget):
         msgBox.setDefaultButton(QMessageBox.Yes)  # 포커스가 지정된 기본 버튼
         msgBox.exec_()
 
+    def local_loop(self):
+        if self.parent is not None:
+            get_db = self.shmem.get_shmem_db()
+            """
+            get_db 의 구조는 딕셔너리로 아래와 같음.
+            get_db = {
+                'para_id': {'Sig': sig, 'Val': 0, 'Num': idx, 'List': deque(maxlen=max_len)},
+                'para_id': {'Sig': sig, 'Val': 0, 'Num': idx, 'List': deque(maxlen=max_len)},
+                ...
+            }
+            """
+            self.item2[1].setText(f'{get_db["KCNTOMS"]["Val"]} mSv')
+            self.item2[2].setText(f'{get_db["KCNTOMS"]["Val"]} psig')
+            self.item2[3].setText(f'{get_db["KCNTOMS"]["Val"]} °C')
+            self.item2[4].setText(f'{get_db["KCNTOMS"]["Val"]} psig')
+            self.item2[5].setText(f'{get_db["KCNTOMS"]["Val"]} %')
+            self.item2[6].setText(f'{get_db["KCNTOMS"]["Val"]} %')
+            self.item2[7].setText(f'{get_db["KCNTOMS"]["Val"]} %')
+
 # ======================================================================================================================
 
 class EndCondArea(QWidget):
     def __init__(self, parent=None):
         super(EndCondArea, self).__init__()
         self.setAttribute(Qt.WA_StyledBackground, True)
+        self.parent = parent
         self.setFixedHeight(340)
         # 레이아웃
         layout = QVBoxLayout(self)
@@ -180,7 +212,7 @@ class EndCondArea(QWidget):
         # label.setAlignment(Qt.AlignVCenter | Qt.AlignCenter)
         # label.setStyleSheet("Color : white; font-size: 14pt; font-weight: bold")
 
-        label2 = EndCondTable(self)
+        label2 = EndCondTable(self.parent)
 
         # layout.addWidget(label)
         layout.addWidget(label2)
@@ -190,8 +222,13 @@ class EndCondArea(QWidget):
 
 class EndCondTable(QTableWidget):
     def __init__(self, parent):
-        super(EndCondTable, self).__init__(parent=parent)
+        super(EndCondTable, self).__init__()
         self.setAttribute(Qt.WA_StyledBackground, True)
+        self.parent = parent                            # <- main_window.py 파일의 MainWindow class 를 바라봄.
+                                                        #    main_right.py 를 단독으로 실행히 parent 는 None
+        if self.parent is not None:
+            self.shmem = parent.shmem                   # <- shmem 인스턴스 가져옴.
+
         self.setObjectName('EndCondTable')
 
         # 테이블 프레임 모양 정의
@@ -230,7 +267,7 @@ class EndCondTable(QTableWidget):
 
 
         item = [0 * i for i in range(5)]
-        item2 = [0 * i for i in range(5)]
+        self.item2 = [0 * i for i in range(5)]
         item[0] = QTableWidgetItem('종료조건')
         item[1] = QTableWidgetItem('노심출구온도 < [T01]')
         item[2] = QTableWidgetItem('발전소부지 경계 선량 < [R01]')
@@ -241,14 +278,14 @@ class EndCondTable(QTableWidget):
             item[i].setFlags(Qt.NoItemFlags)
             item[i].setForeground(QBrush(QColor(0, 0, 0)))
             self.setItem(i, 0, item[i])
-        item2[0] = QTableWidgetItem('현재 발전소 변수')
-        item2[1] = QTableWidgetItem('0 °C')
-        item2[2] = QTableWidgetItem('0 mSv')
-        item2[3] = QTableWidgetItem('0 psig')
-        item2[4] = QTableWidgetItem('0 %')
+        self.item2[0] = QTableWidgetItem('현재 발전소 변수')
+        self.item2[1] = QTableWidgetItem('0 °C')
+        self.item2[2] = QTableWidgetItem('0 mSv')
+        self.item2[3] = QTableWidgetItem('0 psig')
+        self.item2[4] = QTableWidgetItem('0 %')
 
         for i in range(5):
-            self.setItem(i, 1, item2[i])
+            self.setItem(i, 1, self.item2[i])
 
         self.doubleClicked.connect(self.popup)
 
@@ -264,6 +301,13 @@ class EndCondTable(QTableWidget):
         fnt.setPointSize(12)
         self.setFont(fnt)
 
+        """ QTimer interval 간격으로 item 디스플레이 업데이트 21.09.16 """
+        # Q Timer ------------------------------------------------------------------------------------------------------
+        timer = QTimer(self)
+        timer.setInterval(500)  # 500 ms run = 0.5 sec
+        timer.timeout.connect(self.local_loop)
+        timer.start()
+
     def popup(self):
         msgBox = QMessageBox()
         msgBox.setWindowTitle("Pop up")  # 메세지창의 상단 제목
@@ -272,6 +316,22 @@ class EndCondTable(QTableWidget):
         msgBox.setStandardButtons(QMessageBox.Yes | QMessageBox.No | QMessageBox.Cancel)  # 메세지창의 버튼
         msgBox.setDefaultButton(QMessageBox.Yes)  # 포커스가 지정된 기본 버튼
         msgBox.exec_()
+
+    def local_loop(self):
+        if self.parent is not None:
+            get_db = self.shmem.get_shmem_db()
+            """
+            get_db 의 구조는 딕셔너리로 아래와 같음.
+            get_db = {
+                'para_id': {'Sig': sig, 'Val': 0, 'Num': idx, 'List': deque(maxlen=max_len)},
+                'para_id': {'Sig': sig, 'Val': 0, 'Num': idx, 'List': deque(maxlen=max_len)},
+                ...
+            }
+            """
+            self.item2[1].setText(f'{get_db["KCNTOMS"]["Val"]} °C')
+            self.item2[2].setText(f'{get_db["KCNTOMS"]["Val"]} mSv')
+            self.item2[3].setText(f'{get_db["KCNTOMS"]["Val"]} psig')
+            self.item2[4].setText(f'{get_db["KCNTOMS"]["Val"]} %')
 
 class AlignDelegate(QStyledItemDelegate):
     def initStyleOption(self, option, index):

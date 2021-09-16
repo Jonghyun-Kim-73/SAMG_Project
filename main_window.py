@@ -48,7 +48,7 @@ class MainWindow(QWidget):
         self.GG = MainLeft(self)
 
         # 오른쪽
-        self.DD = MainRight(self)
+        self.DD = MainRight(self.parent)
 
         # 각 항목을 레이아웃에 배치
         content_hbox.addWidget(self.GG)
