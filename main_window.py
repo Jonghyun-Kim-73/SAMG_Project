@@ -21,8 +21,9 @@ class MainWindow(QWidget):
     """
 
     # def __init__(self, parent):
-    def __init__(self):
+    def __init__(self, parent=None):
         super(MainWindow, self).__init__()
+        self.parent = parent
         # self.top_window = parent
 
         # Main 기본 속성
