@@ -12,7 +12,7 @@ from PyQt5.QtCore import *
 from Temp_All_Module import CNS_Platform_controller_interface as CNS_controller
 from main_window import MainWindow
 from Temp_All_Module.TOOL.TOOL_etc import p_
-# from Temp_All_Module.TOOL.TOOL_MatGP import Trend
+from Temp_All_Module.TOOL.TOOL_MatGP import Trend
 
 
 class InterfaceFun(multiprocessing.Process):
@@ -131,9 +131,11 @@ class MyForm(QWidget):
             self.val_editor.show()
 
     def go_trend_view(self):
-        pass
-        # self.TrendView = Trend(self, 200, 200)
-        # self.TrendView.show()
+        self.TrendView = Trend(self,
+                               w=500, h=500, para_name='Flow', para_id='KCNTOMS', para_range=[0, 300],
+                               xtitle='Minimum Injection Flowrate (gpm)', ytitle='Time Since Reactor Shutdown (Hours)')
+        self.TrendView.setGeometry(100, 100, 300, 300)
+        self.TrendView.show()
 
     def show_main_window(self):
         # Controller와 동시 실행
