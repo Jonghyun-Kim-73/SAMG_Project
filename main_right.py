@@ -1,21 +1,15 @@
 import os
 import sys
-import pandas as pd
-from datetime import datetime
 
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
-from PyQt5.QtChart import *
 
-ROOT_PATH = os.path.dirname(os.path.abspath(__file__))
+class MainRight(QWidget):
 
-
-class MainRightArea(QWidget):
-    """ 오른쪽 디스플레이 위젯 """
     qss = """
         QWidget {
-            background: rgb(10, 10, 10);
+            background: rgb(128, 128, 128);
         }
         QLabel {
             background: rgb(131, 131, 131);
@@ -23,21 +17,23 @@ class MainRightArea(QWidget):
             color: rgb(255, 255, 255);
         }
         QTableWidget {
-            background: rgb(131, 131, 131)
+            background: rgb(221, 221, 221)
+        }
+        QPushButton{
+            background: rgb(221, 221, 221)
         }
     """
-    # background: rgb(14, 22, 24);
-    # background: rgb(31, 39, 42);
+
 
     def __init__(self, parent = None):
-        super(MainRightArea, self).__init__()
+        super(MainRight, self).__init__()
         self.setAttribute(Qt.WA_StyledBackground, True)
         self.parent = parent
         self.setStyleSheet(self.qss)
 
         # 기본 속성
         self.setMinimumHeight(900-40)
-        self.setFixedWidth(int(1900 * (1 / 4)))
+        self.setFixedWidth(int(1920 * (1 / 3)))
 
         # 레이아웃
         layout = QVBoxLayout(self)
@@ -62,16 +58,16 @@ class MainParaArea(QWidget):
         layout.setContentsMargins(0, 0, 0, 0)
 
         # 1. 절차서 Table
-        label = QLabel('CTMT 중대사고 위협 변수 감시')
-        label.setFixedHeight(30)
-        label.setAlignment(Qt.AlignVCenter | Qt.AlignCenter)  # 텍스트 정렬
-        label.setStyleSheet("Color : white; font-size: 14pt; font-weight: bold")
+        # label = QLabel('CTMT 중대사고 위협 변수 감시')
+        # label.setFixedHeight(30)
+        # label.setAlignment(Qt.AlignVCenter | Qt.AlignCenter)  # 텍스트 정렬
+        # label.setStyleSheet("Color : white; font-size: 14pt; font-weight: bold")
 
         para_table = ParaTable(self)
-
-        layout.addWidget(label)
+        #
+        # layout.addWidget(label)
         layout.addWidget(para_table)
-
+        #
         self.setLayout(layout)
 
 
@@ -82,17 +78,20 @@ class ParaTable(QTableWidget):
         self.setObjectName('ParaTable')
 
         # 테이블 프레임 모양 정의
+        self.horizontalHeader().setVisible(False)
         self.verticalHeader().setVisible(False)     # Row 넘버 숨기기
 
         # 테이블 셋업
-        col_info = [('주요 발전소 변수', 231), ('현재 상태', 231)] # 475
-
-        self.setColumnCount(len(col_info))
+        col_info = [('주요 발전소 변수', 360), ('현재 발전소 변수', 268)] # 475
+        self.setColumnCount(2)
         self.setRowCount(8)
-
+        self.horizontalHeader().setFixedHeight(60)
+        self.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        self.setFocusPolicy(Qt.NoFocus)
+        self.setSelectionMode(QAbstractItemView.NoSelection)
         # 테이블 행 높이 조절
         for each in range(self.rowCount()):
-            self.setRowHeight(each, 54)
+            self.setRowHeight(each, 60)
 
         col_names = []
         for i, (l, w) in enumerate(col_info):
@@ -104,25 +103,66 @@ class ParaTable(QTableWidget):
 
         # 테이블 헤더
         self.setHorizontalHeaderLabels(col_names)
-        self.horizontalHeader().setStyleSheet("::section {background-color : lightGray;font-size:13pt;}")
+        self.horizontalHeader().setStyleSheet("::section {background: rgb(221, 221, 221);font-size:13pt;}")
+        self.horizontalHeader().sectionPressed.disconnect()
+        # self.setItem(0, 0, QTableWidgetItem('발전소 부지 경계 선량'))
+        # self.setItem(1, 0, QTableWidgetItem('격납건물 압력'))
+        # self.setItem(2, 0, QTableWidgetItem('격납건물 압력'))
+        # self.setItem(3, 0, QTableWidgetItem('격납건물 압력'))
+        # self.setItem(4, 0, QTableWidgetItem('SG 1 수위 NR'))
+        # self.setItem(5, 0, QTableWidgetItem('SG 2 수위 NR'))
+        # self.setItem(6, 0, QTableWidgetItem('격납건물 수위'))
 
-        self.setItem(0, 0, QTableWidgetItem('SG Narrow Level'))
-        self.setItem(1, 0, QTableWidgetItem('RCS Pressure'))
-        self.setItem(2, 0, QTableWidgetItem('CET Temperature'))
-        self.setItem(3, 0, QTableWidgetItem('Radiation in Plant'))
-        self.setItem(4, 0, QTableWidgetItem('CTMT Level'))
-        self.setItem(5, 0, QTableWidgetItem('CTMT Pressure'))
-        self.setItem(6, 0, QTableWidgetItem('CTMT Hyd. R'))
-        self.setItem(7, 0, QTableWidgetItem('SFP L'))
+        item = [0*i for i in range(8)]
+        item2 = [0*i for i in range(8)]
+        item[0] = QTableWidgetItem('주요 발전소 변수')
+        item[1] = QTableWidgetItem('발전소 부지 경계 선량')
+        item[2] = QTableWidgetItem('격납건물 압력')
+        item[3] = QTableWidgetItem('격납건물 압력')
+        item[4] = QTableWidgetItem('격납건물 압력')
+        item[5] = QTableWidgetItem('SG 1 수위 NR')
+        item[6] = QTableWidgetItem('SG 2 수위 NR')
+        item[7] = QTableWidgetItem('격납건물 수위')
+
+        for i in range(8):
+            item[i].setFlags(Qt.NoItemFlags)
+            item[i].setForeground(QBrush(QColor(0, 0, 0)))
+            self.setItem(i, 0, item[i])
+        item2[0] = QTableWidgetItem('현재 발전소 변수')
+        item2[1] = QTableWidgetItem('0 mSv')
+        item2[2] = QTableWidgetItem('0 psig')
+        item2[3] = QTableWidgetItem('0 °C')
+        item2[4] = QTableWidgetItem('0 psig')
+        item2[5] = QTableWidgetItem('0 %')
+        item2[6] = QTableWidgetItem('0 %')
+        item2[7] = QTableWidgetItem('0 %')
+
+        for i in range(8):
+            self.setItem(i, 1, item2[i])
+        self.doubleClicked.connect(self.popup)
+
+        # self.item1 = QPushButton("value1")
+        # self.setCellWidget(0, 1, self.item1)
+
+        # self.cellClicked.connect(self.__mycell_clicked)
+        # mycom.currentTextChanged.connect(self.__mycom_text_changed)
 
         # 테이블 셀 내용 가운데 정렬
         delegate = AlignDelegate()
         self.setItemDelegateForColumn(0, delegate)
-
+        self.setItemDelegateForColumn(1, delegate)
         fnt = self.font()
         fnt.setPointSize(12)
         self.setFont(fnt)
 
+    def popup(self):
+        msgBox = QMessageBox()
+        msgBox.setWindowTitle("Pop up")  # 메세지창의 상단 제목
+        msgBox.setText("값")  # 메세지 제목
+        msgBox.setInformativeText("value")  # 메세지 내용
+        msgBox.setStandardButtons(QMessageBox.Yes | QMessageBox.No | QMessageBox.Cancel)  # 메세지창의 버튼
+        msgBox.setDefaultButton(QMessageBox.Yes)  # 포커스가 지정된 기본 버튼
+        msgBox.exec_()
 
 # ======================================================================================================================
 
@@ -135,14 +175,14 @@ class EndCondArea(QWidget):
         layout = QVBoxLayout(self)
         layout.setContentsMargins(0, 0, 0, 0)
 
-        label = QLabel('SAMG 종결 조건 감시')
-        label.setFixedHeight(30)
-        label.setAlignment(Qt.AlignVCenter | Qt.AlignCenter)
-        label.setStyleSheet("Color : white; font-size: 14pt; font-weight: bold")
+        # label = QLabel('SAMG 종결 조건 감시')
+        # label.setFixedHeight(30)
+        # label.setAlignment(Qt.AlignVCenter | Qt.AlignCenter)
+        # label.setStyleSheet("Color : white; font-size: 14pt; font-weight: bold")
 
         label2 = EndCondTable(self)
 
-        layout.addWidget(label)
+        # layout.addWidget(label)
         layout.addWidget(label2)
 
         self.setLayout(layout)
@@ -155,10 +195,17 @@ class EndCondTable(QTableWidget):
         self.setObjectName('EndCondTable')
 
         # 테이블 프레임 모양 정의
+        self.horizontalHeader().setVisible(False)
         self.verticalHeader().setVisible(False)     # Row 넘버 숨기기
 
+        # 편집 불가
+        self.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        self.setFocusPolicy(Qt.NoFocus)
+        self.setSelectionMode(QAbstractItemView.NoSelection)
+
+
         # 테이블 셋업
-        col_info = [('SAMG 종료 조건 변수', 231), ('현재 상태', 231)] # 475
+        col_info = [('종료조건', 360), ('현재 상태', 268)] # 475
 
         self.setColumnCount(len(col_info))
         self.setRowCount(5)
@@ -170,27 +217,61 @@ class EndCondTable(QTableWidget):
 
         # 테이블 헤더
         self.setHorizontalHeaderLabels(col_names)
-        # self.table.horizontalHeader().setFixedHeight(60)
-        self.horizontalHeader().setStyleSheet("::section {background-color : lightGray;font-size:13pt;}")
-
+        self.horizontalHeader().setFixedHeight(60)
+        self.horizontalHeader().setStyleSheet("::section {background: rgb(221, 221, 221);font-size:13pt;}")
+        self.horizontalHeader().sectionPressed.disconnect()
         # 테이블 행 높이 조절
         for each in range(self.rowCount()):
-            self.setRowHeight(each, 54)
+            self.setRowHeight(each, 60)
+        # self.setItem(0, 0, QTableWidgetItem('노심출구온도 < [T01]'))
+        # self.setItem(1, 0, QTableWidgetItem('발전소부지 경계 선량 < [R01]'))
+        # self.setItem(2, 0, QTableWidgetItem('격납건물 압력 < [P11]'))
+        # self.setItem(3, 0, QTableWidgetItem('격납건물 수소농도 < [H02]'))
 
-        self.setItem(0, 0, QTableWidgetItem('CET Temperature'))
-        self.setItem(1, 0, QTableWidgetItem('Rad. in Plant'))
-        self.setItem(2, 0, QTableWidgetItem('CTMT Pressure'))
-        self.setItem(3, 0, QTableWidgetItem('CTMT Hyd. R'))
-        self.setItem(4, 0, QTableWidgetItem('SFP L'))
 
+        item = [0 * i for i in range(5)]
+        item2 = [0 * i for i in range(5)]
+        item[0] = QTableWidgetItem('종료조건')
+        item[1] = QTableWidgetItem('노심출구온도 < [T01]')
+        item[2] = QTableWidgetItem('발전소부지 경계 선량 < [R01]')
+        item[3] = QTableWidgetItem('격납건물 압력 < [P11]')
+        item[4] = QTableWidgetItem('격납건물 수소농도 < [H02]')
+
+        for i in range(5):
+            item[i].setFlags(Qt.NoItemFlags)
+            item[i].setForeground(QBrush(QColor(0, 0, 0)))
+            self.setItem(i, 0, item[i])
+        item2[0] = QTableWidgetItem('현재 발전소 변수')
+        item2[1] = QTableWidgetItem('0 °C')
+        item2[2] = QTableWidgetItem('0 mSv')
+        item2[3] = QTableWidgetItem('0 psig')
+        item2[4] = QTableWidgetItem('0 %')
+
+        for i in range(5):
+            self.setItem(i, 1, item2[i])
+
+        self.doubleClicked.connect(self.popup)
+
+        # wid = self.cellWidget(0, 1)
+        # wid.setCursor(QCursor(Qt.PointingHandCursor))
+        # wid.setFocus()
         # 테이블 셀 내용 가운데 정렬
         delegate = AlignDelegate()
         self.setItemDelegateForColumn(0, delegate)
+        self.setItemDelegateForColumn(1, delegate)
 
         fnt = self.font()
         fnt.setPointSize(12)
         self.setFont(fnt)
 
+    def popup(self):
+        msgBox = QMessageBox()
+        msgBox.setWindowTitle("Pop up")  # 메세지창의 상단 제목
+        msgBox.setText("값")  # 메세지 제목
+        msgBox.setInformativeText("value")  # 메세지 내용
+        msgBox.setStandardButtons(QMessageBox.Yes | QMessageBox.No | QMessageBox.Cancel)  # 메세지창의 버튼
+        msgBox.setDefaultButton(QMessageBox.Yes)  # 포커스가 지정된 기본 버튼
+        msgBox.exec_()
 
 class AlignDelegate(QStyledItemDelegate):
     def initStyleOption(self, option, index):
@@ -201,6 +282,6 @@ class AlignDelegate(QStyledItemDelegate):
 if __name__ == '__main__':
     print('test')
     app = QApplication(sys.argv)
-    window = MainRightArea()
+    window = MainRight()
     window.show()
     app.exec_()

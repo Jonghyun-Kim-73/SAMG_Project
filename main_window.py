@@ -1,81 +1,74 @@
 import os
 import sys
+from datetime import datetime
+
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
+from main_top import MainTop
 
-from bar import MainTitleBar
-from main_left import MainLeftArea
-from main_right import MainRightArea
+from main_right import MainRight
+from main_left import *
 
-
-ROOT_PATH = os.path.dirname(os.path.abspath(__file__))
-
-
+# QEvent.HoverMove
 class MainWindow(QWidget):
     """메인 윈도우"""
     qss = """
         QWidget {
-            background: rgb(20, 25, 20);
+            background: rgb(128, 128, 128);
+            
         }
     """
 
-    def __init__(self, parent):
+    # def __init__(self, parent):
+    def __init__(self):
         super(MainWindow, self).__init__()
-        self.top_window = parent
+        # self.top_window = parent
 
         # Main 기본 속성
-        self.setGeometry(300, 300, 1900, 900)
+        self.setGeometry(0, 30, 1920, 1010)
         self.setStyleSheet(self.qss)
-        self.setObjectName('MainWin')
 
-        # Main 프레임 모양 정의
-        # path = QPainterPath()
-        # path.addRoundedRect(QRectF(self.rect()), 10, 10)
-        # mask = QRegion(path.toFillPolygon().toPolygon())
-        # self.setMask(mask)
-
-        # Main 프레임 특징 정의
-        # self.setWindowFlags(Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint)  # 프레임 날리고 | 최상위
-        self.setWindowOpacity(0.95)  # 프레임 투명도
+        # self.setWindowOpacity(0.95)  # 프레임 투명도
 
         # 레이아웃 설정
-        window_vbox = QVBoxLayout()  # 세로 방향 레이아웃
+        window_vbox = QVBoxLayout(self)  # 세로 방향 레이아웃
         window_vbox.setContentsMargins(0, 0, 0, 0)  # 여백
-        window_vbox.setSpacing(0)  # 각 객체 사이의 여백 ?
+        window_vbox.setSpacing(0)  # 각 객체 사이의 여백
 
         # 타이틀바 위젯
-        titlebar_widget = MainTitleBar(self)
 
-        # 1] 하단 섹션
-        content_hbox = QHBoxLayout()  # 가로 방향 레이아웃
-        content_hbox.setContentsMargins(0, 0, 0, 0)
-        content_hbox.setSpacing(0)
+        self.BB = MainTop(self)
 
-        # 1.1] 왼쪽
-        self.left_area = MainLeftArea(self)
+        # 하단 섹션
+        content_hbox = QHBoxLayout(self)
 
-        # 1.2] 오른쪽
-        self.right_area = MainRightArea(self)
+        # 왼쪽
+        self.GG = MainLeft(self)
+
+        # 오른쪽
+        self.DD = MainRight(self)
 
         # 각 항목을 레이아웃에 배치
-        content_hbox.addWidget(self.left_area)
-        content_hbox.addWidget(self.right_area)
+        content_hbox.addWidget(self.GG)
+        content_hbox.addWidget(self.DD)
 
-        window_vbox.addWidget(titlebar_widget)
+        window_vbox.addWidget(self.BB)
         window_vbox.addLayout(content_hbox)
 
         self.setLayout(window_vbox)
-        self.setContentsMargins(0, 0, 0, 0)
-
-        # --------------------------------------------------------------------------------------------------------------
-        print(self.height())
-        print(self.width())
+        # self.setContentsMargins(0, 0, 0, 0)
 
 
 if __name__ == '__main__':
     print('test')
     app = QApplication(sys.argv)
-    window = MainWindow(None)
+    # window = MitigationWindow(None)
+    window = MainWindow()
+    flow = FlowChart()
+    app.installEventFilter(flow.btn_1)
+    font = QFontDatabase()
+    font.addApplicationFont('./맑은 고딕.ttf')
+    app.setFont(QFont('맑은 고딕'))
     window.show()
     app.exec_()

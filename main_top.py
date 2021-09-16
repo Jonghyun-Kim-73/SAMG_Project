@@ -6,13 +6,12 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 
-ROOT_PATH = os.path.dirname(os.path.abspath(__file__))  # 절대경로>디렉토리명
-
-
 class MainTop(QWidget):
     qss = """
         QWidget {
             background: rgb(128, 128, 128);
+            border: 2px solid rgb(0, 0, 0); 
+            color:rgb(0,0,0);
         }
 
         QLabel#name{
@@ -33,6 +32,11 @@ class MainTop(QWidget):
         # 타이틀 레이어 셋업 ----------------------------------------------------------------------------------------------
         layout = QHBoxLayout(self)  # 수평 방향 레이아웃
         layout.setContentsMargins(5, 5, 5, 5)  # 위젯의 여백 설정
+
+        #DayBarm TimeBar
+        # widget1 = DayBar(self, load_realtime=True)
+        # widget1.setFixedHeight(self.bar_height)
+        # widget1.setFixedWidth(350)
 
         widget1 = TimeBar(self, load_realtime=True, load_realtime2=True)
         widget1.setFixedHeight(self.bar_height)

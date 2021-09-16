@@ -6,9 +6,9 @@ from datetime import datetime
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
-from PyQt5.QtChart import *
+#from PyQt5.QtChart import *
 
-from button import custom_button
+# from button2 import custom_button
 
 ROOT_PATH = os.path.dirname(os.path.abspath(__file__))
 
@@ -89,7 +89,6 @@ class ConditionArea(QWidget):
         self.setGeometry(0, 0, int(1900/2), 2000)
         self.setStyleSheet(self.qss)
 
-        # self.purpose = QLabel('우뿌뿌')
 
         purpose = QLabel('● 목적\n'
                          '     - Reactor Coolant System (RCS) 열 제거\n'
