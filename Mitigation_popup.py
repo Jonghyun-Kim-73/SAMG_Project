@@ -13,6 +13,7 @@ def resource_path(relative_path):
 
 source1 = resource_path("x_button.png")
 source2 = resource_path("기능기반디스플레이.png")
+
 class Mitigation_popup(QDialog):
     qss = """
             QDialog{

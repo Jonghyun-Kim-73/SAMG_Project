@@ -44,6 +44,7 @@ QCheckBox::indicator {
 }
 '''
 
+
 class MitigationMiddleArea_6(QWidget):
     qss = """
         QWidget {
@@ -93,6 +94,7 @@ class MitigationMiddleArea_6(QWidget):
         layout.addWidget(label1)
         layout.addLayout(right)
         self.setLayout(layout)
+
 
 class FlowChartArea(QWidget):
     qss = """
@@ -331,6 +333,7 @@ class FlowChart(QWidget):
         add_btn_rec.triggered.connect(lambda a, pos=event.pos(), ele='rec': self.make_diagram(pos, ele))
 
         menu.exec_(event.globalPos())  # 실행
+
 
 class SubWindow(QDialog):
     qss = """

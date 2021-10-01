@@ -31,8 +31,10 @@ QScrollBar::vertical {
 
     def __init__(self, parent=None):
         super(table_3_2, self).__init__()
-        self.setAttribute(Qt.WA_StyledBackground, True)
         self.parent = parent
+        self.shmem = parent.shmem
+
+        self.setAttribute(Qt.WA_StyledBackground, True)
         self.raise_()
         self.setStyleSheet(self.qss)
         self.setContentsMargins(0, 0, 0, 0)
@@ -102,6 +104,9 @@ class TableHeader(QTableWidget):
 class ParaTable(QTableWidget):
     def __init__(self, parent):
         super(ParaTable, self).__init__(parent=parent)
+        self.parent = parent
+        self.shmem = parent.shmem
+
         self.setAttribute(Qt.WA_StyledBackground, True)
         self.horizontalHeader().setVisible(False)
         self.verticalHeader().setVisible(False)  # Row 넘버 숨기기
@@ -156,6 +161,32 @@ class ParaTable(QTableWidget):
         fnt = self.font()
         fnt.setBold(True)
         fnt.setPointSize(12)
+
+        # Q Timer ------------------------------------------------------------------------------------------------------
+        timer = QTimer(self)
+        timer.setInterval(25)  # 500 ms run = 0.5 sec
+        timer.timeout.connect(self.local_loop)
+        timer.start()
+
+    def local_loop(self):
+        """ 그래프 QTimer interval 간격으로 업데이트 """
+
+        rcs_t = (self.shmem.get_shmem_val('ZINST69') + self.shmem.get_shmem_val('ZINST68') + self.shmem.get_shmem_val('ZINST67'))/3
+        # print(type(rcs_t))
+
+        get_item: QTableWidgetItem = self.item(6, 1)
+        get_item.setText(f"급수가 고갈된 고온의 S/G를 감압할 때 감압중인 S/G 광역수위가 [L02]이하 일 떄와 RCS 압력이 S/G 압력 이상일 때"
+                         f"\n"
+                         f"\n"
+                         f"S/G1 L:{self.shmem.get_shmem_val('ZINST78'):.2f}\n"
+                         f"S/G2 L:{self.shmem.get_shmem_val('ZINST77'):.2f}\n"
+                         f"RCS T:{self.shmem.get_shmem_val('ZINST69'):.2f}\n"
+                         f"RCS T:{rcs_t:.2f}\n"
+                         f"CET T:{self.shmem.get_shmem_val('UUPPPL'):.2f}\n"
+                         f"PZR T:{self.shmem.get_shmem_val('ZINST62'):.2f}\n"
+                         f"RCS Hot-leg T:{self.shmem.get_shmem_val('UHOLEG1'):.2f}\n"
+                         f"RCS Cold-leg1 T:{self.shmem.get_shmem_val('UCOLEG1'):.2f}\n"
+                         f"RCS Cold-leg2 T:{self.shmem.get_shmem_val('UCOLEG2'):.2f}\n")
 
 class AlignDelegate(QStyledItemDelegate):
     def initStyleOption(self, option, index):

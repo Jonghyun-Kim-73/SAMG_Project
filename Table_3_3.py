@@ -45,6 +45,7 @@ QScrollBar::vertical {
         super(table_3_3, self).__init__()
         self.setAttribute(Qt.WA_StyledBackground, True)
         self.parent = parent
+        self.shmem = parent.shmem
         self.raise_()
         self.setStyleSheet(self.qss)
         self.setContentsMargins(0, 0, 0, 0)
@@ -118,6 +119,9 @@ class ParaTable(QTableWidget):
     def __init__(self, parent):
         super(ParaTable, self).__init__(parent=parent)
         self.setAttribute(Qt.WA_StyledBackground, True)
+        self.parent = parent
+        self.shmem = parent.shmem
+
         self.horizontalHeader().setVisible(False)
         self.verticalHeader().setVisible(False)  # Row 넘버 숨기기
         self.setContentsMargins(0, 0, 0, 0)
@@ -177,6 +181,35 @@ class ParaTable(QTableWidget):
         fnt = self.font()
         fnt.setBold(True)
         fnt.setPointSize(12)
+
+        # Q Timer ------------------------------------------------------------------------------------------------------
+        timer = QTimer(self)
+        timer.setInterval(25)  # 500 ms run = 0.5 sec
+        timer.timeout.connect(self.local_loop)
+        timer.start()
+
+    def local_loop(self):
+        """ 그래프 QTimer interval 간격으로 업데이트 """
+        get_item: QTableWidgetItem = self.item(0, 1)
+        get_item.setText(f"급수가 고갈된 고온의 S/G에 급수할 때S/G 광역수위가 [L02] 이하"
+                         f"\n"
+                         f"\n"
+                         f"S/G1 L:{self.shmem.get_shmem_val('ZINST78'):.2f}\n"
+                         f"S/G2 L:{self.shmem.get_shmem_val('ZINST77'):.2f}")
+
+        get_item: QTableWidgetItem = self.item(3, 1)
+        get_item.setText(f"튜브가 파손되거나 누출이 있는 S/G로 급수할 때"
+                         f"\n"
+                         f"\n"
+                         f"S/G1 R:{self.shmem.get_shmem_val('ZINST102'):.2f}\n"
+                         f"S/G2 R:{self.shmem.get_shmem_val('ZINST102'):.2f}")
+
+        get_item: QTableWidgetItem = self.item(6, 1)
+        get_item.setText(f"급수가 고갈된 고온의 S/G를 감압할 때 감압중인 S/G 광역수위가 [L02]이하 일 떄와 RCS 압력이 S/G 압력 이상일 때"
+                         f"\n"
+                         f"\n"
+                         f"S/G1 P:{self.shmem.get_shmem_val('ZINST102'):.2f}\n"
+                         f"S/G2 P:{self.shmem.get_shmem_val('ZINST102'):.2f}")
 
 class AlignDelegate(QStyledItemDelegate):
     def initStyleOption(self, option, index):

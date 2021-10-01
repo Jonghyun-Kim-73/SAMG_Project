@@ -52,6 +52,7 @@ class MitigationMiddleArea_4(QWidget):
         super(MitigationMiddleArea_4, self).__init__()
         self.setAttribute(Qt.WA_StyledBackground, True)
         self.parent = parent
+        self.shmem = parent.shmem
         self.setStyleSheet(self.qss)
         self.setMouseTracking(True)
 
@@ -67,7 +68,7 @@ class MitigationMiddleArea_4(QWidget):
 
         right = QVBoxLayout(self)
         # right.setContentsMargins(5,5,5,5)
-        label2 = MitigationMiddleArea_3R()
+        label2 = MitigationMiddleArea_3R(self)
         label2.setFixedWidth(860)
         right.addWidget(label2)
 

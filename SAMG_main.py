@@ -72,14 +72,16 @@ class SHMem:
         self.cnsip, self.cnsport = cnsinfo
         self.remoteip, self.remoteport = remoteinfo
         # 0] 기능 동작 로직
-        self.AI = False          # AI 모듈들 동작 허용
+        self.AI = True          # AI 모듈들 동작 허용
+        self.PROG = True
+
 
         # 1] CNS 변수용 shmem
         self.mem = db_make().make_mem_structure(max_len_deque)
         print('Main 메모리 생성 완료')
         # 2] Trig 변수용 shmem
         self.logic = {'Run': False,
-                      'Run_ai': self.AI,
+                      'Run_ai': self.AI, 'Run_ProDiag': self.PROG,
 
                       'Initial_condition': False,
                       'Init_Call': False, 'Init_nub': 1,
@@ -89,17 +91,27 @@ class SHMem:
                       'Speed_Call': False, 'Speed': 1,
                       'Auto_Call': False, 'Auto_re_man': False,
 
+                      'Prog_Result': {},
+
                       'Close': False,
                       }
         print('Trig 메모리 생성 완료')
         # 3] 변수 그래픽 표기용
         self.save_mem = {
-            'KCNTOMS': []
+            'KCNTOMS': [], 'UUPPPL': [], 'DCTMT': [], 'PCTMT': [], 'H2CONC': [], 'ZINST58': [], 'ZINST78': [],
+            'ZINST77': [], 'ZSUMP': [],
         }
+
+        # bi_CTMT_pressure_pred , PCTMT
+        # bi_H2_concentration_pred, H2CONC
+        # bi_prz_pressure_pred, ZINST58
+        # bi_sg1_level_pred, ZINST78
+        # bi_sg2_level_pred, ZINST77
+        # bi_CTMT_sump_water_level_pred, ZSUMP
 
     def call_init(self, init_nub):
         self.logic = {'Run': False,
-                      'Run_ai': self.AI,
+                      'Run_ai': self.AI, 'Run_ProDiag': self.PROG,
 
                       'Initial_condition': True,
                       'Init_Call': True, 'Init_nub': init_nub,
@@ -108,6 +120,8 @@ class SHMem:
 
                       'Speed_Call': False, 'Speed': 1,
                       'Auto_Call': False, 'Auto_re_man': False,
+
+                      'Prog_Result': {},
 
                       'Close': False,
                       }

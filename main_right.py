@@ -5,6 +5,9 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 
+from TOOL import TOOL_MatGP2
+
+
 class MainRight(QWidget):
 
     qss = """
@@ -123,8 +126,8 @@ class ParaTable(QTableWidget):
         item[0] = QTableWidgetItem('주요 발전소 변수')
         item[1] = QTableWidgetItem('발전소 부지 경계 선량')
         item[2] = QTableWidgetItem('격납건물 압력')
-        item[3] = QTableWidgetItem('격납건물 압력')
-        item[4] = QTableWidgetItem('격납건물 압력')
+        item[3] = QTableWidgetItem('노심출구 온도')
+        item[4] = QTableWidgetItem('RCS 압력')
         item[5] = QTableWidgetItem('SG 1 수위 NR')
         item[6] = QTableWidgetItem('SG 2 수위 NR')
         item[7] = QTableWidgetItem('격납건물 수위')
@@ -144,6 +147,7 @@ class ParaTable(QTableWidget):
 
         for i in range(8):
             self.setItem(i, 1, self.item2[i])
+
         self.doubleClicked.connect(self.popup)
 
         # self.item1 = QPushButton("value1")
@@ -168,13 +172,35 @@ class ParaTable(QTableWidget):
         timer.start()
 
     def popup(self):
-        msgBox = QMessageBox()
-        msgBox.setWindowTitle("Pop up")  # 메세지창의 상단 제목
-        msgBox.setText("값")  # 메세지 제목
-        msgBox.setInformativeText("value")  # 메세지 내용
-        msgBox.setStandardButtons(QMessageBox.Yes | QMessageBox.No | QMessageBox.Cancel)  # 메세지창의 버튼
-        msgBox.setDefaultButton(QMessageBox.Yes)  # 포커스가 지정된 기본 버튼
-        msgBox.exec_()
+        # TODO 나중에 수정해야해
+        # msgBox = QMessageBox()
+        # msgBox.setWindowTitle("Pop up")  # 메세지창의 상단 제목
+        # msgBox.setText("값")  # 메세지 제목
+        # msgBox.setInformativeText("value")  # 메세지 내용
+        # msgBox.setStandardButtons(QMessageBox.Yes | QMessageBox.No | QMessageBox.Cancel)  # 메세지창의 버튼
+        # msgBox.setDefaultButton(QMessageBox.Yes)  # 포커스가 지정된 기본 버튼
+        # msgBox.exec_()
+
+        r = self.currentItem().row()
+        r_db = {
+            0: {'Para':'',          'N':'',                 'X':'Time[Min]', 'Y':'', 'Yr': [0, 1]},
+            1: {'Para':'',          'N':'',                 'X':'Time[Min]', 'Y':'', 'Yr': [0, 1]},
+            2: {'Para':'PCTMT',     'N':'CTMT Pressure',    'X':'Time[Min]', 'Y':'PA', 'Yr': [0, 30000]},
+            3: {'Para':'',          'N':'',                 'X':'Time[Min]', 'Y':'', 'Yr': [0, 1]},
+            4: {'Para':'ZINST58',   'N':'PZR Pressure',     'X':'Time[Min]', 'Y':'Kg/cm^2', 'Yr': [0, 200]},
+            5: {'Para':'ZINST78',   'N':'S/G 1 Level',      'X':'Time[Min]', 'Y':'%', 'Yr': [0, 100]},
+            6: {'Para':'ZINST77',   'N':'S/G 2 Level',      'X':'Time[Min]', 'Y':'%', 'Yr': [0, 100]},
+            7: {'Para':'ZSUMP',     'N':'CTMP Sump Level',  'X':'Time[Min]', 'Y':'M', 'Yr': [0, 100]}
+        }
+        get_selected_para = r_db[r]['Para']
+        if get_selected_para != '':
+            self.popup_W = TOOL_MatGP2.Trend(self, w=500, h=500,
+                                             para_name=r_db[r]['N'], para_id=r_db[r]['Para'],
+                                             para_range=r_db[r]['Yr'],
+                                             xtitle=r_db[r]['X'],
+                                             ytitle=r_db[r]['Y'])
+            self.popup_W.show()
+
 
     def local_loop(self):
         if self.parent is not None:
@@ -187,13 +213,13 @@ class ParaTable(QTableWidget):
                 ...
             }
             """
-            self.item2[1].setText(f'{get_db["KCNTOMS"]["Val"]} mSv')
-            self.item2[2].setText(f'{get_db["KCNTOMS"]["Val"]} psig')
-            self.item2[3].setText(f'{get_db["KCNTOMS"]["Val"]} °C')
-            self.item2[4].setText(f'{get_db["KCNTOMS"]["Val"]} psig')
-            self.item2[5].setText(f'{get_db["KCNTOMS"]["Val"]} %')
-            self.item2[6].setText(f'{get_db["KCNTOMS"]["Val"]} %')
-            self.item2[7].setText(f'{get_db["KCNTOMS"]["Val"]} %')
+            self.item2[1].setText(f'{get_db["DCTMT"]["Val"]:.2f} mSv')
+            self.item2[2].setText(f'{get_db["PCTMT"]["Val"]:.2f} psig')
+            self.item2[3].setText(f'{get_db["UUPPPL"]["Val"]:.2f} °C')
+            self.item2[4].setText(f'{get_db["ZINST58"]["Val"]:.2f} psig')
+            self.item2[5].setText(f'{get_db["ZINST78"]["Val"]:.2f} %')
+            self.item2[6].setText(f'{get_db["ZINST77"]["Val"]:.2f} %')
+            self.item2[7].setText(f'{get_db["ZSUMP"]["Val"]:.2f} %')
 
 # ======================================================================================================================
 
@@ -328,10 +354,10 @@ class EndCondTable(QTableWidget):
                 ...
             }
             """
-            self.item2[1].setText(f'{get_db["KCNTOMS"]["Val"]} °C')
-            self.item2[2].setText(f'{get_db["KCNTOMS"]["Val"]} mSv')
-            self.item2[3].setText(f'{get_db["KCNTOMS"]["Val"]} psig')
-            self.item2[4].setText(f'{get_db["KCNTOMS"]["Val"]} %')
+            self.item2[1].setText(f'{get_db["UUPPPL"]["Val"]:.2f} °C')
+            self.item2[2].setText(f'{get_db["DCTMT"]["Val"]:.2f} mSv')
+            self.item2[3].setText(f'{get_db["PCTMT"]["Val"]:.2f} psig')
+            self.item2[4].setText(f'{get_db["H2CONC"]["Val"]:.2f} %')
 
 class AlignDelegate(QStyledItemDelegate):
     def initStyleOption(self, option, index):

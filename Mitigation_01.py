@@ -56,17 +56,19 @@ class MitigationWindow(QWidget,QObject):
         QPushButton::hover{ background-color: rgb(0, 176, 218)}
     """
 
-    # def __init__(self, parent):
-    def __init__(self):
+    def __init__(self, parent):
+    # def __init__(self):
         super(MitigationWindow, self).__init__()
         # self.top_window = parent
+        self.parent = parent
+        self.shmem = parent.shmem
         self.setAttribute(Qt.WA_StyledBackground, True)
         self.central_widget = QStackedWidget()
 
         screen1 = MitigationMiddleArea_1()
         screen2 = MitigationMiddleArea_2()
-        screen3 = MitigationMiddleArea_3()
-        screen4 = MitigationMiddleArea_4()
+        screen3 = MitigationMiddleArea_3(self)
+        screen4 = MitigationMiddleArea_4(self)
         screen5 = MitigationMiddleArea_5()
         screen6 = MitigationMiddleArea_6()
 
@@ -231,8 +233,8 @@ class MitigationWindow(QWidget,QObject):
 
     def click8(self):
         print("화면3")
-        popup = Mitigation_popup()
-        popup.show()
+        self.popup = Mitigation_popup()
+        self.popup.show()
 
     def closeEvent(self, QCloseEvent):
         print("완화06 닫음")

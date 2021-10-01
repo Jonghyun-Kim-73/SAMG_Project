@@ -1,0 +1,1983 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Microsoft Visio, SVG Export에서 생성되었습니다. 12345.svg Page-1 -->
+
+<svg
+   width="11.6929in"
+   height="8.26772in"
+   viewBox="0 0 841.89 595.276"
+   xml:space="preserve"
+   color-interpolation-filters="sRGB"
+   class="st22"
+   version="1.1"
+   id="svg712"
+   sodipodi:docname="이미지.svg"
+   inkscape:version="1.1 (c68e22c387, 2021-05-23)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:v="http://schemas.microsoft.com/visio/2003/SVGExtensions/"><sodipodi:namedview
+   id="namedview714"
+   pagecolor="#ffffff"
+   bordercolor="#666666"
+   borderopacity="1.0"
+   inkscape:pageshadow="2"
+   inkscape:pageopacity="0.0"
+   inkscape:pagecheckerboard="0"
+   inkscape:document-units="in"
+   showgrid="false"
+   inkscape:snap-global="true"
+   inkscape:snap-bbox="true"
+   inkscape:bbox-paths="false"
+   inkscape:zoom="2"
+   inkscape:cx="708.25"
+   inkscape:cy="266.25"
+   inkscape:window-width="1805"
+   inkscape:window-height="1269"
+   inkscape:window-x="330"
+   inkscape:window-y="116"
+   inkscape:window-maximized="0"
+   inkscape:current-layer="V3_2_allopen" />
+	<v:documentProperties
+   v:langID="1042"
+   v:metric="true"
+   v:viewMarkup="false">
+		<v:userDefs>
+			<v:ud
+   v:nameU="msvSubprocessMaster"
+   v:prompt=""
+   v:val="VT4(Rectangle)" />
+			<v:ud
+   v:nameU="msvNoAutoConnect"
+   v:val="VT0(1):26" />
+		</v:userDefs>
+	</v:documentProperties>
+
+	<style
+   type="text/css"
+   id="style2">
+	<![CDATA[
+		.st1 {visibility:visible}
+		.st2 {fill:#5b9bd5;fill-opacity:0.22;filter:url(#filter_2);stroke:#5b9bd5;stroke-opacity:0.22}
+		.st3 {fill:#ffffff;stroke:#c7c8c8;stroke-width:0.25}
+		.st4 {fill:#7ca9da;stroke:#4a80b0;stroke-linecap:butt;stroke-width:1.25}
+		.st5 {fill:#be0a0a;stroke:#2b9291;stroke-linecap:butt;stroke-width:1.25}
+		.st6 {marker-end:url(#mrkr4-27);stroke:#5b9bd5;stroke-linecap:round;stroke-linejoin:round;stroke-width:3}
+		.st7 {fill:#5b9bd5;fill-opacity:1;stroke:#5b9bd5;stroke-opacity:1;stroke-width:0.54347826086957}
+		.st8 {marker-end:url(#mrkr4-33);stroke:#525252;stroke-linecap:round;stroke-linejoin:round;stroke-width:3}
+		.st9 {fill:#525252;fill-opacity:1;stroke:#525252;stroke-opacity:1;stroke-width:0.54347826086957}
+		.st10 {fill:#2b9291;stroke:#2b9291;stroke-linecap:butt;stroke-width:1.25}
+		.st11 {fill:#525252;stroke:#2b9291;stroke-linecap:butt;stroke-width:1.25}
+		.st12 {fill:#2b9291}
+		.st13 {stroke:#2b9291;stroke-linecap:butt;stroke-width:1.25}
+		.st14 {fill:#ffffff;stroke:#4a80b0;stroke-linecap:butt;stroke-width:1.25}
+		.st15 {fill:#ffffff;stroke:#4672c4;stroke-linecap:butt;stroke-width:1.25}
+		.st16 {marker-end:url(#mrkr13-224);marker-start:url(#mrkr13-222);stroke:#5b9bd5;stroke-linecap:round;stroke-linejoin:round;stroke-width:3}
+		.st17 {fill:#2b9291;stroke:none;stroke-width:0.25}
+		.st18 {fill:#2b9291;stroke:#4a80b0;stroke-linecap:butt;stroke-width:1.25}
+		.st19 {fill:#ff0000;stroke:#c8c8c8;stroke-width:0.25}
+		.st20 {fill:#feffff;stroke:#4a80b0;stroke-linecap:butt;stroke-width:1.25}
+		.st21 {stroke:#5b9bd5;stroke-linecap:round;stroke-linejoin:round;stroke-width:3}
+		.st22 {fill:none;fill-rule:evenodd;font-size:12px;overflow:visible;stroke-linecap:square;stroke-miterlimit:3}
+	]]>
+	</style>
+
+	<defs
+   id="Markers"><inkscape:path-effect
+   effect="bspline"
+   id="path-effect11919"
+   is_visible="true"
+   lpeversion="1"
+   weight="33.333333"
+   steps="2"
+   helper_size="0"
+   apply_no_weight="true"
+   apply_with_weight="true"
+   only_selected="false" /><inkscape:path-effect
+   effect="bspline"
+   id="path-effect11915"
+   is_visible="true"
+   lpeversion="1"
+   weight="33.333333"
+   steps="2"
+   helper_size="0"
+   apply_no_weight="true"
+   apply_with_weight="true"
+   only_selected="false" /><inkscape:path-effect
+   effect="bspline"
+   id="path-effect11832"
+   is_visible="true"
+   lpeversion="1"
+   weight="33.333333"
+   steps="2"
+   helper_size="0"
+   apply_no_weight="true"
+   apply_with_weight="true"
+   only_selected="false" /><inkscape:path-effect
+   effect="bspline"
+   id="path-effect11828"
+   is_visible="true"
+   lpeversion="1"
+   weight="33.333333"
+   steps="2"
+   helper_size="0"
+   apply_no_weight="true"
+   apply_with_weight="true"
+   only_selected="false" /><inkscape:path-effect
+   effect="bspline"
+   id="path-effect11727"
+   is_visible="true"
+   lpeversion="1"
+   weight="33.333333"
+   steps="2"
+   helper_size="0"
+   apply_no_weight="true"
+   apply_with_weight="true"
+   only_selected="false" /><inkscape:path-effect
+   effect="bspline"
+   id="path-effect11723"
+   is_visible="true"
+   lpeversion="1"
+   weight="33.333333"
+   steps="2"
+   helper_size="0"
+   apply_no_weight="true"
+   apply_with_weight="true"
+   only_selected="false" /><inkscape:path-effect
+   effect="bspline"
+   id="path-effect10408"
+   is_visible="true"
+   lpeversion="1"
+   weight="33.333333"
+   steps="2"
+   helper_size="0"
+   apply_no_weight="true"
+   apply_with_weight="true"
+   only_selected="false" /><inkscape:path-effect
+   effect="bspline"
+   id="path-effect10404"
+   is_visible="true"
+   lpeversion="1"
+   weight="33.333333"
+   steps="2"
+   helper_size="0"
+   apply_no_weight="true"
+   apply_with_weight="true"
+   only_selected="false" /><inkscape:path-effect
+   effect="bspline"
+   id="path-effect10400"
+   is_visible="true"
+   lpeversion="1"
+   weight="33.333333"
+   steps="2"
+   helper_size="0"
+   apply_no_weight="true"
+   apply_with_weight="true"
+   only_selected="false" /><inkscape:path-effect
+   effect="bspline"
+   id="path-effect8543"
+   is_visible="true"
+   lpeversion="1"
+   weight="33.333333"
+   steps="2"
+   helper_size="0"
+   apply_no_weight="true"
+   apply_with_weight="true"
+   only_selected="false" /><inkscape:path-effect
+   effect="bspline"
+   id="path-effect8539"
+   is_visible="true"
+   lpeversion="1"
+   weight="33.333333"
+   steps="2"
+   helper_size="0"
+   apply_no_weight="true"
+   apply_with_weight="true"
+   only_selected="false" /><inkscape:path-effect
+   effect="bspline"
+   id="path-effect8535"
+   is_visible="true"
+   lpeversion="1"
+   weight="33.333333"
+   steps="2"
+   helper_size="0"
+   apply_no_weight="true"
+   apply_with_weight="true"
+   only_selected="false" /><inkscape:path-effect
+   effect="bspline"
+   id="path-effect8172"
+   is_visible="true"
+   lpeversion="1"
+   weight="33.333333"
+   steps="2"
+   helper_size="0"
+   apply_no_weight="true"
+   apply_with_weight="true"
+   only_selected="false" /><inkscape:path-effect
+   effect="bspline"
+   id="path-effect8168"
+   is_visible="true"
+   lpeversion="1"
+   weight="33.333333"
+   steps="2"
+   helper_size="0"
+   apply_no_weight="true"
+   apply_with_weight="true"
+   only_selected="false" /><inkscape:path-effect
+   effect="bspline"
+   id="path-effect8164"
+   is_visible="true"
+   lpeversion="1"
+   weight="33.333333"
+   steps="2"
+   helper_size="0"
+   apply_no_weight="true"
+   apply_with_weight="true"
+   only_selected="false" />
+		<g
+   id="lend4">
+			<path
+   d="M 2 1 L 0 0 L 2 -1 L 2 1 "
+   style="stroke:none"
+   id="path4" />
+		</g>
+		<marker
+   id="mrkr4-27"
+   class="st7"
+   v:arrowType="4"
+   v:arrowSize="2"
+   v:setback="3.68"
+   refX="-3.68"
+   orient="auto"
+   markerUnits="strokeWidth"
+   overflow="visible">
+			<use
+   xlink:href="#lend4"
+   transform="scale(-1.84,-1.84) "
+   id="use7" />
+		</marker>
+		<marker
+   id="mrkr4-33"
+   class="st9"
+   v:arrowType="4"
+   v:arrowSize="2"
+   v:setback="3.68"
+   refX="-3.68"
+   orient="auto"
+   markerUnits="strokeWidth"
+   overflow="visible">
+			<use
+   xlink:href="#lend4"
+   transform="scale(-1.84,-1.84) "
+   id="use10" />
+		</marker>
+		<g
+   id="lend13">
+			<path
+   d="M 3 1 L 0 0 L 3 -1 L 3 1 "
+   style="stroke:none"
+   id="path13" />
+		</g>
+		<marker
+   id="mrkr13-222"
+   class="st7"
+   v:arrowType="13"
+   v:arrowSize="2"
+   v:setback="5.4"
+   refX="5.4"
+   orient="auto"
+   markerUnits="strokeWidth"
+   overflow="visible">
+			<use
+   xlink:href="#lend13"
+   transform="scale(1.84) "
+   id="use16" />
+		</marker>
+		<marker
+   id="mrkr13-224"
+   class="st7"
+   v:arrowType="13"
+   v:arrowSize="2"
+   v:setback="5.52"
+   refX="-5.52"
+   orient="auto"
+   markerUnits="strokeWidth"
+   overflow="visible">
+			<use
+   xlink:href="#lend13"
+   transform="scale(-1.84,-1.84) "
+   id="use19" />
+		</marker>
+	<inkscape:path-effect
+   effect="bspline"
+   id="path-effect60171"
+   is_visible="true"
+   lpeversion="1"
+   weight="33.333333"
+   steps="2"
+   helper_size="0"
+   apply_no_weight="true"
+   apply_with_weight="true"
+   only_selected="false" /><inkscape:path-effect
+   effect="bspline"
+   id="path-effect60175"
+   is_visible="true"
+   lpeversion="1"
+   weight="33.333333"
+   steps="2"
+   helper_size="0"
+   apply_no_weight="true"
+   apply_with_weight="true"
+   only_selected="false" /><inkscape:path-effect
+   effect="bspline"
+   id="path-effect72281"
+   is_visible="true"
+   lpeversion="1"
+   weight="33.333333"
+   steps="2"
+   helper_size="0"
+   apply_no_weight="true"
+   apply_with_weight="true"
+   only_selected="false" />
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	
+			
+			
+			
+			
+			
+		
+				
+				
+				
+				
+				
+				
+				
+			
+			
+			
+			
+		
+				
+				
+				
+				
+			<inkscape:path-effect
+   effect="bspline"
+   id="path-effect72464"
+   is_visible="true"
+   lpeversion="1"
+   weight="33.333333"
+   steps="2"
+   helper_size="0"
+   apply_no_weight="true"
+   apply_with_weight="true"
+   only_selected="false" /><inkscape:path-effect
+   effect="bspline"
+   id="path-effect72468"
+   is_visible="true"
+   lpeversion="1"
+   weight="33.333333"
+   steps="2"
+   helper_size="0"
+   apply_no_weight="true"
+   apply_with_weight="true"
+   only_selected="false" /><inkscape:path-effect
+   effect="bspline"
+   id="path-effect72472"
+   is_visible="true"
+   lpeversion="1"
+   weight="33.333333"
+   steps="2"
+   helper_size="0"
+   apply_no_weight="true"
+   apply_with_weight="true"
+   only_selected="false" /><inkscape:path-effect
+   effect="bspline"
+   id="path-effect72476"
+   is_visible="true"
+   lpeversion="1"
+   weight="33.333333"
+   steps="2"
+   helper_size="0"
+   apply_no_weight="true"
+   apply_with_weight="true"
+   only_selected="false" />
+			
+			
+			
+			
+			
+		
+				
+			</defs>
+	<defs
+   id="Filters">
+		<filter
+   id="filter_2"
+   x="-1.8697193"
+   y="-0.18406612"
+   width="4.7394387"
+   height="1.3681322">
+			<feGaussianBlur
+   stdDeviation="2"
+   id="feGaussianBlur23" />
+		</filter>
+	</defs>
+	<g
+   id="shape18-61"
+   v:mID="18"
+   v:groupContext="shape"
+   v:layerMember="0"
+   transform="translate(288.51683,-357.12581)">
+			<title
+   id="title117">용기.34</title>
+			<v:custProps>
+				<v:cp
+   v:nameU="SubType"
+   v:lbl="용기 종류"
+   v:type="1"
+   v:format="편평한 상하단;구부러진 상하단;각진 상하단"
+   v:langID="1042"
+   v:val="VT4(구부러진 상하단)" />
+				<v:cp
+   v:nameU="Description"
+   v:lbl="설명"
+   v:type="0"
+   v:sortKey="0"
+   v:langID="1042" />
+				<v:cp
+   v:nameU="Material"
+   v:lbl="자재"
+   v:type="0"
+   v:sortKey="1"
+   v:langID="1042" />
+				<v:cp
+   v:nameU="Manufacturer"
+   v:lbl="제조업체"
+   v:type="0"
+   v:sortKey="2"
+   v:langID="1042" />
+				<v:cp
+   v:nameU="Model"
+   v:lbl="모델"
+   v:type="0"
+   v:sortKey="3"
+   v:langID="1042" />
+			</v:custProps>
+			<v:userDefs>
+				<v:ud
+   v:nameU="SubType"
+   v:val="VT0(1):26" />
+				<v:ud
+   v:nameU="TextCH"
+   v:prompt="Determines text control handle visibility."
+   v:val="VT0(5):26" />
+				<v:ud
+   v:nameU="visVersion"
+   v:val="VT0(15):26" />
+				<v:ud
+   v:nameU="SolSH"
+   v:val="VT4({D7D7DB7E-3668-43e5-AF97-97F58AB229A5})" />
+				<v:ud
+   v:nameU="ShapeClass"
+   v:val="VT4(장비)" />
+				<v:ud
+   v:nameU="PEComponentTag"
+   v:val="VT4(E-0)" />
+				<v:ud
+   v:nameU="PETagNumber" />
+				<v:ud
+   v:nameU="PETagFormat"
+   v:prompt="E-0"
+   v:val="VT4(장비)" />
+				<v:ud
+   v:nameU="PEHideTag" />
+				<v:ud
+   v:nameU="PEPageHideTags"
+   v:val="VT0(0):26" />
+				<v:ud
+   v:nameU="PELayout"
+   v:val="VT0(31):26" />
+				<v:ud
+   v:nameU="CPMSetList"
+   v:prompt="Description,Material,Manufacturer,Model"
+   v:val="VT4(장비)" />
+			</v:userDefs>
+			
+		</g><g
+   id="RCP_Grey_r"
+   v:mID="22"
+   v:groupContext="shape"
+   v:layerMember="0"
+   transform="translate(606.14944,-465.15687)"
+   style="fill:#525252;fill-opacity:1;stroke:none;stroke-opacity:1">
+			<title
+   id="title137">Centrifugal fan.47</title>
+			<v:custProps>
+				<v:cp
+   v:nameU="SubType"
+   v:lbl="중심원 표시"
+   v:type="3"
+   v:langID="1042"
+   v:val="VT0(0):5" />
+				<v:cp
+   v:nameU="Description"
+   v:lbl="설명"
+   v:type="0"
+   v:sortKey="0"
+   v:langID="1042" />
+				<v:cp
+   v:nameU="Material"
+   v:lbl="자재"
+   v:type="0"
+   v:sortKey="1"
+   v:langID="1042" />
+				<v:cp
+   v:nameU="Manufacturer"
+   v:lbl="제조업체"
+   v:type="0"
+   v:sortKey="2"
+   v:langID="1042" />
+				<v:cp
+   v:nameU="Model"
+   v:lbl="모델"
+   v:type="0"
+   v:sortKey="3"
+   v:langID="1042" />
+			</v:custProps>
+			<v:userDefs>
+				<v:ud
+   v:nameU="SubType"
+   v:val="VT0(1):5" />
+				<v:ud
+   v:nameU="WatchCHX1"
+   v:val="VT0(0.56692913385827):24" />
+				<v:ud
+   v:nameU="WatchCHY1"
+   v:val="VT0(0.28346456692913):24" />
+				<v:ud
+   v:nameU="Int_X"
+   v:val="VT0(0.46766832215274):24" />
+				<v:ud
+   v:nameU="Int_Y"
+   v:val="VT0(0.28346456692913):24" />
+				<v:ud
+   v:nameU="visVersion"
+   v:val="VT0(15):26" />
+				<v:ud
+   v:nameU="TextCH"
+   v:prompt="Determines text control handle visibility."
+   v:val="VT0(5):26" />
+				<v:ud
+   v:nameU="SolSH"
+   v:val="VT4({D7D7DB7E-3668-43e5-AF97-97F58AB229A5})" />
+				<v:ud
+   v:nameU="ShapeClass"
+   v:val="VT4(장비)" />
+				<v:ud
+   v:nameU="PEComponentTag"
+   v:val="VT4(E-0)" />
+				<v:ud
+   v:nameU="PETagNumber" />
+				<v:ud
+   v:nameU="PETagFormat"
+   v:prompt="E-0"
+   v:val="VT4(장비)" />
+				<v:ud
+   v:nameU="PEHideTag" />
+				<v:ud
+   v:nameU="PEPageHideTags"
+   v:val="VT0(0):26" />
+				<v:ud
+   v:nameU="PELayout"
+   v:val="VT0(31):26" />
+				<v:ud
+   v:nameU="CPMSetList"
+   v:prompt="Description,Material,Manufacturer,Model"
+   v:val="VT4(장비)" />
+				<v:ud
+   v:nameU="WatchCHX1"
+   v:prompt=""
+   v:val="VT0(0.33070866141732):1" />
+				<v:ud
+   v:nameU="WatchCHY1"
+   v:prompt=""
+   v:val="VT0(0.16535433070866):1" />
+				<v:ud
+   v:nameU="Int_X"
+   v:prompt=""
+   v:val="VT0(0.27280652125577):1" />
+				<v:ud
+   v:nameU="Int_Y"
+   v:prompt=""
+   v:val="VT0(0.16535433070866):1" />
+			</v:userDefs>
+			<path
+   d="m 9.92,575.43 a 9.92126,9.92126 -180 1 0 9.72,7.94 h 4.17 v -7.94 z"
+   class="st11"
+   id="path139"
+   style="fill:#525252;fill-opacity:1;stroke:none;stroke-opacity:1" />
+		</g><g
+   id="MS_V1000_h"
+   transform="translate(478.19189,-398.26977)"><path
+     style="fill:#be0a0a;fill-opacity:1;stroke:#be0a0a;stroke-width:0.75px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="m 151.03148,206.90617 c 0,-2.13991 0,-4.28057 0,-6.42198"
+     id="path16313-5-3"
+     inkscape:path-effect="#path-effect72281"
+     inkscape:original-d="m 151.03148,206.90617 c 7.5e-4,-2.13991 7.5e-4,-4.28057 0,-6.42198"
+     sodipodi:nodetypes="cc"
+     transform="translate(-157.55899,347.39399)" /><path
+     d="m -19.68575,565.19213 h 8.69 v -8.69104 h -8.69 z"
+     class="st12"
+     id="path236-0"
+     style="fill:#be0a0a;fill-opacity:1;stroke-width:0.999485"
+     transform="translate(8.8634405,-17.311254)" /><g
+     id="V1_half"
+     transform="matrix(0,-2.834235,2.83465,0,1.8921851,755.9255)"><path
+       style="fill:#be0a0a;fill-opacity:1;stroke:none;stroke-width:0.0622537;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 72.991059,-7.203609 c 0,0 -3.704167,0 -3.704167,0 0,0 1.852354,4.2333333 1.852354,4.2333333 0,0 1.851813,-4.2333333 1.851813,-4.2333333 z"
+       id="path14058-7-7"
+       inkscape:path-effect="#path-effect60171"
+       inkscape:original-d="m 72.991059,-7.203609 h -3.704167 l 1.852354,4.2333333 z"
+       sodipodi:nodetypes="cccc" /><path
+       style="fill:#2b9291;fill-opacity:1;stroke:none;stroke-width:0.0622537;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 69.287434,1.2630577 c 0,0 3.704167,0 3.704167,0 0,0 -1.852355,-4.2333334 -1.852355,-4.2333334 0,0 -1.851812,4.2333334 -1.851812,4.2333334 z"
+       id="path14058-2-3"
+       inkscape:path-effect="#path-effect60175"
+       inkscape:original-d="m 69.287434,1.2630577 h 3.704167 l -1.852355,-4.2333334 z"
+       sodipodi:nodetypes="cccc" /></g></g><g
+   id="MS_V1000_C"
+   transform="translate(475.0685,-454.94035)"><g
+     id="g8772"><path
+       style="fill:#2b9291;fill-opacity:1;stroke:#2b9291;stroke-width:0.75px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m -1.6993777,551.39391 c 0,-2.13991 0,-4.28057 0,-6.42198"
+       id="path16313-5-3-3"
+       inkscape:path-effect="#path-effect8535"
+       inkscape:original-d="m -1.6993777,551.39391 c 7.5e-4,-2.13991 7.5e-4,-4.28057 0,-6.42198"
+       sodipodi:nodetypes="cc" /><path
+       d="m -5.9941772,544.97462 h 8.69 v -8.69104 h -8.69 z"
+       class="st12"
+       id="path236-0-4"
+       style="fill:#2b9291;fill-opacity:1;stroke-width:0.999485" /><g
+       id="V1_half-4"
+       transform="matrix(0,-2.834235,2.83465,0,6.7203174,753.01925)"><path
+         style="fill:#2b9291;fill-opacity:1;stroke:none;stroke-width:0.0622537;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 72.991059,-7.203609 c 0,0 -3.704167,0 -3.704167,0 0,0 1.852354,4.2333333 1.852354,4.2333333 0,0 1.851813,-4.2333333 1.851813,-4.2333333 z"
+         id="path14058-7-7-83"
+         inkscape:path-effect="#path-effect8539"
+         inkscape:original-d="m 72.991059,-7.203609 h -3.704167 l 1.852354,4.2333333 z"
+         sodipodi:nodetypes="cccc" /><path
+         style="fill:#2b9291;fill-opacity:1;stroke:none;stroke-width:0.0622537;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 69.287434,1.2630577 c 0,0 3.704167,0 3.704167,0 0,0 -1.852355,-4.2333334 -1.852355,-4.2333334 0,0 -1.851812,4.2333334 -1.851812,4.2333334 z"
+         id="path14058-2-3-0"
+         inkscape:path-effect="#path-effect8543"
+         inkscape:original-d="m 69.287434,1.2630577 h 3.704167 l -1.852355,-4.2333334 z"
+         sodipodi:nodetypes="cccc" /></g></g></g><g
+   id="MS_V1000_O"
+   transform="translate(527.78761,-438.80696)"
+   style="fill:#be0a0a;fill-opacity:1"><g
+     id="g8772-1"
+     style="fill:#be0a0a;fill-opacity:1"><g
+       id="g10548"
+       transform="translate(-53.298254,14.053768)"><path
+         style="fill:#be0a0a;fill-opacity:1;stroke:#be0a0a;stroke-width:0.75px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m -1.6993777,551.39391 c 0,-2.13991 0,-4.28057 0,-6.42198"
+         id="path16313-5-3-3-8"
+         inkscape:path-effect="#path-effect10400"
+         inkscape:original-d="m -1.6993777,551.39391 c 7.5e-4,-2.13991 7.5e-4,-4.28057 0,-6.42198"
+         sodipodi:nodetypes="cc" /><path
+         d="m -5.9941772,544.97462 h 8.69 v -8.69104 h -8.69 z"
+         class="st12"
+         id="path236-0-4-0"
+         style="fill:#be0a0a;fill-opacity:1;stroke-width:0.999485" /><g
+         id="V1_half-4-6"
+         transform="matrix(0,-2.834235,2.83465,0,6.7203174,753.01925)"
+         style="fill:#be0a0a;fill-opacity:1"><path
+           style="fill:#be0a0a;fill-opacity:1;stroke:none;stroke-width:0.0622537;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="m 72.991059,-7.203609 c 0,0 -3.704167,0 -3.704167,0 0,0 1.852354,4.2333333 1.852354,4.2333333 0,0 1.851813,-4.2333333 1.851813,-4.2333333 z"
+           id="path14058-7-7-83-0"
+           inkscape:path-effect="#path-effect10404"
+           inkscape:original-d="m 72.991059,-7.203609 h -3.704167 l 1.852354,4.2333333 z"
+           sodipodi:nodetypes="cccc" /><path
+           style="fill:#be0a0a;fill-opacity:1;stroke:none;stroke-width:0.0622537;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="m 69.287434,1.2630577 c 0,0 3.704167,0 3.704167,0 0,0 -1.852355,-4.2333334 -1.852355,-4.2333334 0,0 -1.851812,4.2333334 -1.851812,4.2333334 z"
+           id="path14058-2-3-0-6"
+           inkscape:path-effect="#path-effect10408"
+           inkscape:original-d="m 69.287434,1.2630577 h 3.704167 l -1.852355,-4.2333334 z"
+           sodipodi:nodetypes="cccc" /></g></g></g></g><g
+   id="g11090"
+   transform="translate(174.96358,-13.300419)"><g
+     id="group54-181"
+     transform="translate(24.93175,-341.25844)"
+     v:mID="54"
+     v:groupContext="group"><title
+       id="title334">시트.54</title></g></g><g
+   id="EI_big"
+   transform="translate(-194.08725,-124.36236)"><g
+     id="group88-310"
+     transform="translate(626.112,-195.442)"
+     v:mID="88"
+     v:groupContext="group"
+     v:layerMember="0">
+			<v:userDefs>
+				<v:ud
+   v:nameU="visVersion"
+   v:val="VT0(15):26" />
+			</v:userDefs>
+			<title
+   id="title491">탱크 트럭</title>
+			<g
+   id="shape89-311"
+   v:mID="89"
+   v:groupContext="shape"
+   v:layerMember="0"
+   transform="translate(2.85502)">
+				<title
+   id="title493">시트.89</title>
+				<path
+   d="m 51.03,591.64 h 1.85 v -1.36 a 1.90335,1.81818 0 0 1 1.9,1.81 1.905,1.8197562 0 1 1 -3.81,0 1.90335,1.81818 0 0 1 0.06,-0.45 z m -5.77,-1.36 v 1.36 h 1.85 a 1.90335,1.81818 0 0 1 0.06,0.45 1.905,1.8197562 0 0 1 -3.81,0 1.90335,1.81818 0 0 1 1.9,-1.81 z m -34.74,1.36 h 2.62 v -1.2 a 1.90335,1.81818 0 0 1 1.12,1.65 1.905,1.8197562 0 0 1 -3.81,0 1.90335,1.81818 0 0 1 0.07,-0.45 z m -6.18,-1.32 v 1.32 h 2.25 a 1.90335,1.81818 0 0 1 0.06,0.45 1.905,1.8197562 0 1 1 -3.81,0 1.90335,1.81818 0 0 1 1.5,-1.77 z m 3.7,1.32 h 1.02 a 3.33086,3.18182 -180 0 0 -0.03,0.45 3.33086,3.18182 -180 0 0 6.66,0 3.33086,3.18182 -180 0 0 -1.62,-2.72 h 21.2 l 1.9,-1.37 h 10.35 v 0.46 H 50.5 V 588 h 1.9 L 53,587.55 H 0 l 1.01,1.82 h 2.02 a 3.33086,3.18182 -180 0 0 -1.62,2.72 3.335,3.1857748 -180 1 0 6.67,0 3.33086,3.18182 -180 0 0 -0.04,-0.45 z m 61.98,-0.46 h 3.3 a 1.90335,1.81818 0 0 1 0.26,0.91 1.905,1.8197562 0 0 1 -3.81,0 1.90335,1.81818 0 0 1 0.25,-0.91 z m 4.84,0 h 0.38 l 0.48,1.82 h 0.47 v -0.45 h 0.95 v -7.27 h -0.47 l -0.48,-1.37 -7.13,-0.45 -2.38,-5 h -7.62 v 4.09 h -0.47 v -7.27 h -0.95 v 7.27 h -0.48 v 5.91 H 40.98 l 0.48,1.82 h 1.07 a 3.33086,3.18182 -180 0 0 -0.6,1.81 3.33086,3.18182 -180 0 0 6.66,0 3.33086,3.18182 -180 0 0 -0.03,-0.45 h 1.02 a 3.33086,3.18182 -180 0 0 -0.03,0.45 3.33086,3.18182 -180 0 0 6.66,0 3.33086,3.18182 -180 0 0 -0.6,-1.81 h 1.07 l 0.48,0.9 h 0.95 V 593 h 5.95 v -0.68 h 3.57 l 0.47,-1.14 h 0.38 a 3.33086,3.18182 -180 0 0 -0.14,0.91 3.33086,3.18182 -180 1 0 6.66,0 3.33086,3.18182 -180 0 0 -0.14,-0.91 z"
+   class="st18"
+   id="path495" />
+			</g>
+			<g
+   id="shape90-313"
+   v:mID="90"
+   v:groupContext="shape"
+   v:layerMember="0"
+   transform="translate(0,-1.36364)">
+				<title
+   id="title498">시트.90</title>
+				<path
+   d="m 41.46,578 h 1.9 v -0.45 h -1.9 z m -13.33,0 h 1.91 v -0.45 h -1.91 z m -13.32,0 h 1.9 v -0.45 h -1.9 z m 41.4,0 H 1.9 a 5.455,1.903507 -90 1 0 0,10.91 h 54.31 a 5.455,1.903507 -90 1 0 0,-10.91 z M 5.7,593.46 a 1.90335,1.81818 -180 1 0 3.8,0 1.90335,1.81818 -180 1 0 -3.8,0 z m 7.61,0 a 1.905,1.8197562 -180 1 0 3.81,0 1.905,1.8197562 -180 1 0 -3.81,0 z m 32.91,0 a 1.90335,1.81818 -180 0 0 3.8,0 1.90335,1.81818 -180 0 0 -3.8,0 z m 7.61,0 a 1.905,1.8197562 -180 1 0 3.81,0 1.905,1.8197562 -180 1 0 -3.81,0 z m 18.79,0 a 1.905,1.8197562 -180 1 0 3.81,0 1.905,1.8197562 -180 0 0 -3.81,0 z"
+   class="st18"
+   id="path500" />
+			</g>
+		</g></g><g
+   id="EI_small"
+   transform="translate(374.4136,28.637868)"><g
+     id="group92-320"
+     transform="translate(60.487823,-388.30815)"
+     v:mID="92"
+     v:groupContext="group"
+     v:layerMember="0">
+			<v:userDefs>
+				<v:ud
+   v:nameU="visVersion"
+   v:val="VT0(15):26" />
+			</v:userDefs>
+			<title
+   id="title509">탱크 트럭.152</title>
+			<g
+   id="shape93-321"
+   v:mID="93"
+   v:groupContext="shape"
+   v:layerMember="0"
+   transform="translate(1.8153)">
+				<title
+   id="title511">시트.93</title>
+				<path
+   d="m 32.45,592.96 h 1.17 v -0.86 a 1.2102,1.15605 0 0 1 1.21,1.15 1.2102,1.15605 0 0 1 -2.42,0 1.2102,1.15605 0 0 1 0.04,-0.29 z m -3.67,-0.86 v 0.86 h 1.17 a 1.2102,1.15605 0 0 1 0.04,0.29 1.2102,1.15605 0 0 1 -2.42,0 1.2102,1.15605 0 0 1 1.21,-1.15 z m -22.09,0.86 h 1.67 v -0.76 a 1.2102,1.15605 0 0 1 0.71,1.05 1.2102,1.15605 0 0 1 -2.42,0 1.2102,1.15605 0 0 1 0.04,-0.29 z m -3.93,-0.84 v 0.84 h 1.43 a 1.2102,1.15605 0 0 1 0.04,0.29 1.2102,1.15605 0 1 1 -2.42,0 1.2102,1.15605 0 0 1 0.95,-1.13 z m 2.35,0.84 h 0.65 a 2.11785,2.02309 -180 0 0 -0.02,0.29 2.12,2.0251438 -180 0 0 4.24,0 2.11785,2.02309 -180 0 0 -1.03,-1.73 h 13.48 l 1.21,-0.87 h 6.58 v 0.29 h 1.89 v -0.29 h 1.21 l 0.38,-0.29 H 0 l 0.64,1.16 h 1.29 a 2.11785,2.02309 -180 0 0 -1.03,1.73 2.11785,2.02309 -180 1 0 4.23,0 2.11785,2.02309 -180 0 0 -0.02,-0.29 z m 39.41,-0.29 h 2.1 a 1.2102,1.15605 0 0 1 0.16,0.58 1.2102,1.15605 0 1 1 -2.42,0 1.2102,1.15605 0 0 1 0.16,-0.58 z m 3.08,0 h 0.24 l 0.3,1.16 h 0.31 v -0.29 h 0.6 v -4.62 h -0.3 l -0.3,-0.87 -4.54,-0.29 -1.52,-3.18 h -4.84 v 2.6 h -0.3 v -4.62 h -0.6 v 4.62 h -0.31 v 3.76 H 26.06 l 0.3,1.16 h 0.68 a 2.11785,2.02309 -180 0 0 -0.38,1.15 2.12,2.0251438 -180 0 0 4.24,0 2.11785,2.02309 -180 0 0 -0.02,-0.29 h 0.64 a 2.11785,2.02309 -180 0 0 -0.02,0.29 2.12,2.0251438 -180 0 0 4.24,0 2.11785,2.02309 -180 0 0 -0.38,-1.15 h 0.68 l 0.3,0.57 h 0.61 v 1.16 h 3.78 V 593.4 H 43 l 0.3,-0.73 h 0.24 a 2.11785,2.02309 -180 0 0 -0.09,0.58 2.12,2.0251438 -180 1 0 4.24,0 2.11785,2.02309 -180 0 0 -0.09,-0.58 z"
+   class="st18"
+   id="path513" />
+			</g>
+			<g
+   id="shape94-323"
+   v:mID="94"
+   v:groupContext="shape"
+   v:layerMember="0"
+   transform="translate(0,-0.867037)">
+				<title
+   id="title516">시트.94</title>
+				<path
+   d="m 26.36,584.29 h 1.21 V 584 h -1.21 z m -8.47,0 H 19.1 V 584 h -1.21 z m -8.47,0 h 1.21 V 584 H 9.42 Z m 26.32,0 H 1.21 a 3.47,1.2108456 -90 1 0 0,6.94 h 34.53 a 3.47,1.2108456 -90 1 0 0,-6.94 z m -32.12,9.83 a 1.2102,1.15605 -180 1 0 2.42,0 1.2102,1.15605 -180 1 0 -2.42,0 z m 4.84,0 a 1.2102,1.15605 -180 1 0 2.42,0 1.2102,1.15605 -180 1 0 -2.42,0 z m 20.93,0 a 1.2102,1.15605 -180 0 0 2.42,0 1.2102,1.15605 -180 0 0 -2.42,0 z m 4.84,0 a 1.2102,1.15605 -180 1 0 2.42,0 1.2102,1.15605 -180 0 0 -2.42,0 z m 11.95,0 a 1.2102,1.15605 -180 1 0 2.42,0 1.2102,1.15605 -180 1 0 -2.42,0 z"
+   class="st18"
+   id="path518" />
+			</g>
+		</g></g><g
+   id="RPV"
+   transform="translate(325.09283,-2.1213234)"><g
+     id="g3971"
+     transform="translate(-251.67691,-101.10494)"><path
+       d="m 0,588.34 a 14.0947,8.44499 -180 0 0 27.73,0 v -41.6 a 14.0947,8.44499 -180 0 0 -27.73,0 z"
+       class="st3"
+       id="path34"
+       transform="translate(422.63,-345.835)" /><g
+       id="shape105-365"
+       v:mID="105"
+       v:groupContext="shape"
+       transform="translate(426.269,-352.079)">
+			<title
+   id="title570">상자</title>
+			<v:userDefs>
+				<v:ud
+   v:nameU="visVersion"
+   v:val="VT0(15):26" />
+			</v:userDefs>
+			<g
+   id="shadow105-366"
+   v:groupContext="shadow"
+   v:shadowOffsetX="0.345598"
+   v:shadowOffsetY="-1.97279"
+   v:shadowType="1"
+   transform="translate(0.345598,1.97279)"
+   class="st1">
+				<rect
+   x="0"
+   y="566.48199"
+   width="2.83465"
+   height="28.794001"
+   class="st2"
+   id="rect572" />
+			</g>
+			<rect
+   x="0"
+   y="566.48199"
+   width="2.83465"
+   height="28.794001"
+   class="st19"
+   id="rect575" />
+		</g><g
+       id="shape106-370"
+       v:mID="106"
+       v:groupContext="shape"
+       transform="translate(430.521,-352.079)">
+			<title
+   id="title578">상자.165</title>
+			<v:userDefs>
+				<v:ud
+   v:nameU="visVersion"
+   v:val="VT0(15):26" />
+			</v:userDefs>
+			<g
+   id="shadow106-371"
+   v:groupContext="shadow"
+   v:shadowOffsetX="0.345598"
+   v:shadowOffsetY="-1.97279"
+   v:shadowType="1"
+   transform="translate(0.345598,1.97279)"
+   class="st1">
+				<rect
+   x="0"
+   y="566.48199"
+   width="2.83465"
+   height="28.794001"
+   class="st2"
+   id="rect580" />
+			</g>
+			<rect
+   x="0"
+   y="566.48199"
+   width="2.83465"
+   height="28.794001"
+   class="st19"
+   id="rect583" />
+		</g><g
+       id="shape107-375"
+       v:mID="107"
+       v:groupContext="shape"
+       transform="translate(434.773,-352.079)">
+			<title
+   id="title586">상자.166</title>
+			<v:userDefs>
+				<v:ud
+   v:nameU="visVersion"
+   v:val="VT0(15):26" />
+			</v:userDefs>
+			<g
+   id="shadow107-376"
+   v:groupContext="shadow"
+   v:shadowOffsetX="0.345598"
+   v:shadowOffsetY="-1.97279"
+   v:shadowType="1"
+   transform="translate(0.345598,1.97279)"
+   class="st1">
+				<rect
+   x="0"
+   y="566.48199"
+   width="2.83465"
+   height="28.794001"
+   class="st2"
+   id="rect588" />
+			</g>
+			<rect
+   x="0"
+   y="566.48199"
+   width="2.83465"
+   height="28.794001"
+   class="st19"
+   id="rect591" />
+		</g><g
+       id="shape108-380"
+       v:mID="108"
+       v:groupContext="shape"
+       transform="translate(439.025,-352.079)">
+			<title
+   id="title594">상자.170</title>
+			<v:userDefs>
+				<v:ud
+   v:nameU="visVersion"
+   v:val="VT0(15):26" />
+			</v:userDefs>
+			<g
+   id="shadow108-381"
+   v:groupContext="shadow"
+   v:shadowOffsetX="0.345598"
+   v:shadowOffsetY="-1.97279"
+   v:shadowType="1"
+   transform="translate(0.345598,1.97279)"
+   class="st1">
+				<rect
+   x="0"
+   y="566.48199"
+   width="2.83465"
+   height="28.794001"
+   class="st2"
+   id="rect596" />
+			</g>
+			<rect
+   x="0"
+   y="566.48199"
+   width="2.83465"
+   height="28.794001"
+   class="st19"
+   id="rect599" />
+		</g><g
+       id="shape109-385"
+       v:mID="109"
+       v:groupContext="shape"
+       transform="translate(443.125,-352.079)">
+			<title
+   id="title602">상자.171</title>
+			<v:userDefs>
+				<v:ud
+   v:nameU="visVersion"
+   v:val="VT0(15):26" />
+			</v:userDefs>
+			<g
+   id="shadow109-386"
+   v:groupContext="shadow"
+   v:shadowOffsetX="0.345598"
+   v:shadowOffsetY="-1.97279"
+   v:shadowType="1"
+   transform="translate(0.345598,1.97279)"
+   class="st1">
+				<rect
+   x="0"
+   y="566.48199"
+   width="2.83465"
+   height="28.794001"
+   class="st2"
+   id="rect604" />
+			</g>
+			<rect
+   x="0"
+   y="566.48199"
+   width="2.83465"
+   height="28.794001"
+   class="st19"
+   id="rect607" />
+		</g></g></g><g
+   id="PZR"
+   v:mID="111"
+   v:groupContext="shape"
+   v:layerMember="0"
+   transform="translate(576.51864,-406.31119)">
+			<title
+   id="title615">기둥.173</title>
+			<v:custProps>
+				<v:cp
+   v:nameU="SubType"
+   v:lbl="봉합선 표시"
+   v:type="3"
+   v:langID="1042"
+   v:val="VT0(0):26" />
+				<v:cp
+   v:nameU="Description"
+   v:lbl="설명"
+   v:type="0"
+   v:sortKey="0"
+   v:langID="1042" />
+				<v:cp
+   v:nameU="Material"
+   v:lbl="자재"
+   v:type="0"
+   v:sortKey="1"
+   v:langID="1042" />
+				<v:cp
+   v:nameU="Manufacturer"
+   v:lbl="제조업체"
+   v:type="0"
+   v:sortKey="2"
+   v:langID="1042" />
+				<v:cp
+   v:nameU="Model"
+   v:lbl="모델"
+   v:type="0"
+   v:sortKey="3"
+   v:langID="1042" />
+			</v:custProps>
+			<v:userDefs>
+				<v:ud
+   v:nameU="SubType"
+   v:val="VT0(0):26" />
+				<v:ud
+   v:nameU="TextCH"
+   v:prompt="Determines text control handle visibility."
+   v:val="VT0(5):26" />
+				<v:ud
+   v:nameU="visVersion"
+   v:val="VT0(15):26" />
+				<v:ud
+   v:nameU="SolSH"
+   v:val="VT4({D7D7DB7E-3668-43e5-AF97-97F58AB229A5})" />
+				<v:ud
+   v:nameU="ShapeClass"
+   v:val="VT4(장비)" />
+				<v:ud
+   v:nameU="PEComponentTag"
+   v:val="VT4(E-0)" />
+				<v:ud
+   v:nameU="PETagNumber" />
+				<v:ud
+   v:nameU="PETagFormat"
+   v:prompt="E-0"
+   v:val="VT4(장비)" />
+				<v:ud
+   v:nameU="PEHideTag" />
+				<v:ud
+   v:nameU="PEPageHideTags"
+   v:val="VT0(0):26" />
+				<v:ud
+   v:nameU="PELayout"
+   v:val="VT0(31):26" />
+				<v:ud
+   v:nameU="CPMSetList"
+   v:prompt="Description,Material,Manufacturer,Model"
+   v:val="VT4(장비)" />
+			</v:userDefs>
+			<path
+   d="m 0,590.74 a 9.21973,5.5241 -180 0 0 18.14,0 v -32.07 a 9.21973,5.5241 -180 0 0 -18.14,0 z"
+   class="st20"
+   id="path617" />
+		</g><g
+   id="RCP_Close_r"
+   v:mID="113"
+   v:groupContext="shape"
+   v:layerMember="0"
+   transform="translate(579.09251,-465.00755)"
+   style="fill:#2b9291;fill-opacity:1;stroke:none">
+			<title
+   id="title625">Centrifugal fan.175</title>
+			<v:custProps>
+				<v:cp
+   v:nameU="SubType"
+   v:lbl="중심원 표시"
+   v:type="3"
+   v:langID="1042"
+   v:val="VT0(0):5" />
+				<v:cp
+   v:nameU="Description"
+   v:lbl="설명"
+   v:type="0"
+   v:sortKey="0"
+   v:langID="1042" />
+				<v:cp
+   v:nameU="Material"
+   v:lbl="자재"
+   v:type="0"
+   v:sortKey="1"
+   v:langID="1042" />
+				<v:cp
+   v:nameU="Manufacturer"
+   v:lbl="제조업체"
+   v:type="0"
+   v:sortKey="2"
+   v:langID="1042" />
+				<v:cp
+   v:nameU="Model"
+   v:lbl="모델"
+   v:type="0"
+   v:sortKey="3"
+   v:langID="1042" />
+			</v:custProps>
+			<v:userDefs>
+				<v:ud
+   v:nameU="SubType"
+   v:val="VT0(1):5" />
+				<v:ud
+   v:nameU="WatchCHX1"
+   v:val="VT0(0.56692913385827):24" />
+				<v:ud
+   v:nameU="WatchCHY1"
+   v:val="VT0(0.28346456692913):24" />
+				<v:ud
+   v:nameU="Int_X"
+   v:val="VT0(0.46766832215274):24" />
+				<v:ud
+   v:nameU="Int_Y"
+   v:val="VT0(0.28346456692913):24" />
+				<v:ud
+   v:nameU="visVersion"
+   v:val="VT0(15):26" />
+				<v:ud
+   v:nameU="TextCH"
+   v:prompt="Determines text control handle visibility."
+   v:val="VT0(5):26" />
+				<v:ud
+   v:nameU="SolSH"
+   v:val="VT4({D7D7DB7E-3668-43e5-AF97-97F58AB229A5})" />
+				<v:ud
+   v:nameU="ShapeClass"
+   v:val="VT4(장비)" />
+				<v:ud
+   v:nameU="PEComponentTag"
+   v:val="VT4(E-0)" />
+				<v:ud
+   v:nameU="PETagNumber" />
+				<v:ud
+   v:nameU="PETagFormat"
+   v:prompt="E-0"
+   v:val="VT4(장비)" />
+				<v:ud
+   v:nameU="PEHideTag" />
+				<v:ud
+   v:nameU="PEPageHideTags"
+   v:val="VT0(0):26" />
+				<v:ud
+   v:nameU="PELayout"
+   v:val="VT0(31):26" />
+				<v:ud
+   v:nameU="CPMSetList"
+   v:prompt="Description,Material,Manufacturer,Model"
+   v:val="VT4(장비)" />
+				<v:ud
+   v:nameU="WatchCHX1"
+   v:prompt=""
+   v:val="VT0(0.33070866141732):1" />
+				<v:ud
+   v:nameU="WatchCHY1"
+   v:prompt=""
+   v:val="VT0(0.16535433070866):1" />
+				<v:ud
+   v:nameU="Int_X"
+   v:prompt=""
+   v:val="VT0(0.27280652125577):1" />
+				<v:ud
+   v:nameU="Int_Y"
+   v:prompt=""
+   v:val="VT0(0.16535433070866):1" />
+			</v:userDefs>
+			<path
+   d="m 9.92,575.43 a 9.92126,9.92126 -180 1 0 9.72,7.94 h 4.17 v -7.94 z"
+   class="st10"
+   id="path627"
+   style="fill:#2b9291;fill-opacity:1;stroke:none" />
+		</g><g
+   id="Tank"
+   transform="translate(297.53849,-96.237322)"><g
+     id="shape5-12"
+     v:mID="5"
+     v:groupContext="shape"
+     v:layerMember="0"
+     transform="translate(232.701,-229.615)">
+			<title
+   id="title52">용기.37</title>
+			<v:custProps>
+				<v:cp
+   v:nameU="SubType"
+   v:lbl="용기 종류"
+   v:type="1"
+   v:format="편평한 상하단;구부러진 상하단;각진 상하단"
+   v:langID="1042"
+   v:val="VT4(구부러진 상하단)" />
+				<v:cp
+   v:nameU="Description"
+   v:lbl="설명"
+   v:type="0"
+   v:sortKey="0"
+   v:langID="1042" />
+				<v:cp
+   v:nameU="Material"
+   v:lbl="자재"
+   v:type="0"
+   v:sortKey="1"
+   v:langID="1042" />
+				<v:cp
+   v:nameU="Manufacturer"
+   v:lbl="제조업체"
+   v:type="0"
+   v:sortKey="2"
+   v:langID="1042" />
+				<v:cp
+   v:nameU="Model"
+   v:lbl="모델"
+   v:type="0"
+   v:sortKey="3"
+   v:langID="1042" />
+			</v:custProps>
+			<v:userDefs>
+				<v:ud
+   v:nameU="SubType"
+   v:val="VT0(1):26" />
+				<v:ud
+   v:nameU="TextCH"
+   v:prompt="Determines text control handle visibility."
+   v:val="VT0(5):26" />
+				<v:ud
+   v:nameU="visVersion"
+   v:val="VT0(15):26" />
+				<v:ud
+   v:nameU="SolSH"
+   v:val="VT4({D7D7DB7E-3668-43e5-AF97-97F58AB229A5})" />
+				<v:ud
+   v:nameU="ShapeClass"
+   v:val="VT4(장비)" />
+				<v:ud
+   v:nameU="PEComponentTag"
+   v:val="VT4(E-0)" />
+				<v:ud
+   v:nameU="PETagNumber" />
+				<v:ud
+   v:nameU="PETagFormat"
+   v:prompt="E-0"
+   v:val="VT4(장비)" />
+				<v:ud
+   v:nameU="PEHideTag" />
+				<v:ud
+   v:nameU="PEPageHideTags"
+   v:val="VT0(0):26" />
+				<v:ud
+   v:nameU="PELayout"
+   v:val="VT0(31):26" />
+				<v:ud
+   v:nameU="CPMSetList"
+   v:prompt="Description,Material,Manufacturer,Model"
+   v:val="VT4(장비)" />
+			</v:userDefs>
+			<path
+   d="m 0,592.8 a 13.9599,8.36425 -180 0 0 19.84,0 v -37.56 a 13.9605,8.36461 -180 0 0 -19.84,0 z"
+   class="st4"
+   id="path54" />
+		</g><g
+     id="shape142-431"
+     v:mID="142"
+     v:groupContext="shape"
+     v:layerMember="0"
+     transform="translate(232.701,-245.914)">
+			<title
+   id="title681">용기.211</title>
+			<v:custProps>
+				<v:cp
+   v:nameU="SubType"
+   v:lbl="용기 종류"
+   v:type="1"
+   v:format="편평한 상하단;구부러진 상하단;각진 상하단"
+   v:langID="1042"
+   v:val="VT4(구부러진 상하단)" />
+				<v:cp
+   v:nameU="Description"
+   v:lbl="설명"
+   v:type="0"
+   v:sortKey="0"
+   v:langID="1042" />
+				<v:cp
+   v:nameU="Material"
+   v:lbl="자재"
+   v:type="0"
+   v:sortKey="1"
+   v:langID="1042" />
+				<v:cp
+   v:nameU="Manufacturer"
+   v:lbl="제조업체"
+   v:type="0"
+   v:sortKey="2"
+   v:langID="1042" />
+				<v:cp
+   v:nameU="Model"
+   v:lbl="모델"
+   v:type="0"
+   v:sortKey="3"
+   v:langID="1042" />
+			</v:custProps>
+			<v:userDefs>
+				<v:ud
+   v:nameU="SubType"
+   v:val="VT0(1):26" />
+				<v:ud
+   v:nameU="TextCH"
+   v:prompt="Determines text control handle visibility."
+   v:val="VT0(5):26" />
+				<v:ud
+   v:nameU="visVersion"
+   v:val="VT0(15):26" />
+				<v:ud
+   v:nameU="SolSH"
+   v:val="VT4({D7D7DB7E-3668-43e5-AF97-97F58AB229A5})" />
+				<v:ud
+   v:nameU="ShapeClass"
+   v:val="VT4(장비)" />
+				<v:ud
+   v:nameU="PEComponentTag"
+   v:val="VT4(E-0)" />
+				<v:ud
+   v:nameU="PETagNumber" />
+				<v:ud
+   v:nameU="PETagFormat"
+   v:prompt="E-0"
+   v:val="VT4(장비)" />
+				<v:ud
+   v:nameU="PEHideTag" />
+				<v:ud
+   v:nameU="PEPageHideTags"
+   v:val="VT0(0):26" />
+				<v:ud
+   v:nameU="PELayout"
+   v:val="VT0(31):26" />
+				<v:ud
+   v:nameU="CPMSetList"
+   v:prompt="Description,Material,Manufacturer,Model"
+   v:val="VT4(장비)" />
+			</v:userDefs>
+			<path
+   d="m 0,593.09 a 15.3199,9.1791 -180 0 0 19.84,0 v -21.85 a 15.3204,9.1794 -180 0 0 -19.84,0 z"
+   class="st14"
+   id="path683" />
+		</g></g><g
+   id="V3_2_allopen"
+   transform="matrix(2.83465,0,0,2.83465,554.8018,352.85114)"><g
+     id="g15983-5-5"
+     transform="matrix(1.0936747,0,0,0.844397,78.46816,2.389707)"
+     style="fill:#be0a0a;fill-opacity:1;stroke:none" /><g
+     id="MS_V170_O"
+     transform="translate(-46.342739,-91.433346)"
+     style="stroke:none"><path
+       style="fill:#be0a0a;fill-opacity:1;stroke:none;stroke-width:0.0647811;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 4.9288519,5.354309 c 0,0 0,4.3867596 0,4.3867596 0,0 3.8707427,-2.1937007 3.8707427,-2.1937007 0,0 -3.8707427,-2.1930589 -3.8707427,-2.1930589 z"
+       id="path14058-9-18"
+       inkscape:path-effect="#path-effect72464"
+       inkscape:original-d="M 4.9288519,5.354309 V 9.7410686 L 8.7995946,7.5473679 Z"
+       sodipodi:nodetypes="cccc"
+       transform="matrix(1.0936747,0,0,0.844397,65.690882,17.397333)" /><path
+       style="fill:#be0a0a;fill-opacity:1;stroke:none;stroke-width:0.0622538;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 73.462962,28.003641 c 0,0 3.704167,0 3.704167,0 0,0 -1.852354,-4.233333 -1.852354,-4.233333 0,0 -1.851813,4.233333 -1.851813,4.233333 z"
+       id="path14058-1-3-0"
+       inkscape:path-effect="#path-effect72472"
+       inkscape:original-d="m 73.462962,28.003641 h 3.704167 l -1.852354,-4.233333 z"
+       sodipodi:nodetypes="cccc" /></g><g
+     id="MS_V170_C"
+     transform="translate(-33.910211,-85.516177)"
+     style="fill:#2b9291;fill-opacity:1;stroke:none"><path
+       style="fill:#2b9291;fill-opacity:1;stroke:none;stroke-width:0.0647811;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 4.9288519,5.354309 c 0,0 0,4.3867596 0,4.3867596 0,0 3.8707427,-2.1937007 3.8707427,-2.1937007 0,0 -3.8707427,-2.1930589 -3.8707427,-2.1930589 z"
+       id="path14058-9-18-4"
+       inkscape:path-effect="#path-effect11723"
+       inkscape:original-d="M 4.9288519,5.354309 V 9.7410686 L 8.7995946,7.5473679 Z"
+       sodipodi:nodetypes="cccc"
+       transform="matrix(1.0936747,0,0,0.844397,65.690882,17.397333)" /><path
+       style="fill:#2b9291;fill-opacity:1;stroke:none;stroke-width:0.0622538;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 73.462962,28.003641 c 0,0 3.704167,0 3.704167,0 0,0 -1.852354,-4.233333 -1.852354,-4.233333 0,0 -1.851813,4.233333 -1.851813,4.233333 z"
+       id="path14058-1-3-0-0"
+       inkscape:path-effect="#path-effect11727"
+       inkscape:original-d="m 73.462962,28.003641 h 3.704167 l -1.852354,-4.233333 z"
+       sodipodi:nodetypes="cccc" /></g><g
+     id="MS_V170_H_l"
+     transform="translate(8.1470708,-18.050334)"
+     style="stroke:none"><path
+       style="fill:#be0a0a;fill-opacity:1;stroke:none;stroke-width:0.0622538;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 11.468118,-39.922533 c 0,0 0,3.704167 0,3.704167 0,0 4.233333,-1.852354 4.233333,-1.852354 0,0 -4.233333,-1.851813 -4.233333,-1.851813 z"
+       id="path14058-9-18-2"
+       inkscape:path-effect="#path-effect11828"
+       inkscape:original-d="m 11.468118,-39.922533 v 3.704167 l 4.233333,-1.852354 z"
+       sodipodi:nodetypes="cccc" /><path
+       style="fill:#2b9291;fill-opacity:1;stroke:none;stroke-width:0.0622538;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 13.849637,-33.837387 c 0,0 3.704167,0 3.704167,0 0,0 -1.852354,-4.233333 -1.852354,-4.233333 0,0 -1.851813,4.233333 -1.851813,4.233333 z"
+       id="1"
+       inkscape:path-effect="#path-effect11832"
+       inkscape:original-d="m 13.849637,-33.837387 h 3.704167 L 15.70145,-38.07072 Z"
+       sodipodi:nodetypes="cccc" /></g><g
+     id="MS_V170_H_d"
+     transform="translate(-33.002499,-67.923195)"
+     style="stroke:none"><path
+       style="fill:#2b9291;fill-opacity:1;stroke:none;stroke-width:0.0622538;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 63.130174,21.357229 c 0,0 0,3.704167 0,3.704167 0,0 4.233334,-1.852354 4.233334,-1.852354 0,0 -4.233334,-1.851813 -4.233334,-1.851813 z"
+       id="path14058-9-18-41"
+       inkscape:path-effect="#path-effect11915"
+       inkscape:original-d="m 63.130174,21.357229 v 3.704167 l 4.233334,-1.852354 z"
+       sodipodi:nodetypes="cccc" /><path
+       style="fill:#be0a0a;fill-opacity:1;stroke:none;stroke-width:0.0622538;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 65.511694,27.442375 c 0,0 3.704167,0 3.704167,0 0,0 -1.852354,-4.233333 -1.852354,-4.233333 0,0 -1.851813,4.233333 -1.851813,4.233333 z"
+       id="path14058-1-3-0-3"
+       inkscape:path-effect="#path-effect11919"
+       inkscape:original-d="m 65.511694,27.442375 h 3.704167 l -1.852354,-4.233333 z"
+       sodipodi:nodetypes="cccc" /></g></g><g
+   id="shape152-440"
+   v:mID="152"
+   v:groupContext="shape"
+   v:layerMember="2"
+   transform="translate(908.65015,-490.81772)">
+				<title
+   id="title701">시트.152</title>
+				<v:userDefs>
+					<v:ud
+   v:nameU="SubType"
+   v:val="VT0(0):26" />
+				</v:userDefs>
+			</g>
+<g
+   id="RCP_OPEN_r"
+   v:mID="113"
+   v:groupContext="shape"
+   v:layerMember="0"
+   transform="translate(553.96659,-465.24596)"
+   style="fill:#be0a0a;fill-opacity:1;stroke:none;stroke-opacity:1"><title
+     id="title625-4">Centrifugal fan.175</title><v:custProps><v:cp
+       v:nameU="SubType"
+       v:lbl="중심원 표시"
+       v:type="3"
+       v:langID="1042"
+       v:val="VT0(0):5" /><v:cp
+       v:nameU="Description"
+       v:lbl="설명"
+       v:type="0"
+       v:sortKey="0"
+       v:langID="1042" /><v:cp
+       v:nameU="Material"
+       v:lbl="자재"
+       v:type="0"
+       v:sortKey="1"
+       v:langID="1042" /><v:cp
+       v:nameU="Manufacturer"
+       v:lbl="제조업체"
+       v:type="0"
+       v:sortKey="2"
+       v:langID="1042" /><v:cp
+       v:nameU="Model"
+       v:lbl="모델"
+       v:type="0"
+       v:sortKey="3"
+       v:langID="1042" /></v:custProps><v:userDefs><v:ud
+       v:nameU="SubType"
+       v:val="VT0(1):5" /><v:ud
+       v:nameU="WatchCHX1"
+       v:val="VT0(0.56692913385827):24" /><v:ud
+       v:nameU="WatchCHY1"
+       v:val="VT0(0.28346456692913):24" /><v:ud
+       v:nameU="Int_X"
+       v:val="VT0(0.46766832215274):24" /><v:ud
+       v:nameU="Int_Y"
+       v:val="VT0(0.28346456692913):24" /><v:ud
+       v:nameU="visVersion"
+       v:val="VT0(15):26" /><v:ud
+       v:nameU="TextCH"
+       v:prompt="Determines text control handle visibility."
+       v:val="VT0(5):26" /><v:ud
+       v:nameU="SolSH"
+       v:val="VT4({D7D7DB7E-3668-43e5-AF97-97F58AB229A5})" /><v:ud
+       v:nameU="ShapeClass"
+       v:val="VT4(장비)" /><v:ud
+       v:nameU="PEComponentTag"
+       v:val="VT4(E-0)" /><v:ud
+       v:nameU="PETagNumber" /><v:ud
+       v:nameU="PETagFormat"
+       v:prompt="E-0"
+       v:val="VT4(장비)" /><v:ud
+       v:nameU="PEHideTag" /><v:ud
+       v:nameU="PEPageHideTags"
+       v:val="VT0(0):26" /><v:ud
+       v:nameU="PELayout"
+       v:val="VT0(31):26" /><v:ud
+       v:nameU="CPMSetList"
+       v:prompt="Description,Material,Manufacturer,Model"
+       v:val="VT4(장비)" /><v:ud
+       v:nameU="WatchCHX1"
+       v:prompt=""
+       v:val="VT0(0.33070866141732):1" /><v:ud
+       v:nameU="WatchCHY1"
+       v:prompt=""
+       v:val="VT0(0.16535433070866):1" /><v:ud
+       v:nameU="Int_X"
+       v:prompt=""
+       v:val="VT0(0.27280652125577):1" /><v:ud
+       v:nameU="Int_Y"
+       v:prompt=""
+       v:val="VT0(0.16535433070866):1" /></v:userDefs><path
+     d="m 9.92,575.43 a 9.92126,9.92126 -180 1 0 9.72,7.94 h 4.17 v -7.94 z"
+     class="st10"
+     id="path627-2"
+     style="fill:#be0a0a;fill-opacity:1;stroke:none;stroke-opacity:1" /></g><g
+   id="RCP_Grey_l"
+   v:mID="22"
+   v:groupContext="shape"
+   v:layerMember="0"
+   transform="matrix(-1,0,0,1,576.60084,-492.61841)"
+   style="fill:#525252;fill-opacity:1;stroke:none;stroke-opacity:1"><title
+     id="title137-9">Centrifugal fan.47</title><v:custProps><v:cp
+       v:nameU="SubType"
+       v:lbl="중심원 표시"
+       v:type="3"
+       v:langID="1042"
+       v:val="VT0(0):5" /><v:cp
+       v:nameU="Description"
+       v:lbl="설명"
+       v:type="0"
+       v:sortKey="0"
+       v:langID="1042" /><v:cp
+       v:nameU="Material"
+       v:lbl="자재"
+       v:type="0"
+       v:sortKey="1"
+       v:langID="1042" /><v:cp
+       v:nameU="Manufacturer"
+       v:lbl="제조업체"
+       v:type="0"
+       v:sortKey="2"
+       v:langID="1042" /><v:cp
+       v:nameU="Model"
+       v:lbl="모델"
+       v:type="0"
+       v:sortKey="3"
+       v:langID="1042" /></v:custProps><v:userDefs><v:ud
+       v:nameU="SubType"
+       v:val="VT0(1):5" /><v:ud
+       v:nameU="WatchCHX1"
+       v:val="VT0(0.56692913385827):24" /><v:ud
+       v:nameU="WatchCHY1"
+       v:val="VT0(0.28346456692913):24" /><v:ud
+       v:nameU="Int_X"
+       v:val="VT0(0.46766832215274):24" /><v:ud
+       v:nameU="Int_Y"
+       v:val="VT0(0.28346456692913):24" /><v:ud
+       v:nameU="visVersion"
+       v:val="VT0(15):26" /><v:ud
+       v:nameU="TextCH"
+       v:prompt="Determines text control handle visibility."
+       v:val="VT0(5):26" /><v:ud
+       v:nameU="SolSH"
+       v:val="VT4({D7D7DB7E-3668-43e5-AF97-97F58AB229A5})" /><v:ud
+       v:nameU="ShapeClass"
+       v:val="VT4(장비)" /><v:ud
+       v:nameU="PEComponentTag"
+       v:val="VT4(E-0)" /><v:ud
+       v:nameU="PETagNumber" /><v:ud
+       v:nameU="PETagFormat"
+       v:prompt="E-0"
+       v:val="VT4(장비)" /><v:ud
+       v:nameU="PEHideTag" /><v:ud
+       v:nameU="PEPageHideTags"
+       v:val="VT0(0):26" /><v:ud
+       v:nameU="PELayout"
+       v:val="VT0(31):26" /><v:ud
+       v:nameU="CPMSetList"
+       v:prompt="Description,Material,Manufacturer,Model"
+       v:val="VT4(장비)" /><v:ud
+       v:nameU="WatchCHX1"
+       v:prompt=""
+       v:val="VT0(0.33070866141732):1" /><v:ud
+       v:nameU="WatchCHY1"
+       v:prompt=""
+       v:val="VT0(0.16535433070866):1" /><v:ud
+       v:nameU="Int_X"
+       v:prompt=""
+       v:val="VT0(0.27280652125577):1" /><v:ud
+       v:nameU="Int_Y"
+       v:prompt=""
+       v:val="VT0(0.16535433070866):1" /></v:userDefs><path
+     d="m 9.92,575.43 a 9.92126,9.92126 -180 1 0 9.72,7.94 h 4.17 v -7.94 z"
+     class="st11"
+     id="path139-2"
+     style="fill:#525252;fill-opacity:1;stroke:none;stroke-opacity:1" /></g><g
+   id="RCP_Close_l"
+   v:mID="113"
+   v:groupContext="shape"
+   v:layerMember="0"
+   transform="matrix(-1,0,0,1,606.83976,-491.93875)"
+   style="fill:#2b9291;fill-opacity:1;stroke:none"><title
+     id="title625-5">Centrifugal fan.175</title><v:custProps><v:cp
+       v:nameU="SubType"
+       v:lbl="중심원 표시"
+       v:type="3"
+       v:langID="1042"
+       v:val="VT0(0):5" /><v:cp
+       v:nameU="Description"
+       v:lbl="설명"
+       v:type="0"
+       v:sortKey="0"
+       v:langID="1042" /><v:cp
+       v:nameU="Material"
+       v:lbl="자재"
+       v:type="0"
+       v:sortKey="1"
+       v:langID="1042" /><v:cp
+       v:nameU="Manufacturer"
+       v:lbl="제조업체"
+       v:type="0"
+       v:sortKey="2"
+       v:langID="1042" /><v:cp
+       v:nameU="Model"
+       v:lbl="모델"
+       v:type="0"
+       v:sortKey="3"
+       v:langID="1042" /></v:custProps><v:userDefs><v:ud
+       v:nameU="SubType"
+       v:val="VT0(1):5" /><v:ud
+       v:nameU="WatchCHX1"
+       v:val="VT0(0.56692913385827):24" /><v:ud
+       v:nameU="WatchCHY1"
+       v:val="VT0(0.28346456692913):24" /><v:ud
+       v:nameU="Int_X"
+       v:val="VT0(0.46766832215274):24" /><v:ud
+       v:nameU="Int_Y"
+       v:val="VT0(0.28346456692913):24" /><v:ud
+       v:nameU="visVersion"
+       v:val="VT0(15):26" /><v:ud
+       v:nameU="TextCH"
+       v:prompt="Determines text control handle visibility."
+       v:val="VT0(5):26" /><v:ud
+       v:nameU="SolSH"
+       v:val="VT4({D7D7DB7E-3668-43e5-AF97-97F58AB229A5})" /><v:ud
+       v:nameU="ShapeClass"
+       v:val="VT4(장비)" /><v:ud
+       v:nameU="PEComponentTag"
+       v:val="VT4(E-0)" /><v:ud
+       v:nameU="PETagNumber" /><v:ud
+       v:nameU="PETagFormat"
+       v:prompt="E-0"
+       v:val="VT4(장비)" /><v:ud
+       v:nameU="PEHideTag" /><v:ud
+       v:nameU="PEPageHideTags"
+       v:val="VT0(0):26" /><v:ud
+       v:nameU="PELayout"
+       v:val="VT0(31):26" /><v:ud
+       v:nameU="CPMSetList"
+       v:prompt="Description,Material,Manufacturer,Model"
+       v:val="VT4(장비)" /><v:ud
+       v:nameU="WatchCHX1"
+       v:prompt=""
+       v:val="VT0(0.33070866141732):1" /><v:ud
+       v:nameU="WatchCHY1"
+       v:prompt=""
+       v:val="VT0(0.16535433070866):1" /><v:ud
+       v:nameU="Int_X"
+       v:prompt=""
+       v:val="VT0(0.27280652125577):1" /><v:ud
+       v:nameU="Int_Y"
+       v:prompt=""
+       v:val="VT0(0.16535433070866):1" /></v:userDefs><path
+     d="m 9.92,575.43 a 9.92126,9.92126 -180 1 0 9.72,7.94 h 4.17 v -7.94 z"
+     class="st10"
+     id="path627-5"
+     style="fill:#2b9291;fill-opacity:1;stroke:none" /></g><g
+   id="RCP_OPEN_l"
+   v:mID="113"
+   v:groupContext="shape"
+   v:layerMember="0"
+   transform="matrix(-1,0,0,1,631.96568,-492.17717)"
+   style="fill:#be0a0a;fill-opacity:1;stroke:none;stroke-opacity:1"><title
+     id="title625-4-1">Centrifugal fan.175</title><v:custProps><v:cp
+       v:nameU="SubType"
+       v:lbl="중심원 표시"
+       v:type="3"
+       v:langID="1042"
+       v:val="VT0(0):5" /><v:cp
+       v:nameU="Description"
+       v:lbl="설명"
+       v:type="0"
+       v:sortKey="0"
+       v:langID="1042" /><v:cp
+       v:nameU="Material"
+       v:lbl="자재"
+       v:type="0"
+       v:sortKey="1"
+       v:langID="1042" /><v:cp
+       v:nameU="Manufacturer"
+       v:lbl="제조업체"
+       v:type="0"
+       v:sortKey="2"
+       v:langID="1042" /><v:cp
+       v:nameU="Model"
+       v:lbl="모델"
+       v:type="0"
+       v:sortKey="3"
+       v:langID="1042" /></v:custProps><v:userDefs><v:ud
+       v:nameU="SubType"
+       v:val="VT0(1):5" /><v:ud
+       v:nameU="WatchCHX1"
+       v:val="VT0(0.56692913385827):24" /><v:ud
+       v:nameU="WatchCHY1"
+       v:val="VT0(0.28346456692913):24" /><v:ud
+       v:nameU="Int_X"
+       v:val="VT0(0.46766832215274):24" /><v:ud
+       v:nameU="Int_Y"
+       v:val="VT0(0.28346456692913):24" /><v:ud
+       v:nameU="visVersion"
+       v:val="VT0(15):26" /><v:ud
+       v:nameU="TextCH"
+       v:prompt="Determines text control handle visibility."
+       v:val="VT0(5):26" /><v:ud
+       v:nameU="SolSH"
+       v:val="VT4({D7D7DB7E-3668-43e5-AF97-97F58AB229A5})" /><v:ud
+       v:nameU="ShapeClass"
+       v:val="VT4(장비)" /><v:ud
+       v:nameU="PEComponentTag"
+       v:val="VT4(E-0)" /><v:ud
+       v:nameU="PETagNumber" /><v:ud
+       v:nameU="PETagFormat"
+       v:prompt="E-0"
+       v:val="VT4(장비)" /><v:ud
+       v:nameU="PEHideTag" /><v:ud
+       v:nameU="PEPageHideTags"
+       v:val="VT0(0):26" /><v:ud
+       v:nameU="PELayout"
+       v:val="VT0(31):26" /><v:ud
+       v:nameU="CPMSetList"
+       v:prompt="Description,Material,Manufacturer,Model"
+       v:val="VT4(장비)" /><v:ud
+       v:nameU="WatchCHX1"
+       v:prompt=""
+       v:val="VT0(0.33070866141732):1" /><v:ud
+       v:nameU="WatchCHY1"
+       v:prompt=""
+       v:val="VT0(0.16535433070866):1" /><v:ud
+       v:nameU="Int_X"
+       v:prompt=""
+       v:val="VT0(0.27280652125577):1" /><v:ud
+       v:nameU="Int_Y"
+       v:prompt=""
+       v:val="VT0(0.16535433070866):1" /></v:userDefs><path
+     d="m 9.92,575.43 a 9.92126,9.92126 -180 1 0 9.72,7.94 h 4.17 v -7.94 z"
+     class="st10"
+     id="path627-2-4"
+     style="fill:#be0a0a;fill-opacity:1;stroke:none;stroke-opacity:1" /></g><g
+   id="SG"
+   transform="translate(504.61578,-385.59259)"
+   v:mID="57"
+   v:groupContext="group"><title
+     id="title347">시트.57</title><g
+     id="shape58-187"
+     v:mID="58"
+     v:groupContext="shape"
+     v:layerMember="0"
+     transform="translate(3.58689)"><title
+       id="title349">용기</title><v:custProps><v:cp
+         v:nameU="SubType"
+         v:lbl="용기 종류"
+         v:type="1"
+         v:format="편평한 상하단;구부러진 상하단;각진 상하단"
+         v:langID="1042"
+         v:val="VT4(구부러진 상하단)" /><v:cp
+         v:nameU="Description"
+         v:lbl="설명"
+         v:type="0"
+         v:sortKey="0"
+         v:langID="1042" /><v:cp
+         v:nameU="Material"
+         v:lbl="자재"
+         v:type="0"
+         v:sortKey="1"
+         v:langID="1042" /><v:cp
+         v:nameU="Manufacturer"
+         v:lbl="제조업체"
+         v:type="0"
+         v:sortKey="2"
+         v:langID="1042" /><v:cp
+         v:nameU="Model"
+         v:lbl="모델"
+         v:type="0"
+         v:sortKey="3"
+         v:langID="1042" /></v:custProps><v:userDefs><v:ud
+         v:nameU="SubType"
+         v:val="VT0(1):26" /><v:ud
+         v:nameU="TextCH"
+         v:prompt="Determines text control handle visibility."
+         v:val="VT0(5):26" /><v:ud
+         v:nameU="visVersion"
+         v:val="VT0(15):26" /><v:ud
+         v:nameU="SolSH"
+         v:val="VT4({D7D7DB7E-3668-43e5-AF97-97F58AB229A5})" /><v:ud
+         v:nameU="ShapeClass"
+         v:val="VT4(장비)" /><v:ud
+         v:nameU="PEComponentTag"
+         v:val="VT4(E-0)" /><v:ud
+         v:nameU="PETagNumber" /><v:ud
+         v:nameU="PETagFormat"
+         v:prompt="E-0"
+         v:val="VT4(장비)" /><v:ud
+         v:nameU="PEHideTag" /><v:ud
+         v:nameU="PEPageHideTags"
+         v:val="VT0(0):26" /><v:ud
+         v:nameU="PELayout"
+         v:val="VT0(31):26" /><v:ud
+         v:nameU="CPMSetList"
+         v:prompt="Description,Material,Manufacturer,Model"
+         v:val="VT4(장비)" /></v:userDefs><path
+       d="m 0,591.92 a 18.8838,11.3144 -180 0 0 26.84,0 v -33.93 a 18.8844,11.3148 -180 0 0 -26.84,0 z"
+       class="st15"
+       id="path351" /></g><g
+     id="shape59-189"
+     v:mID="59"
+     v:groupContext="shape"
+     v:layerMember="0"
+     transform="translate(0,-29.3888)"><title
+       id="title354">기둥</title><v:custProps><v:cp
+         v:nameU="SubType"
+         v:lbl="봉합선 표시"
+         v:type="3"
+         v:langID="1042"
+         v:val="VT0(0):26" /><v:cp
+         v:nameU="Description"
+         v:lbl="설명"
+         v:type="0"
+         v:sortKey="0"
+         v:langID="1042" /><v:cp
+         v:nameU="Material"
+         v:lbl="자재"
+         v:type="0"
+         v:sortKey="1"
+         v:langID="1042" /><v:cp
+         v:nameU="Manufacturer"
+         v:lbl="제조업체"
+         v:type="0"
+         v:sortKey="2"
+         v:langID="1042" /><v:cp
+         v:nameU="Model"
+         v:lbl="모델"
+         v:type="0"
+         v:sortKey="3"
+         v:langID="1042" /></v:custProps><v:userDefs><v:ud
+         v:nameU="SubType"
+         v:val="VT0(0):26" /><v:ud
+         v:nameU="TextCH"
+         v:prompt="Determines text control handle visibility."
+         v:val="VT0(5):26" /><v:ud
+         v:nameU="visVersion"
+         v:val="VT0(15):26" /><v:ud
+         v:nameU="SolSH"
+         v:val="VT4({D7D7DB7E-3668-43e5-AF97-97F58AB229A5})" /><v:ud
+         v:nameU="ShapeClass"
+         v:val="VT4(장비)" /><v:ud
+         v:nameU="PEComponentTag"
+         v:val="VT4(E-0)" /><v:ud
+         v:nameU="PETagNumber" /><v:ud
+         v:nameU="PETagFormat"
+         v:prompt="E-0"
+         v:val="VT4(장비)" /><v:ud
+         v:nameU="PEHideTag" /><v:ud
+         v:nameU="PEPageHideTags"
+         v:val="VT0(0):26" /><v:ud
+         v:nameU="PELayout"
+         v:val="VT0(31):26" /><v:ud
+         v:nameU="CPMSetList"
+         v:prompt="Description,Material,Manufacturer,Model"
+         v:val="VT4(장비)" /></v:userDefs><path
+       d="m 0,589.65 a 20.0997,12.043 -180 0 0 34.02,0 V 578.4 A 20.0997,12.043 -180 0 0 0,578.4 Z"
+       class="st15"
+       id="path356" /></g></g></svg>

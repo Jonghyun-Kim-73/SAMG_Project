@@ -50,6 +50,7 @@ class MitigationMiddleArea_3(QWidget):
         super(MitigationMiddleArea_3, self).__init__()
         self.setAttribute(Qt.WA_StyledBackground, True)
         self.parent = parent
+        self.shmem = parent.shmem
         self.setStyleSheet(self.qss)
         self.setMouseTracking(True)
 
@@ -65,7 +66,7 @@ class MitigationMiddleArea_3(QWidget):
 
         right = QVBoxLayout(self)
 
-        label2 = MitigationMiddleArea_3R()
+        label2 = MitigationMiddleArea_3R(self)
         label2.setFixedWidth(860)
         right.addWidget(label2)
 
@@ -93,13 +94,14 @@ class FlowChartArea(QWidget):
         super(FlowChartArea, self).__init__()
         self.setAttribute(Qt.WA_StyledBackground, True)
         self.parent = parent
+        self.shmem = parent.shmem
         self.setStyleSheet(self.qss)
         self.setMouseTracking(True)
         # self.setGeometry(0, 0, 1100, 1100)  # 1900*(3/4) = 1425
         scroll = QScrollArea()
         scroll.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
         scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
-        flowchart = FlowChart()
+        flowchart = FlowChart(self)
 
         scroll.setWidget(flowchart)
 
@@ -118,6 +120,8 @@ class FlowChart(QWidget):
         """
     def __init__(self, parent=None):
         super(FlowChart, self).__init__()
+        self.parent = parent
+        self.shmem = parent.shmem
         self.setGeometry(0, 0, 1300, 1100)  # 1900*(3/4) = 1425
         self.setStyleSheet(self.qss)
         self.color_clicked = QColor(128, 128, 128)
@@ -184,7 +188,7 @@ class FlowChart(QWidget):
 
         # ==============================================================================================================
 
-        self.changetable = MitigationMiddleArea_3R()
+        self.changetable = MitigationMiddleArea_3R(self)
 
         self.setMouseTracking(True)
 
@@ -484,12 +488,14 @@ class MitigationMiddleArea_3R(QWidget, QObject):
         super(MitigationMiddleArea_3R, self).__init__()
         self.setAttribute(Qt.WA_StyledBackground, True)
         self.parent = parent
+        self.shmem = parent.shmem
+
         self.setStyleSheet(self.qss)
         self.central_widget = QStackedWidget()
 
         self.screen1 = tableNone()
-        self.screen2 = table_3_2()
-        self.screen3 = table_3_3()
+        self.screen2 = table_3_2(self)
+        self.screen3 = table_3_3(self)
         self.screen4 = table_3_4()
         self.screen5 = table_3_5()
         self.screen6 = table_3_6()

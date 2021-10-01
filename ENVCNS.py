@@ -111,7 +111,7 @@ class ENVCNS(CNS):
         self.Name = Name  # = id
         self.ENVStep = 0
         self.LoggerPath = 'DB'
-        self.want_tick = 5  # 1sec
+        self.want_tick = 300  # 1sec
 
         self.Loger_txt = ''
 
@@ -482,15 +482,16 @@ class ENVCNS(CNS):
         # Old Data (time t) ---------------------------------------
         AMod = self.send_act(A)
 
-        if self.CMem.CoolingRateSW == 0:
-            if self.CMem.CTIME >= 800:
-                # 강화학습 이전 시 5 tick
-                self.want_tick = int(5)
-            else:
-                self.want_tick = int(5)
-        else:
-            # Cooling 계산 시작 및 강화학습 진입 시 100 tick
-            self.want_tick = int(5)
+        # if self.CMem.CoolingRateSW == 0:
+        #     if self.CMem.CTIME >= 800:
+        #         # 강화학습 이전 시 5 tick
+        #         self.want_tick = int(5)
+        #     else:
+        #         self.want_tick = int(5)
+        # else:
+        #     # Cooling 계산 시작 및 강화학습 진입 시 100 tick
+        #     self.want_tick = int(5)
+
         print(self.want_tick, self.CMem.CTIME)
 
         # New Data (time t+1) -------------------------------------

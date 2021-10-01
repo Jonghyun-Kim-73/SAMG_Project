@@ -362,14 +362,12 @@ class FlowChart(QWidget):
         self.btn_3.shapes.setColor(self.color_click)
         self.btn_3.setObjectName("clicked")
 
-        self.shmem.get_shmem_val('')
-
         # popup
         self.popup = SubWindow(p_number=3,
                                p_title="발전소 부지 경계 선량 확인",
                                p_content="\n발전소 부지 경계 선량 < R[01]",
                                p_label1="현재 발전소 부지 경계 선량",
-                               p_value1="현재 값")
+                               p_value1=f"{self.shmem.get_shmem_val('DCTMT'):.2f}")
         show = self.popup.showModal()
 
         #예
@@ -414,7 +412,7 @@ class FlowChart(QWidget):
                                p_title="격납건물 압력 확인",
                                p_content="\n격납건물 압력 < [P11] psig",
                                p_label1="현재 격납건물 압력",
-                               p_value1="현재 값")#표에서 얻어오기
+                               p_value1=f"{self.shmem.get_shmem_val('PCTMT'):.2f}") #표에서 얻어오기
         show = self.popup.showModal()
 
         # 예
@@ -459,7 +457,7 @@ class FlowChart(QWidget):
                                p_title="격납건물 수소농도 확인",
                                p_content="\n격납건물 수소농도 < [H02]%",
                                p_label1="현재 격납건물 수소농도",
-                               p_value1="현재 값")  # 표에서 얻어오기
+                               p_value1=f"{self.shmem.get_shmem_val('H2CONC'):.2f}")  # 표에서 얻어오기
         show = self.popup.showModal()
 
         # 예
@@ -504,7 +502,7 @@ class FlowChart(QWidget):
                                p_title="노심출구온도 확인",
                                p_content="\n노심출구온도 < [T01]°C",
                                p_label1="현재 노심출구온도",
-                               p_value1="현재 값")  # 표에서 얻어오기
+                               p_value1=f"{self.shmem.get_shmem_val('UUPPPL'):.2f}")  # 표에서 얻어오기
         show = self.popup.showModal()
 
         # 예
@@ -549,7 +547,7 @@ class FlowChart(QWidget):
                                p_title="RCS 압력 확인",
                                p_content="\nRCS 압력 < [P04]psig",
                                p_label1="현재 RCS 압력",
-                               p_value1="현재 값")  # 표에서 얻어오기
+                               p_value1=f"{self.shmem.get_shmem_val('ZINST58'):.2f}")  # 표에서 얻어오기
         show = self.popup.showModal()
 
         # 예
@@ -593,9 +591,9 @@ class FlowChart(QWidget):
                                p_title="모든 증기발생기 수위 확인",
                                p_content="\n모든 증기발생기 수위 < [L01%] NR",
                                p_label1="SG 1 Level",
-                               p_value1="현재 값",
+                               p_value1=f"{self.shmem.get_shmem_val('ZINST78'):.2f}",
                                p_label2="SG 2 Level",
-                               p_value2="현재 값")  # 표에서 얻어오기
+                               p_value2=f"{self.shmem.get_shmem_val('ZINST77'):.2f}")  # 표에서 얻어오기
         show = self.popup.showModal()
 
         # 예
@@ -623,7 +621,7 @@ class FlowChart(QWidget):
         if Flag.btn_clicked_1[8]:
             self.btn_8_1.shapes.setColor(self.color_clicked)
             # 완화 06 page open
-            self.mitigation06 = MitigationWindow()
+            self.mitigation06 = MitigationWindow(self)
             self.mitigation06.show()
             # self.btn_9.btn_clicked()  # 클릭한것처럼
 
@@ -642,7 +640,7 @@ class FlowChart(QWidget):
                                p_title="격납건물 수위 확인",
                                p_content="\n격납건물 수위 > [L06] m",
                                p_label1="현재 격납건물 수위",
-                               p_value1="현재 값")  # 표에서 얻어오기
+                               p_value1=f"{self.shmem.get_shmem_val('ZSUMP'):.2f}")  # 표에서 얻어오기
         show = self.popup.showModal()
 
         # 예

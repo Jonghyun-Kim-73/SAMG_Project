@@ -38,13 +38,13 @@ class Trend(QWidget):
         self.para_id = para_id
         self.para_range = para_range
 
-        self.max_time_leg = 900
+        self.max_time_leg = 300
         # figure
         self.fig = plt.Figure(tight_layout=True, facecolor=[240/255, 232/255, 208/255]) #
         # self.fig.subplots_adjust(left=0.1, right=0.98, top=0.95, bottom=0.05)
         self.canvas = FigureCanvas(self.fig)
-        # self.canvas.mpl_connect('motion_notify_event', self.mouse_move_in_trend)
-        # self.canvas.mpl_connect('button_press_event', self.mouse_press_in_trend)
+        self.canvas.mpl_connect('motion_notify_event', self.mouse_move_in_trend)
+        self.canvas.mpl_connect('button_press_event', self.mouse_press_in_trend)
 
         # ax
         self.ax = self.fig.add_subplot(111)
@@ -84,45 +84,65 @@ class Trend(QWidget):
         """ 그래프 크기 변경시 """
         self.set_main_frame()
 
+    def mouse_move_in_trend(self, event: MouseEvent):
+        """ 그래프 클릭 시 이동 """
+        if event.button == 1:
+            self.end = self.mapToGlobal(QPoint(event.x, abs(event.y - self.height())))
+            self.movement = self.end - self.start
+            self.setGeometry(self.mapToGlobal(self.movement).x(),
+                                    self.mapToGlobal(self.movement).y(),
+                                    self.width(),
+                                    self.height())
+            self.start = self.end
+
+    def mouse_press_in_trend(self, event: MouseEvent):
+        """ 클릭 한 마우스 global pos 저장 """
+        if event.button == 3:  # 오른쪽 클릭
+            self.close()
+        self.start = self.mapToGlobal(QPoint(event.x, abs(event.y - self.height())))
+
     def local_loop(self):
         """ 그래프 QTimer interval 간격으로 업데이트 """
         if self.parent is not None:
-            saved_db = self.shmem.get_logic('AB_prog')
+            saved_db = self.shmem.get_logic('Prog_Result')
             _shmem = self.shmem.get_shmem_save_db()
-            time_db, pres_db = [int(v/5) for v in _shmem['KCNTOMS']], _shmem['PPRZ']
+
+            time_db, _db = [int(v/300) for v in _shmem['KCNTOMS']], _shmem[self.para_id]
+
             """
             - saved_db 는 list 형태를 가지며, 120 개의 예측 데이터를 가진다.
             - time_db 는 list 형태를 가지며, CNS 의 tick 정보가 축적된다.
             - pres_db 는 list 형태를 가지며, CNS 의 pressure 정보가 축적된다.
-            
+
             * Required functions of graph
-                1. x의 범위는 0초 부터 15분의 정보를 보여준다. [0 ~ 900 sec = 0 ~ 4500 tick]  
-                2. 현재 데이터는 실선으로 1개, 예측 데이터는 점선으로 최대 20개까지 표기 할 수 있으며, 
-                   10개의 예측데이터는 시간에 따라 alpha 값이 줄어 든다.
-            """
+            # """
             # 그래프 업데이트 코드 시작 -----------------------------------------------------------------------------------
             if len(time_db) > 2:    # 2개 이상 포이트가 저장되면 드로잉 시작
-                if saved_db != []:  # 예지된 값이 있는 경우 self.prog_lines 에 추가 해야함.
-                    _temp_x = [time_db[-1] + 5 * i for i in range(len(saved_db))]
 
-                    line, = self.ax.plot([], [], color=[39/255, 39/255, 141/255], linewidth=1, linestyle='--')
-                    line.set_data(_temp_x, saved_db)
+                if _shmem['KCNTOMS'][-1] > 3600 * 5:
+                    if saved_db != {}:  # 예지된 값이 있는 경우 self.prog_lines 에 추가 해야함.
+                        saved_db = saved_db[self.para_id]
 
-                    self.prog_lines.append(line)
+                        _temp_x = [time_db[-1] + 1 * i for i in range(len(saved_db))]
 
-                    if len(self.prog_lines) > 20:    # 20 개 이상 그려지면 지워짐.
-                        self.ax.lines.remove(self.prog_lines[0])
-                        self.prog_lines.remove(self.prog_lines[0])
+                        line, = self.ax.plot([], [], color=[39/255, 39/255, 141/255], linewidth=1, linestyle='--')
+                        line.set_data(_temp_x, saved_db)
 
-                # 예지 라인 alpha
-                if len(self.prog_lines) != 0:
-                    for alpha, l in enumerate(self.prog_lines):
-                        # alpha 0 -> 9
-                        alpha = 21 - len(self.prog_lines) + alpha
-                        l.set_alpha(alpha * 0.05)
+                        self.prog_lines.append(line)
+
+                        if len(self.prog_lines) > 2:    # 20 개 이상 그려지면 지워짐.
+                            self.ax.lines.remove(self.prog_lines[0])
+                            self.prog_lines.remove(self.prog_lines[0])
+
+                    # 예지 라인 alpha
+                    if len(self.prog_lines) != 0:
+                        for alpha, l in enumerate(self.prog_lines):
+                            # alpha 0 -> 9
+                            alpha = 21 - len(self.prog_lines) + alpha
+                            l.set_alpha(alpha * 0.05)
 
                 # 압력 그래프 드로잉
-                self.line1.set_data(time_db, pres_db)
+                self.line1.set_data(time_db, _db)
 
                 # x축 드로잉
                 start_point = 0 if len(time_db) - self.max_time_leg <= 0 else len(time_db) - self.max_time_leg
