@@ -2,12 +2,12 @@ import argparse
 import sys
 import os
 from multiprocessing.managers import BaseManager
-from collections import deque
 
-from Temp_All_Module.db import db_make
-from Temp_All_Module.TOOL.TOOL_etc import p_
-from Temp_All_Module.TEST_ALL_module import TEST_All_Function_module
-from Temp_All_Module.CNS_Platform_controller import InterfaceFun
+from db import db_make
+from TOOL.TOOL_etc import p_
+from TEST_ALL_module import TEST_All_Function_module
+from CNS_All_module import All_Function_module
+from CNS_Platform_controller import InterfaceFun
 
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))    # 콘솔용 절대 경로
 
@@ -24,7 +24,7 @@ class Body:
         get_com_ip = socket.gethostbyname(socket.getfqdn())
         # 초기 입력 인자 전달 --------------------------------------------------------------------------------------------
         parser = argparse.ArgumentParser(description='CNS 플랫폼_Ver0')
-        parser.add_argument('--test', type=bool, default=True, required=False, help='인터페이스 테스트 모드 [default=False]')
+        parser.add_argument('--test', type=bool, default=False, required=False, help='인터페이스 테스트 모드 [default=False]')
         parser.add_argument('--comip', type=str, default=ip_reg[get_com_ip]['comip'], required=False, help="현재 컴퓨터의 ip [default='']")
         parser.add_argument('--comport', type=int, default=ip_reg[get_com_ip]['comport'], required=False, help="현재 컴퓨터의 port [default=7001]")
         parser.add_argument('--cnsip', type=str, default=ip_reg[get_com_ip]['cnsip'], required=False, help="CNS 컴퓨터의 ip [default='']")
@@ -48,8 +48,8 @@ class Body:
         # Build AI-CNS
         if not self.args.test:
             # TODO 나중에 1) AI 모듈 만들면 작업할 것. 2) 시뮬레이터와 연결 21.09.16
-            # p_ai = All_Function_module(shmem, max_len_deque)
-            # p_list.append(p_ai)
+            p_ai = All_Function_module(shmem, max_len_deque)
+            p_list.append(p_ai)
             pass
         else:
             p_ai = TEST_All_Function_module(shmem)

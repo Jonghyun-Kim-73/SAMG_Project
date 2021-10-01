@@ -8,6 +8,9 @@ from PyQt5.QtGui import *
 
 from Flag import Flag
 from Mitigation_Middle_3 import MitigationMiddleArea_3
+from Mitigation_Middle_4 import MitigationMiddleArea_4
+from Mitigation_Middle_5 import MitigationMiddleArea_5
+from Mitigation_Middle_6 import MitigationMiddleArea_6
 from Mitigation_titlebar import MitigationTiltle
 from Mitigation_top import MitigationTopArea
 
@@ -16,7 +19,7 @@ from Mitigation_popup import Mitigation_popup
 
 #하단
 from Mitigation_Middle_1 import MitigationMiddleArea_1
-from Mitigation_Middle_2L import MitigationMiddleArea_2L
+from Mitigation_Middle_2 import MitigationMiddleArea_2
 from Mitigation_Middle_2R import MitigationMiddleArea_2R
 from Mitigation_Right import MitigationRightArea
 
@@ -25,6 +28,7 @@ from Mitigation_Right import MitigationRightArea
 
 StyleSheet = '''
 QCheckBox {
+margin-left:24px;
     spacing: 5px;
     font-size:25px;
 }
@@ -48,7 +52,7 @@ class MitigationWindow(QWidget,QObject):
          QPushButton {
                 color : black; font-size: 16pt; font-weight: bold; background : rgb(221,221,221)
             }
-            
+            QPushButton::pressed { background-color: red }
         QPushButton::hover{ background-color: rgb(0, 176, 218)}
     """
 
@@ -60,13 +64,20 @@ class MitigationWindow(QWidget,QObject):
         self.central_widget = QStackedWidget()
 
         screen1 = MitigationMiddleArea_1()
-        screen2 = MitigationMiddleArea_2L()
+        screen2 = MitigationMiddleArea_2()
         screen3 = MitigationMiddleArea_3()
+        screen4 = MitigationMiddleArea_4()
+        screen5 = MitigationMiddleArea_5()
+        screen6 = MitigationMiddleArea_6()
+
         # screen8 = Mitigation_popup()
         # self.screen.signal.connect(self.func)
         self.central_widget.addWidget(screen1)
         self.central_widget.addWidget(screen2)
         self.central_widget.addWidget(screen3)
+        self.central_widget.addWidget(screen4)
+        self.central_widget.addWidget(screen5)
+        self.central_widget.addWidget(screen6)
         # self.central_widget.addWidget(screen8)
         # self.central_widget.setCurrentWidget(self.screen2)
         self.central_widget.setCurrentIndex(0)
@@ -132,16 +143,17 @@ class MitigationWindow(QWidget,QObject):
         self.btn_top_4 = QPushButton('Ⅳ.전략수행방법결정')
         self.btn_top_4.setMaximumHeight(60)
         self.btn_top_4.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btn_top_4.clicked.connect(self.click4)
 
         self.btn_top_5 = QPushButton('Ⅴ.전략수행')
         self.btn_top_5.setMaximumHeight(60)
         self.btn_top_5.setCursor(QCursor(Qt.PointingHandCursor))
-        # self.btn_top_5.clicked.connect(self.click5)
+        self.btn_top_5.clicked.connect(self.click5)
 
         self.btn_top_6 = QPushButton('Ⅵ.전략종결')
         self.btn_top_6.setMaximumHeight(60)
         self.btn_top_6.setCursor(QCursor(Qt.PointingHandCursor))
-        # self.btn_top_6.clicked.connect(self.click6)
+        self.btn_top_6.clicked.connect(self.click6)
 
         self.btn_top_7 = QPushButton('제어-01로 이동')
         self.btn_top_7.setMaximumHeight(60)
@@ -177,6 +189,20 @@ class MitigationWindow(QWidget,QObject):
     #     self.M2_R = MitigationMiddleArea_2R(self)
     #     self.content_hbox.addWidget(self.M2_L)
     #     self.content_hbox.addWidget(self.M2_R)
+    def paintEvent(self, e):
+        if self.central_widget.currentIndex() == 0 : self.btn_top_1.setStyleSheet("background-color: rgb(0, 176, 218)")
+        else: self.btn_top_1.setStyleSheet("background-color: rgb(221, 221, 221)")
+        if self.central_widget.currentIndex() == 1 : self.btn_top_2.setStyleSheet("background-color: rgb(0, 176, 218)")
+        else: self.btn_top_2.setStyleSheet("background-color: rgb(221, 221, 221)")
+        if self.central_widget.currentIndex() == 2 : self.btn_top_3.setStyleSheet("background-color: rgb(0, 176, 218)")
+        else: self.btn_top_3.setStyleSheet("background-color: rgb(221, 221, 221)")
+        if self.central_widget.currentIndex() == 3 : self.btn_top_4.setStyleSheet("background-color: rgb(0, 176, 218)")
+        else: self.btn_top_4.setStyleSheet("background-color: rgb(221, 221, 221)")
+        if self.central_widget.currentIndex() == 4 : self.btn_top_5.setStyleSheet("background-color: rgb(0, 176, 218)")
+        else: self.btn_top_5.setStyleSheet("background-color: rgb(221, 221, 221)")
+        if self.central_widget.currentIndex() == 5 : self.btn_top_6.setStyleSheet("background-color: rgb(0, 176, 218)")
+        else: self.btn_top_6.setStyleSheet("background-color: rgb(221, 221, 221)")
+
     def func(self):
         print("누름")
     # @pyqtSlot(name="s2")
@@ -186,17 +212,28 @@ class MitigationWindow(QWidget,QObject):
     def click1(self):
         print("화면1")
         self.central_widget.setCurrentIndex(0)
+
     def click2(self):
         print("화면2")
         self.central_widget.setCurrentIndex(1)
     def click3(self):
         print("화면3")
         self.central_widget.setCurrentIndex(2)
+    def click4(self):
+        print("화면4")
+        self.central_widget.setCurrentIndex(3)
+    def click5(self):
+        print("화면5")
+        self.central_widget.setCurrentIndex(4)
+    def click6(self):
+        print("화면6")
+        self.central_widget.setCurrentIndex(5)
 
     def click8(self):
         print("화면3")
         popup = Mitigation_popup()
         popup.show()
+
     def closeEvent(self, QCloseEvent):
         print("완화06 닫음")
         Flag.mitigation06 = True

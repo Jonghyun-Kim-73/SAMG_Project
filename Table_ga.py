@@ -6,7 +6,18 @@ from PyQt5.QtGui import *
 
 from Mitigation_button import Custom
 from arrow import Arrow
+StyleSheet = '''
+QCheckBox {
+    margin-left:24px;
+    spacing: 5px;
+    font-size:25px;
+}
 
+QCheckBox::indicator {
+    width:  40px;
+    height: 40px;
+}
+'''
 class tableGa(QWidget):
     qss = """
             QWidget {
@@ -216,14 +227,14 @@ class ParaTable(QTableWidget):
         for i in range(5, self.columnCount()):
             self.setItem(15, i, QTableWidgetItem("N/A"))
 
-        for i in range(0, self.columnCount()):
-            for j in range(1, 16):
-                if self.item(j, i) or j == 4 or j == 8 or j == 13:
-                    print("있다")
-                else:
-                    self.checkbox = QCheckBox("")
-                    self.checkbox.setStyleSheet("QCheckBox::indicator{background:none; width : 89px; height : 124px;}")
-                    self.setCellWidget(j, i, self.checkbox)
+            # 체크박스
+            for i in range(0, self.columnCount()):
+                for j in range(1, 16):
+                    if self.item(j, i) or j == 4 or j == 8 or j == 13:
+                        pass
+                    else:
+                        self.checkbox = QCheckBox(self)
+                        self.setCellWidget(j, i, self.checkbox)
 
         # 테이블 정렬
         delegate = AlignDelegate()
@@ -246,6 +257,8 @@ class AlignDelegate(QStyledItemDelegate):
 if __name__ == '__main__':
     print('test')
     app = QApplication(sys.argv)
+    app.setStyle("fusion")  # +++
+    app.setStyleSheet(StyleSheet)
     window = tableGa()
     window.show()
     font = QFontDatabase()

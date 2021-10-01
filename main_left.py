@@ -18,6 +18,8 @@ class MainLeft(QWidget):
         super(MainLeft, self).__init__()
         self.setAttribute(Qt.WA_StyledBackground, True)  # 상위 스타일 상속
         self.parent = parent
+        self.shmem = parent.shmem
+
         # self.setMouseTracking(True)
         #카운트
         # 크기 조정
@@ -60,6 +62,7 @@ class FlowChartArea(QWidget,QThread):
         super(FlowChartArea, self).__init__()
         self.setAttribute(Qt.WA_StyledBackground, True)
         self.parent = parent
+        self.shmem = parent.shmem
         self.setStyleSheet(self.qss)
         self.setMouseTracking(True)
         # self.filter = Custom(x=0, y=0, w=300, h=300, text='bibi', type=0)
@@ -70,7 +73,7 @@ class FlowChartArea(QWidget,QThread):
         # scroll.setWidgetResizable(True)
 
 
-        flowchart = FlowChart()
+        flowchart = FlowChart(self)
         #
         self.scroll.setWidget(flowchart)
         # self.down()
@@ -106,6 +109,9 @@ class FlowChart(QWidget):
 
     def __init__(self, parent=None):
         super(FlowChart, self).__init__()
+        self.parent = parent
+        self.shmem = parent.shmem
+
         self.setGeometry(0, 0, 1150, 2300)  # 1900*(3/4) = 1425
         self.setStyleSheet(self.qss)
         self.setMouseTracking(True)
@@ -148,9 +154,6 @@ class FlowChart(QWidget):
         self.line1 = Arrow(self, x=920, y=1390, x2=280, y2=1390, type=2)
         self.line1 = Arrow(self, x=920, y=1580, x2=280, y2=1580, type=2)
         self.line1 = Arrow(self, x=270, y=1850, x2=760, y2=1850, type=3)
-
-
-
 
         # 커스텀버튼 type : 3 dia 2 cir 1 rec 0 round_rec
 
@@ -358,6 +361,8 @@ class FlowChart(QWidget):
     def clicked3(self):
         self.btn_3.shapes.setColor(self.color_click)
         self.btn_3.setObjectName("clicked")
+
+        self.shmem.get_shmem_val('')
 
         # popup
         self.popup = SubWindow(p_number=3,
@@ -618,8 +623,8 @@ class FlowChart(QWidget):
         if Flag.btn_clicked_1[8]:
             self.btn_8_1.shapes.setColor(self.color_clicked)
             # 완화 06 page open
-            mitigation06 = MitigationWindow()
-            mitigation06.show()
+            self.mitigation06 = MitigationWindow()
+            self.mitigation06.show()
             # self.btn_9.btn_clicked()  # 클릭한것처럼
 
         # 아니오 - 새로운 페이지 없으면 일단 넘어가기

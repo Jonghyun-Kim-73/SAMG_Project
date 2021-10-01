@@ -43,7 +43,6 @@ class Mitigation_popup(QDialog):
         return super().exec_()
 
 
-
 class MyBar(QWidget):
     def __init__(self, parent):
         super(MyBar, self).__init__()
@@ -82,22 +81,22 @@ class MyBar(QWidget):
         super(MyBar, self).resizeEvent(QResizeEvent)
         self.title.setFixedWidth(self.parent.width())
 
-    def mousePressEvent(self, event):
-        self.start = self.mapToGlobal(event.pos())
-        self.pressing = True
+    # def mousePressEvent(self, event):
+    #     self.start = self.mapToGlobal(event.pos())
+    #     self.pressing = True
+    #
+    # def mouseMoveEvent(self, event):
+    #     if self.pressing:
+    #         self.end = self.mapToGlobal(event.pos())
+    #         self.movement = self.end - self.start
+    #         self.parent.setGeometry(self.mapToGlobal(self.movement).x(),
+    #                                 self.mapToGlobal(self.movement).y(),
+    #                                 self.parent.width(),
+    #                                 self.parent.height())
+    #         self.start = self.end
 
-    def mouseMoveEvent(self, event):
-        if self.pressing:
-            self.end = self.mapToGlobal(event.pos())
-            self.movement = self.end - self.start
-            self.parent.setGeometry(self.mapToGlobal(self.movement).x(),
-                                    self.mapToGlobal(self.movement).y(),
-                                    self.parent.width(),
-                                    self.parent.height())
-            self.start = self.end
-
-    def mouseReleaseEvent(self, QMouseEvent):
-        self.pressing = False
+    # def mouseReleaseEvent(self, QMouseEvent):
+    #     self.pressing = False
 
 
 

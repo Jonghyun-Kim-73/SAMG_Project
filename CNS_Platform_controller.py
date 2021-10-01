@@ -1,18 +1,15 @@
 #
 import sys
 import multiprocessing
-from copy import deepcopy
 import time
-import json
 
 from PyQt5.QtWidgets import *
-from PyQt5 import QtCore
 from PyQt5.QtCore import *
 #
-from Temp_All_Module import CNS_Platform_controller_interface as CNS_controller
+import CNS_Platform_controller_interface as CNS_controller
 from main_window import MainWindow
-from Temp_All_Module.TOOL.TOOL_etc import p_
-from Temp_All_Module.TOOL.TOOL_MatGP import Trend
+from TOOL.TOOL_etc import p_
+from TOOL.TOOL_MatGP import Trend
 
 
 class InterfaceFun(multiprocessing.Process):

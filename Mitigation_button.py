@@ -264,7 +264,7 @@ class Custom(QPushButton):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    ex = Custom(x=100, y=100, w=300, h=300, text='bibi', type=4)
+    ex = Custom(x=100, y=100, w=300, h=300, text='bibi', type=0)
     ex.setObjectName("b1")
     ex.show()
     app.installEventFilter(ex)

@@ -10,7 +10,7 @@ class MitigationTiltle(QWidget):
     qss = """
         QWidget {
             background: rgb(128, 128, 128);
-            border: 2px solid rgb(0, 0, 0);   
+            
              
               
         }
