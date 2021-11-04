@@ -16,17 +16,17 @@ class MainTop(QWidget):
 
         QLabel#name{
             background: rgb(221, 221, 221);
-            font: bold 14px;
+            font: bold;
+             font-size: 14pt;
             color: rgb(0, 0, 0);
             padding: 4px 4px;
         }
         """
 
-    def __init__(self, parent=None):
+    def __init__(self, shmem, parent=None):
         super(MainTop, self).__init__()
-
+        self.shmem = shmem
         self.bar_height = 60
-
         self.setStyleSheet(self.qss)
 
         # 타이틀 레이어 셋업 ----------------------------------------------------------------------------------------------
@@ -34,16 +34,12 @@ class MainTop(QWidget):
         layout.setContentsMargins(5, 5, 5, 5)  # 위젯의 여백 설정
 
         #DayBarm TimeBar
-        # widget1 = DayBar(self, load_realtime=True)
-        # widget1.setFixedHeight(self.bar_height)
-        # widget1.setFixedWidth(350)
-
         widget1 = TimeBar(self, load_realtime=True, load_realtime2=True)
         widget1.setFixedHeight(self.bar_height)
         widget1.setFixedWidth(280)
 
         #라벨 설정
-        label1 = QLabel("한울 3호기")
+        label1 = QLabel("한빛 5호기")
         label1.setObjectName('name')
 
         #AlignVCenter 수직가운데정렬 / AlignHCenter 수평가운데정렬 / AlignCenter 모두 적용
@@ -56,14 +52,11 @@ class MainTop(QWidget):
 
         label2.setAlignment(Qt.AlignCenter)
         label2.setFixedHeight(self.bar_height)
-        label2.setFixedWidth(945)
+        label2.setFixedWidth(943)
 
-        # layout.addWidget(widget1)
         layout.addWidget(widget1)
         layout.addWidget(label1)
         layout.addWidget(label2)
-
-        # layout.addSpacerItem(QSpacerItem(0, self.bar_height, QSizePolicy.Expanding))
 
 class TimeBar(QWidget):
     qss = """
@@ -72,6 +65,7 @@ class TimeBar(QWidget):
             font: bold 14px;
             color: rgb(0, 0, 0);
             padding: 4px 4px;
+             font-size: 14pt;
         }
     """
 
@@ -108,7 +102,6 @@ class TimeBar(QWidget):
         real_time = datetime.now().strftime('%Y.%m.%d')
         real_time2 = datetime.now().strftime('%H:%M:%S')
         self.timebarlabel.setText(real_time + " / " + real_time2)
-
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

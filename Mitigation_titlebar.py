@@ -1,4 +1,3 @@
-import os
 import sys
 from datetime import datetime
 
@@ -10,9 +9,6 @@ class MitigationTiltle(QWidget):
     qss = """
         QWidget {
             background: rgb(128, 128, 128);
-            
-             
-              
         }
 
         QLabel#name{
@@ -27,30 +23,24 @@ class MitigationTiltle(QWidget):
         super(MitigationTiltle, self).__init__()
         self.setAttribute(Qt.WA_StyledBackground, True)
         self.bar_height = 60
-
         self.setStyleSheet(self.qss)
 
         # 타이틀 레이어 셋업 ----------------------------------------------------------------------------------------------
         layout = QHBoxLayout(self)  # 수평 방향 레이아웃
-        layout.setContentsMargins(3, 5, 3, 5)  # 위젯의 여백 설정
-        layout.setSpacing(3)
-        #DayBarm TimeBar
-        # widget1 = DayBar(self, load_realtime=True)
-        # widget1.setFixedHeight(self.bar_height)
-        # widget1.setFixedWidth(350)
+        layout.setContentsMargins(5, 5, 5, 5)  # 위젯의 여백 설정
+        # layout.setSpacing(3)
 
         widget1 = TimeBar(self, load_realtime=True, load_realtime2=True)
         widget1.setFixedHeight(self.bar_height)
         widget1.setFixedWidth(280)
 
         #라벨 설정
-        label1 = QLabel("한울 3호기")
+        label1 = QLabel("한빛 5호기")
         label1.setObjectName('name')
         label1.setStyleSheet("color : black; font-size: 14pt; font-weight: bold")
-        #AlignVCenter 수직가운데정렬 / AlignHCenter 수평가운데정렬 / AlignCenter 모두 적용
         label1.setAlignment(Qt.AlignCenter)
         label1.setFixedHeight(self.bar_height)
-        label1.setFixedWidth(675)
+        label1.setFixedWidth(665)
 
         label2 = QLabel("완화-06, 증기발생기 급수주입")
         label2.setObjectName('name')
@@ -59,13 +49,9 @@ class MitigationTiltle(QWidget):
         label2.setFixedHeight(self.bar_height)
         label2.setFixedWidth(942)
 
-        # layout.addWidget(widget1)
         layout.addWidget(widget1)
         layout.addWidget(label1)
         layout.addWidget(label2)
-
-        # self.setLayout(layout)
-        # layout.addSpacerItem(QSpacerItem(0, self.bar_height, QSizePolicy.Expanding))
 
 class TimeBar(QWidget):
     qss = """
@@ -87,7 +73,7 @@ class TimeBar(QWidget):
         self.setStyleSheet(self.qss)
 
         layout = QHBoxLayout()
-        layout.setContentsMargins(0, 0, 0, 0)
+        layout.setContentsMargins(1, 0, 0, 0)
 
         self.timebarlabel = QLabel('time')
         self.timebarlabel.setAlignment(Qt.AlignCenter)  # 텍스트 정렬
@@ -107,11 +93,9 @@ class TimeBar(QWidget):
 
     def dis_update(self):
         """ 타이머 디스플레이 업데이트 """
-        # if self.load_realtime or self.load_realtime2:
         real_time = datetime.now().strftime('%Y.%m.%d')
         real_time2 = datetime.now().strftime('%H:%M:%S')
         self.timebarlabel.setText(real_time + " / " + real_time2)
-
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

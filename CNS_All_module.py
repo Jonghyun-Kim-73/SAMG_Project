@@ -96,6 +96,9 @@ class All_Function_module(multiprocessing.Process):
             self.cns_env.reset(file_name='cns_log', initial_nub=self.shmem.get_logic('Init_nub'))
             self._update_cnsenv_to_sharedmem()
             self.shmem.change_logic_val('Init_Call', False)
+
+            self.bi_data.clear()
+
             self.pr_('Initial End!')
 
             # 버그 수정 2번째 초기조건에서 0으로 초기화 되지 않는 현상 수정
@@ -150,50 +153,51 @@ class All_Function_module(multiprocessing.Process):
 
                         bi_db = [self.cns_env.mem[i]['Val'] for i in self.bi_para]
                         self.bi_data.append(bi_db)
+
                         while True:
                             if np.shape(self.bi_data)[0] == self.bi_time_step:
                                 break
                             else:
                                 self.bi_data.append(bi_db)
 
-                        if np.shape(self.bi_data)[0] == self.bi_time_step:  # self.lstm_data = 2차원: 추후 []로 3차원 데이터로 성형
-                            bi_test_x = self.x_scaler.transform(self.bi_data)
-                            bi_result = self.bi_model.predict(np.array([bi_test_x]))
-                            bi_result = self.y_scaler.inverse_transform(bi_result[0])
+                        #if np.shape(self.bi_data)[0] == self.bi_time_step:  # self.lstm_data = 2차원: 추후 []로 3차원 데이터로 성형
+                        bi_test_x = self.x_scaler.transform(self.bi_data)
+                        bi_result = self.bi_model.predict(np.array([bi_test_x]))
+                        bi_result = self.y_scaler.inverse_transform(bi_result[0])
 
-                            bi_prz_level_pred = bi_result[:, 0]  # 가압기 수위
-                            bi_prz_pressure_pred = bi_result[:, 1]  # 가압기 압력
-                            bi_sg3_pressure_pred = bi_result[:, 2]   # SG3 압력
-                            bi_sg2_pressure_pred = bi_result[:, 3]  # SG2 압력
-                            bi_sg1_pressure_pred = bi_result[:, 4]  # SG1 압력
-                            bi_sg3_level_pred = bi_result[:, 5]  # SG3 수위
-                            bi_sg2_level_pred = bi_result[:, 6]  # SG2 수위
-                            bi_sg1_level_pred = bi_result[:, 7]  # SG1 수위
-                            bi_feedwater3_flow_pred = bi_result[:, 8]  # Feedwater 3 유량
-                            bi_feedwater2_flow_pred = bi_result[:, 9]  # Feedwater 2 유량
-                            bi_feedwater1_flow_pred = bi_result[:, 10]  # Feedwater 1 유량
-                            bi_CTMT_pressure_pred = bi_result[:, 11]  # 컨테이먼트 압력
-                            bi_CTMT_radiation_pred = bi_result[:, 12]  # 컨테이먼트 방사능
-                            bi_H2_concentration_pred = bi_result[:, 13]  # 컨테이먼트 수소 농도
-                            bi_CTMT_temperature_pred = bi_result[:, 14]  # 컨테인먼트 온도
-                            bi_CTMT_sump_water_level_pred = bi_result[:, 15]  # 섬프 물 높이
-                            bi_coldleg1_temperature_pred = bi_result[:, 16]  # coldleg1 온도
-                            bi_coldleg2_temperature_pred = bi_result[:, 17]  # coldleg2 온도
-                            bi_coldleg3_temperature_pred = bi_result[:, 18]  # coldleg3 온도
-                            bi_hotleg1_temperature_pred = bi_result[:, 19]  # hotleg1 온도
-                            bi_hotleg2_temperature_pred = bi_result[:, 20]  # hotleg2 온도
-                            bi_hotleg3_temperature_pred = bi_result[:, 21]  # hotleg3 온도
+                        bi_prz_level_pred = bi_result[:, 0]  # 가압기 수위
+                        bi_prz_pressure_pred = bi_result[:, 1]  # 가압기 압력
+                        bi_sg3_pressure_pred = bi_result[:, 2]   # SG3 압력
+                        bi_sg2_pressure_pred = bi_result[:, 3]  # SG2 압력
+                        bi_sg1_pressure_pred = bi_result[:, 4]  # SG1 압력
+                        bi_sg3_level_pred = bi_result[:, 5]  # SG3 수위
+                        bi_sg2_level_pred = bi_result[:, 6]  # SG2 수위
+                        bi_sg1_level_pred = bi_result[:, 7]  # SG1 수위
+                        bi_feedwater3_flow_pred = bi_result[:, 8]  # Feedwater 3 유량
+                        bi_feedwater2_flow_pred = bi_result[:, 9]  # Feedwater 2 유량
+                        bi_feedwater1_flow_pred = bi_result[:, 10]  # Feedwater 1 유량
+                        bi_CTMT_pressure_pred = bi_result[:, 11]  # 컨테이먼트 압력
+                        bi_CTMT_radiation_pred = bi_result[:, 12]  # 컨테이먼트 방사능
+                        bi_H2_concentration_pred = bi_result[:, 13]  # 컨테이먼트 수소 농도
+                        bi_CTMT_temperature_pred = bi_result[:, 14]  # 컨테인먼트 온도
+                        bi_CTMT_sump_water_level_pred = bi_result[:, 15]  # 섬프 물 높이
+                        bi_coldleg1_temperature_pred = bi_result[:, 16]  # coldleg1 온도
+                        bi_coldleg2_temperature_pred = bi_result[:, 17]  # coldleg2 온도
+                        bi_coldleg3_temperature_pred = bi_result[:, 18]  # coldleg3 온도
+                        bi_hotleg1_temperature_pred = bi_result[:, 19]  # hotleg1 온도
+                        bi_hotleg2_temperature_pred = bi_result[:, 20]  # hotleg2 온도
+                        bi_hotleg3_temperature_pred = bi_result[:, 21]  # hotleg3 온도
 
-                            make_result = {
-                                'PCTMT': bi_CTMT_pressure_pred,
-                                'H2CONC': bi_H2_concentration_pred,
-                                'ZINST58': bi_prz_pressure_pred,
-                                'ZINST78': bi_sg1_level_pred,
-                                'ZINST77': bi_sg2_level_pred,
-                                'ZSUMP': bi_CTMT_sump_water_level_pred
-                            }
+                        make_result = {
+                            'PCTMT': bi_CTMT_pressure_pred,
+                            'H2CONC': bi_H2_concentration_pred,
+                            'ZINST58': bi_prz_pressure_pred,
+                            'ZINST78': bi_sg1_level_pred,
+                            'ZINST77': bi_sg2_level_pred,
+                            'ZSUMP': bi_CTMT_sump_water_level_pred
+                        }
 
-                            self.shmem.change_logic_val('Prog_Result', make_result)
+                        self.shmem.change_logic_val('Prog_Result', make_result)
 
                     # end AI
                 # One Step CNS -------------------------------------------------------------------------------------

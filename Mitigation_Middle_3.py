@@ -1,50 +1,33 @@
-import os
 import sys
 
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 
+from CustomPopup import CustomPopup
 from Flag import Flag
-from Mitigation_button import Custom
+from CustomButton import CustomButton
+
 from Table_3_2 import table_3_2
 from Table_3_3 import table_3_3
 from Table_3_4 import table_3_4
 from Table_3_5 import table_3_5
 from Table_3_6 import table_3_6
-from Table_5 import table5
-from Table_7 import table7
-from Table_Na_1 import tableNa_1
-from Table_Na_2 import tableNa_2
-from Table_ga import tableGa
 from arrow import Arrow
-
-StyleSheet = '''
-QCheckBox {
-    spacing: 5px;
-    font-size:25px;
-}
-
-QCheckBox::indicator {
-    width:  33px;
-    height: 33px;
-}
-'''
 
 class MitigationMiddleArea_3(QWidget):
     qss = """
-        QWidget {
-            background: rgb(128, 128, 128);   
-
-        }
-        QPushButton{
-            background-color: rgb(221,221,221);
-            border: 1px solid rgb(0,0,0);       
-            font-size: 14pt;
-            font-weight: bold
-        }
-
-        """
+           QWidget {
+               background: rgb(128, 128, 128);   
+               border: 0px inset rgb(0, 0, 0);
+           }
+           QPushButton{
+               background-color: rgb(221,221,221);
+               border: 1px solid rgb(0,0,0);       
+               font-size: 14pt;
+               font-weight: bold
+           }
+       """
 
     def __init__(self, parent=None):
         super(MitigationMiddleArea_3, self).__init__()
@@ -52,41 +35,29 @@ class MitigationMiddleArea_3(QWidget):
         self.parent = parent
         self.shmem = parent.shmem
         self.setStyleSheet(self.qss)
-        self.setMouseTracking(True)
 
-        # 크기 조정
-        self.setMinimumHeight(900 - 40)
-        self.setMinimumWidth(1920)
-
-        # 레이어 셋업 ====================================================================================================
+        # 레이어 셋업
         layout = QHBoxLayout(self)
-
         label1 = FlowChartArea(self)
-        label1.setFixedWidth(1020)
+        label2 = MitigationMiddleArea_3R()
 
-        right = QVBoxLayout(self)
+        self.split_1 = QSplitter()
+        self.split_1.addWidget(label1)
+        self.split_1.addWidget(label2)
+        self.split_1.setSizes([1045, 860])  # 슬라이드 초기 사이즈 지정
+        layout.addWidget(self.split_1)
+        layout.setContentsMargins(0, 0, 0, 0)
 
-        label2 = MitigationMiddleArea_3R(self)
-        label2.setFixedWidth(860)
-        right.addWidget(label2)
-
-        right_bottom = QHBoxLayout()
-
-        back = background()
-        back.setFixedWidth(860)
-        back.setFixedHeight(60)
-        right_bottom.addWidget(back)
-
-        right.addLayout(right_bottom)
-        layout.addWidget(label1)
-        layout.addLayout(right)
         self.setLayout(layout)
 
 class FlowChartArea(QWidget):
     qss = """
         QWidget {
             background: rgb(221, 221, 221);
-            border:0px;
+        }
+        QWidget#main {
+            background: rgb(221, 221, 221);
+            border:2px solid;
         }
     """
 
@@ -94,408 +65,289 @@ class FlowChartArea(QWidget):
         super(FlowChartArea, self).__init__()
         self.setAttribute(Qt.WA_StyledBackground, True)
         self.parent = parent
-        self.shmem = parent.shmem
         self.setStyleSheet(self.qss)
-        self.setMouseTracking(True)
-        # self.setGeometry(0, 0, 1100, 1100)  # 1900*(3/4) = 1425
+        self.setObjectName("main")
         scroll = QScrollArea()
         scroll.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
         scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
-        flowchart = FlowChart(self)
 
+        flowchart = FlowChart()
         scroll.setWidget(flowchart)
-
         layout = QVBoxLayout()
         layout.addWidget(scroll)
         self.setLayout(layout)
 
 
 class FlowChart(QWidget):
-    qss = """
-            QWidget {
-                background: rgb(128, 128, 128);
-                border: 0px solid rgb(0, 0, 0); 
-
-            }
-        """
     def __init__(self, parent=None):
         super(FlowChart, self).__init__()
-        self.parent = parent
-        self.shmem = parent.shmem
-        self.setGeometry(0, 0, 1300, 1100)  # 1900*(3/4) = 1425
-        self.setStyleSheet(self.qss)
-        self.color_clicked = QColor(128, 128, 128)
-        self.color_click = QColor(0, 176, 218)
+        self.setGeometry(0, 0, 1000, 800)  # 1900*(3/4) = 1425
 
-        # 커스텀버튼추가===================================================================================================
-        # 하1
-        self.line1 = Arrow(self, x=180, y=80, x2=180, y2=120, type=1)
-        self.line1 = Arrow(self, x=180, y=190, x2=180, y2=260, type=1)
-        self.line1 = Arrow(self, x=180, y=320, x2=180, y2=380, type=1)
-        self.line1 = Arrow(self, x=180, y=480, x2=180, y2=680, type=1)
-        self.line1 = Arrow(self, x=540, y=475, x2=540, y2=520, type=1)
+        # Arrow
+        self.line1 = Arrow(self, x=180, y=80, x2=180, y2=110, type=1)
+        self.line1 = Arrow(self, x=180, y=190, x2=180, y2=250, type=1)
+        self.line1 = Arrow(self, x=180, y=320, x2=180, y2=370, type=1)
+        self.line1 = Arrow(self, x=180, y=480, x2=180, y2=670, type=1)
+        self.line1 = Arrow(self, x=540, y=475, x2=540, y2=510, type=1)
+        self.line1 = Arrow(self, x=300, y=435, x2=380, y2=435, type=3)
+        self.line1 = Arrow(self, x=670, y=575, x2=740, y2=575, type=3)
 
-        # 오
-        self.line1 = Arrow(self, x=300, y=435, x2=390, y2=435, type=3)
-        self.line1 = Arrow(self, x=670, y=570, x2=750, y2=570, type=3)
-
-        # 커스텀버튼 type : 3 dia 2 cir 1 rec 0 round_rec
-        self.btn_8 = Custom(self, x=30, y=680, w=300, h=80, text='Ⅳ.전략수행방법결정', type=0)
-        self.btn_8.setObjectName("b8")
-
-        self.btn_7 = Custom(self, x=750, y=530, w=250, h=80, text='제어-01로 이동', type=0)
-        self.btn_7.setObjectName("b7")
-
-        self.btn_6 = Custom(self, x=390, y=520, w=300, h=100,
-                            text='5. 증기발생기 급수\n주입 실시 여부를\n결정한다.', type=4)
-        self.btn_6.setObjectName("b6")
-
-        self.btn_5 = Custom(self, x=390, y=385, w=300, h=100,
-                            text='4.다. 부정적 영향을\n완화하기 위한 조치들을\n평가한다.', type=0)
-        self.btn_5.setObjectName("b5")
-
-        self.btn_4 = Custom(self, x=30, y=380, w=300, h=110,
-                            text='4.나. 부정적 영향이\n문제되지 않는다고 판단되면\n단계 6으로 간다.', type=4)
-        self.btn_4.setObjectName("b4")
-
-        self.btn_3 = Custom(self, x=30, y=260, w=300, h=90,
-                            text='4.가. 발생가능한 부정적\n영향을 파악하고 평가한다.', type=0)
-        self.btn_3.setObjectName("b3")
-
-        self.btn_2 = Custom(self, x=30, y=120, w=300, h=110,
-                            text='4. 증기발생기 급수 주입에\n의한 부정적인 영향을\n파악하고 평가한다.', type=0)
-        self.btn_2.setObjectName("b2")
-
-        self.btn_1 = Custom(self, x=30, y=10, w=300, h=80, text='Ⅲ.전략수행여부결정', type=0)
-        self.btn_1.setObjectName("b1")
-
-        self.installEventFilter(self.btn_2)
-        self.installEventFilter(self.btn_3)
-        self.installEventFilter(self.btn_4)
-        self.installEventFilter(self.btn_5)
-        self.installEventFilter(self.btn_6)
-        self.installEventFilter(self.btn_7)
-        self.installEventFilter(self.btn_8)
-
-        self.btn_1.clicked.connect(self.clicked1)
-        # self.btn_2.clicked.connect(self.clicked2)
-        # self.btn_3.clicked.connect(self.clicked3)
-        # self.btn_4.clicked.connect(self.clicked4)
-        # self.btn_5.clicked.connect(self.clicked5)
-        # self.btn_6.clicked.connect(self.clicked6)
-        # self.btn_7.clicked.connect(self.clicked7)
-        # self.btn_8.clicked.connect(self.clicked8)
-
-        # ==============================================================================================================
-
-        self.changetable = MitigationMiddleArea_3R(self)
-
-        self.setMouseTracking(True)
-
-    def clicked1(self):
-        self.btn_1.shapes.setColor(QColor(0, 176, 218))
-        self.btn_1.setObjectName("clicked")
-
-        # popup
-        self.popup = SubWindow(p_number=1,
-                               p_title="Ⅲ.전략수행여부결정",
-                               p_content='\nⅢ.전략수행여부결정을 시작합니다.')
-        show = self.popup.showModal()
-        # 예
-        if Flag.m3_btn_clicked[1]:
-            self.btn_1.shapes.setColor(self.color_clicked)
-            self.btn_2.btn_clicked()  # 클릭한것처럼
-            self.btn_2.setObjectName("clicked")
-            self.btn_2.shapes.setColor(self.color_click)
-            Flag.m3_btn_clicked[2] = True
-
+        # CustomButton
+        self.btn_1 = CustomButton(self, page=3, num=1, x=30, y=20, w=300, h=70, text='Ⅱ.이용가능수단확인', type=0)
+        self.btn_2 = CustomButton(self, page=3, num=2, x=30, y=120, w=300, h=110, text='4. 증기발생기 급수 주입에<br/>의한 부정적인 영향을<br/>파악하고 평가한다.', type=0)
+        self.btn_3 = CustomButton(self, page=3, num=3, x=30, y=260, w=300, h=90, text='4.가. 발생가능한 부정적<br/>영향을 파악하고 평가한다.', type=0)
+        self.btn_4 = CustomButton(self, page=3, num=4, x=30, y=380, w=300, h=110, text='4.나. 부정적 영향이<br/>문제되지 않는다고 판단되면<br/>단계 6으로 간다.', type=3)
+        self.btn_5 = CustomButton(self, page=3, num=5, x=390, y=385, w=300, h=110, text='4.다. 부정적 영향을<br/>완화하기 위한 조치들을<br/>평가한다.', type=0)
+        self.btn_6 = CustomButton(self, page=3, num=6, x=390, y=520, w=300, h=110, text='5. 증기발생기 급수<br/>주입 실시 여부를<br/>결정한다.', type=3)
+        self.btn_7 = CustomButton(self, page=3, num=7, x=750, y=540, w=200, h=70, text='제어-01로 이동', type=0)
+        self.btn_8 = CustomButton(self, page=3, num=8, x=30, y=680, w=300, h=70, text='Ⅳ.전략수행방법결정', type=0)
 
     def paintEvent(self, event):
         p = QPainter(self)
         p.setPen(QPen(Qt.black))
         p.setFont(QFont('맑은 고딕', 14))
-        p.drawLine(540, 610, 540, 645)
-        p.drawLine(180, 645, 540, 645)
+        p.drawLine(540, 610, 540, 655)
+        p.drawLine(180, 655, 540, 655)
 
-        if Flag.pg3_sat[2] and Flag.m3_page_num == 2:
-            self.btn_2.shapes.setColor(self.color_clicked)
-            self.btn_3.btn_clicked()  # 클릭한것처럼
-            self.btn_3.setObjectName("clicked")
-            self.btn_3.shapes.setColor(self.color_click)
-        if Flag.pg3_dsat[2] and Flag.m3_page_num == 2:
-            self.btn_2.shapes.setColor(self.color_clicked)
-            self.btn_3.btn_clicked()  # 클릭한것처럼
-            self.btn_3.setObjectName("clicked")
-            self.btn_3.shapes.setColor(self.color_click)
+        self.update()
 
-        if Flag.pg3_sat[3] and Flag.m3_page_num == 3:
-            self.btn_3.shapes.setColor(self.color_clicked)
-            self.btn_4.btn_clicked()  # 클릭한것처럼
-            self.btn_4.setObjectName("clicked")
-            self.btn_4.shapes.setColor(self.color_click)
-        if Flag.pg3_dsat[3] and Flag.m3_page_num == 3:
-            self.btn_3.shapes.setColor(self.color_clicked)
-            self.btn_4.btn_clicked()  # 클릭한것처럼
-            self.btn_4.setObjectName("clicked")
-            self.btn_4.shapes.setColor(self.color_click)
+        # 버튼 클릭 이벤트
+        if Flag.m3_btn_clicked[1]:
+            Flag.m3_btn_clicked[1] = False
+            self.btn_1.complete()
+            Flag.color3[1] = 3
+            Flag.m3_screen[1] = True
+            # 현재 실행중인 버튼 병행처리
+            current = self.together(1)
+            self.change(current)
 
-        if Flag.pg3_sat[4] and Flag.m3_page_num == 4:
-            self.btn_4.shapes.setColor(self.color_clicked)
-            self.btn_8.btn_clicked()  # 클릭한것처럼
-            self.btn_8.setObjectName("clicked")
-            self.btn_8.shapes.setColor(self.color_click)
-        if Flag.pg3_dsat[4] and Flag.m3_page_num == 4:
-            self.btn_4.shapes.setColor(self.color_clicked)
-            self.btn_5.btn_clicked()  # 클릭한것처럼
-            self.btn_5.setObjectName("clicked")
-            self.btn_5.shapes.setColor(self.color_click)
+            # 다음 버튼 표시
+            self.btn_2.color()
+            Flag.color3[2] = 2
 
-        if Flag.pg3_sat[5] and Flag.m3_page_num == 5:
-            self.btn_5.shapes.setColor(self.color_clicked)
-            self.btn_6.btn_clicked()  # 클릭한것처럼
-            self.btn_6.setObjectName("clicked")
-            self.btn_6.shapes.setColor(self.color_click)
-        if Flag.pg3_dsat[5] and Flag.m3_page_num == 5:
-            self.btn_5.shapes.setColor(self.color_clicked)
-            self.btn_7.btn_clicked()  # 클릭한것처럼
-            self.btn_7.setObjectName("clicked")
-            self.btn_7.shapes.setColor(self.color_click)
+        if Flag.m3_btn_clicked[2]:
+            Flag.m3_btn_clicked[2] = False
+            self.btn_2.color()
+            Flag.color3[2] = 2
+            Flag.m3_screen[2] = True
+            # 현재 실행중인 버튼 병행처리
+            current = self.together(2)
+            self.change(current)
 
-        if Flag.pg3_sat[6] and Flag.m3_page_num == 6:
-            self.btn_6.shapes.setColor(self.color_clicked)
-            self.btn_8.btn_clicked()  # 클릭한것처럼
-            self.btn_8.setObjectName("clicked")
-            self.btn_8.shapes.setColor(self.color_click)
-        if Flag.pg3_dsat[6] and Flag.m3_page_num == 6:
-            self.btn_6.shapes.setColor(self.color_clicked)
-            self.btn_7.btn_clicked()  # 클릭한것처럼
-            self.btn_7.setObjectName("clicked")
-            self.btn_7.shapes.setColor(self.color_click)
+        if Flag.m3_btn_clicked[3]:
+            Flag.m3_btn_clicked[3] = False
+            self.btn_3.color()
+            Flag.color3[3] = 2
+            Flag.m3_screen[3] = True
 
+            # 현재 실행중인 버튼 병행처리
+            current = self.together(3)
+            self.change(current)
 
+        if Flag.m3_btn_clicked[4]:
+            Flag.m3_btn_clicked[4] = False
+            self.btn_4.color()
+            Flag.color3[4] = 2
+            Flag.m3_screen[4] = True
 
-    def contextMenuEvent(self, event) -> None:
-        """ FlowChart 에 기능 올리기  """
-        menu = QMenu(self)  # 메뉴 생성
-        add_btn_dia = menu.addAction("Add Diamond Button")
-        add_btn_cir = menu.addAction("Add Circle Button")
-        add_btn_rec = menu.addAction("Add Rectangle Button")
+            # 현재 실행중인 버튼 병행처리
+            current = self.together(4)
+            self.change(current)
 
-        add_btn_dia.triggered.connect(lambda a, pos=event.pos(), ele='dia': self.make_diagram(pos, ele))
-        add_btn_cir.triggered.connect(lambda a, pos=event.pos(), ele='cir': self.make_diagram(pos, ele))
-        add_btn_rec.triggered.connect(lambda a, pos=event.pos(), ele='rec': self.make_diagram(pos, ele))
+        if Flag.m3_btn_clicked[5]:
+            Flag.m3_btn_clicked[5] = False
+            self.btn_5.color()
+            Flag.color3[5] = 2
+            Flag.m3_screen[5] = True
 
-        menu.exec_(event.globalPos())  # 실행
+            # 현재 실행중인 버튼 병행처리
+            current = self.together(5)
+            self.change(current)
 
-class SubWindow(QDialog):
-    qss = """
-            QWidget{
-        background : rgb(180, 180, 180)
-        }
-            QLabel#title {
-                font-size: 14pt; 
+        if Flag.m3_btn_clicked[6]:
+            Flag.m3_btn_clicked[6] = False
+            self.btn_6.color()
+            Flag.color3[6] = 2
+            Flag.m3_screen[6] = True
 
-            }
-            QLabel#data {
-                font-size:12pt;
-                border: 2px inset rgb(0, 0, 0);
-                background: rgb(255, 255, 255);
+            # 현재 실행중인 버튼 병행처리
+            current = self.together(6)
+            self.change(current)
 
-            }
-            QDialog{
-            border: 2px solid rgb(0, 0, 0);       
-            }
-            QPushButton {
-                color: rgb(0, 0, 0);
-	            background-color: white;
-	            border: 2px solid rgb(0, 0, 0);       
-            }
+        if Flag.m3_btn_clicked[7]:
+            Flag.m3_btn_clicked[7] = False
+            self.btn_7.color()
+            Flag.color3[7] = 2
+            Flag.m3_screen[7] = True
 
-        """
+            # 현재 실행중인 버튼 병행처리
+            current = self.together(7)
+            self.change(current)
 
-    def __init__(self, p_number=None, p_title = None, p_content = None, p_label1 = None, p_value1 = None, p_label2 = None, p_value2 = None):
-        super().__init__()
-        self.layout = QVBoxLayout()
+            self.popup = CustomPopup(p_title="제어-01로 이동",
+                                     p_content='\n제어-01로 이동하시겠습니까?')
+            show = self.popup.showModal()
+            if Flag.btn_popup_3_1:
+                Flag.btn_popup_3_1 = False
+                Flag.miti06_close = True
 
-        # 팝업 정보(메시지)
-        self.p_number = p_number
-        self.p_title = p_title
-        self.p_content = p_content
-        self.p_label1 = p_label1
-        self.p_value1 = p_value1
-        self.p_label2 = p_label2
-        self.p_value2 = p_value2
-        print(self.p_title)
-        self.layout.addWidget(MyBar(self, p_number=self.p_number, p_title=self.p_title, p_content=self.p_content, p_label1=self.p_label1,
-                                    p_value1=self.p_value1, p_label2=self.p_label2, p_value2=self.p_value2))
+        # 4. 전략수행방법결정 -> Tab4으로 전환
+        if Flag.m3_btn_clicked[8]:
+            Flag.m3_btn_clicked[8] = False
 
-        self.setLayout(self.layout)
-        self.layout.setContentsMargins(0, 0, 0, 0)
-        self.setStyleSheet(self.qss)
-        self.layout.addStretch(-1)
-        self.setGeometry(100, 300, 550, 100)
-        self.setWindowFlags(Qt.FramelessWindowHint)
-        self.pressing = False
+            self.btn_8.color()
+            Flag.color3[8] = 2
+            Flag.m3_screen[8] = True
+
+            # 현재 실행중인 버튼 병행처리
+            current = self.together(8)
+            self.change(current)
+
+            self.popup = CustomPopup(p_title="Ⅳ.전략수행방법결정",
+                                     p_content='\nⅣ.전략수행방법결정을 수행하시겠습니까?')
+            show = self.popup.showModal()
+            if Flag.btn_popup_3_2:
+                Flag.btn_popup_3_2 = False
+                self.btn_8.complete()
+                Flag.color3[8] = 3
+                Flag.miti06_btn[4] = True  # Tab4 전환
 
 
+        # 만족 / 불만족 / 병행 처리
+        if Flag.pg3_sat[2]:
+            self.btn_2.complete()
+            Flag.color3[3] = 3
+            self.btn_3.color()
+            Flag.color3[3] = 2
+            Flag.pg3_sat[2] = False
+        if Flag.pg3_p[2]:
+            self.btn_2.color2()
+            Flag.color3[2] = 1
+            self.btn_3.color()
+            Flag.color3[3] = 2
+            Flag.pg3_p[2] = False
 
-    def onOKButtonClicked(self):
-        print("오키")
-        self.close()
+        if Flag.pg3_sat[3]:
+            self.btn_3.complete()
+            Flag.color3[3] = 3
+            self.btn_4.color()
+            Flag.color3[4] = 2
+            Flag.pg3_sat[3] = False
+        if Flag.pg3_p[3]:
+            self.btn_3.color2()
+            Flag.color3[3] = 1
+            self.btn_4.color()
+            Flag.color3[4] = 2
+            Flag.pg3_p[3] = False
 
-    def onCancelButtonClicked(self):
-        print("새로운창")
+        if Flag.pg3_sat[4]:
+            self.btn_4.complete()
+            Flag.color3[4] = 3
+            self.btn_8.color()
+            Flag.color3[8] = 2
+            Flag.pg3_sat[4] = False
+        if Flag.pg3_dsat[4]:
+            self.btn_4.complete()
+            Flag.color3[4] = 3
+            self.btn_5.color()
+            Flag.color3[5] = 2
+            Flag.pg3_dsat[4] = False
+        if Flag.pg3_p[4]:
+            self.btn_4.color2()
+            Flag.color3[4] = 1
+            self.btn_8.color()
+            Flag.color3[8] = 2
+            Flag.pg3_p[4] = False
 
-    def showModal(self):
-        return super().exec_()
+        if Flag.pg3_sat[5]:
+            self.btn_5.complete()
+            Flag.color3[5] = 3
+            self.btn_6.color()
+            Flag.color3[6] = 2
+            Flag.pg3_sat[5] = False
+        if Flag.pg3_p[5]:
+            self.btn_5.color2()
+            Flag.color3[5] = 1
+            self.btn_6.color()
+            Flag.color3[6] = 2
+            Flag.pg3_p[5] = False
 
+        if Flag.pg3_sat[6]:
+            self.btn_6.complete()
+            Flag.color3[6] = 3
+            self.btn_8.color()
+            Flag.color3[8] = 2
+            Flag.pg3_sat[6] = False
+        if Flag.pg3_dsat[6]:
+            self.btn_6.complete()
+            Flag.color3[6] = 3
+            self.btn_7.color()
+            Flag.color3[7] = 2
+            Flag.pg3_dsat[6] = False
+        if Flag.pg3_p[6]:
+            self.btn_6.color2()
+            Flag.color3[6] = 1
+            self.btn_8.color()
+            Flag.color3[8] = 2
+            Flag.pg3_p[6] = False
 
-class MyBar(QWidget):
-    qss = """
-        QWidget{
-        background : rgb(180, 180, 180)
-        }
-        QPushButton{
-        background : rgb(218,218,218);
-        border: 1px solid rgb(0, 0, 0);       
-        }
-        QTableWidget {
-        gridline-color: rgb(0,0,0);
-        font-size: 12pt;
-        }
-    """
-    def __init__(self, parent, p_number=None, p_title = None, p_content = None, p_label1 = None, p_value1 = None, p_label2 = None, p_value2 = None):
-    # def __init__(self,parent):
-        super(MyBar, self).__init__()
-        # self. cc = Custom.
-        self.parent = parent
-        self.setStyleSheet(self.qss)
-        print(self.parent.width())
-        self.p_number = p_number
-        self.layout = QVBoxLayout()
-        self.layout.setContentsMargins(0,0,0,0)
-        self.title = QLabel(p_title)
+    def together(self, me):
+        for i in range(1, 9):
+            if Flag.color3[i] == 2:  # 자기 자신 제외, 현재 진행중인 버튼 찾기
+                if i == me:
+                    pass
+                else:
+                    Flag.color3[i] = 1  # 병행처리
+                    return i
 
-        #
-        self.title.setFixedHeight(40)
-        self.title.setAlignment(Qt.AlignCenter)
-        self.layout.addWidget(self.title)
+    def change(self, find):
+        if find == 1:
+            self.btn_1.color2()
+        elif find == 2:
+            self.btn_2.color2()
+        elif find == 3:
+            self.btn_3.color2()
+        elif find == 4:
+            self.btn_4.color2()
+        elif find == 5:
+            self.btn_5.color2()
+        elif find == 6:
+            self.btn_6.color2()
+        elif find == 7:
+            self.btn_7.color2()
+        elif find == 8:
+            self.btn_8.color2()
 
-        self.title.setStyleSheet("""
-            font-size: 14pt; 
-            background-color: rgb(91,155,213);
-            border: 2px solid rgb(0, 0, 0);       
-            color: white;
-        """)
-        #
-
-        self.label = QLabel(p_content)
-        self.label.setObjectName("title")
-
-        #테두리 제거용
-        self.label.setStyleSheet("""
-                margin : 3px;    
-            """)
-        self.label.setAlignment(Qt.AlignCenter)
-        self.subsub = QHBoxLayout()
-        self.subLayout = QHBoxLayout()
-        self.layout.addWidget(self.label)
-
-
-        self.btnOK = QPushButton("예")
-        self.btnCancel = QPushButton("아니오")
-
-        self.btnOK.setFixedSize(100, 35)
-        self.btnCancel.setFixedSize(100, 35)
-
-        self.btnOK.clicked.connect(self.onOKButtonClicked)
-        self.subLayout.setContentsMargins(50, 30, 50, 30)
-
-        self.subLayout.addWidget(self.btnOK)
-
-        if self.p_number!=1 and self.p_number!=2 and self.p_number!=10:
-            self.subLayout.addWidget(self.btnCancel)
-
-
-        self.layout.addLayout(self.subLayout)
-        self.layout.addStretch(1)
-        self.setLayout(self.layout)
-
-        self.start = QPoint(0, 0)
-        self.pressing = False
-
-    def onOKButtonClicked(self):
-        #flag
-        for i in range(1,2):
-            if self.p_number == i:
-                Flag.m3_btn_clicked[i] = True
-
-        self.setDisabled(True)
-        self.parent.close()
-
-
-    def showModal(self):
-        return super().exec_()
-
-    def resizeEvent(self, QResizeEvent):
-        super(MyBar, self).resizeEvent(QResizeEvent)
-        self.title.setFixedWidth(self.parent.width())
-
-    def mousePressEvent(self, event):
-        self.start = self.mapToGlobal(event.pos())
-        self.pressing = True
-
-    def mouseMoveEvent(self, event):
-        if self.pressing:
-            self.end = self.mapToGlobal(event.pos())
-            self.movement = self.end - self.start
-            self.parent.setGeometry(self.mapToGlobal(self.movement).x(),
-                                    self.mapToGlobal(self.movement).y(),
-                                    self.parent.width(),
-                                    self.parent.height())
-            self.start = self.end
-
-    def mouseReleaseEvent(self, QMouseEvent):
-        self.pressing = False
-
-    def btn_close_clicked(self):
-        self.parent.close()
-
-    def btn_max_clicked(self):
-        self.parent.showMaximized()
-
-    def btn_min_clicked(self):
-        self.parent.showMinimized()
-
-
-#오른쪽 화면
+# Right Page
 class MitigationMiddleArea_3R(QWidget, QObject):
     qss = """
-        QWidget {
-            background: rgb(221, 221, 221);
-        }
-        QTableWidget {
-            background: rgb(221, 221, 221);
-
-        }
-        QPushButton{
-            background: rgb(221, 221, 221)
-        }
-
-    """
+            QWidget#right1 {
+                background: rgb(221, 221, 221);
+                border : 2px solid
+            }
+            QWidget#right2 {
+                background: rgb(221, 221, 221);
+                border : 2px solid
+            }
+            QTableWidget {
+                background: rgb(221, 221, 221);
+            }
+            QPushButton{
+                background: rgb(221, 221, 221)
+            }
+        """
 
     def __init__(self, parent=None):
         super(MitigationMiddleArea_3R, self).__init__()
         self.setAttribute(Qt.WA_StyledBackground, True)
         self.parent = parent
-        self.shmem = parent.shmem
-
         self.setStyleSheet(self.qss)
         self.central_widget = QStackedWidget()
 
+        # screen 추가
         self.screen1 = tableNone()
-        self.screen2 = table_3_2(self)
-        self.screen3 = table_3_3(self)
+        self.screen2 = table_3_2()
+        self.screen3 = table_3_3()
         self.screen4 = table_3_4()
         self.screen5 = table_3_5()
         self.screen6 = table_3_6()
@@ -509,51 +361,75 @@ class MitigationMiddleArea_3R(QWidget, QObject):
 
         self.central_widget.setCurrentIndex(0)
         self.window_vbox = QVBoxLayout()
+        back = background()
 
-        self.window_vbox.setContentsMargins(0, 0, 0, 0)
+        self.central_widget.setObjectName("right1")
+        back.setObjectName("right2")
         self.window_vbox.addWidget(self.central_widget)
+        self.window_vbox.addWidget(back)
         self.central_widget.update()
+        self.window_vbox.setContentsMargins(0, 0, 0, 0)
+
         self.setLayout(self.window_vbox)
 
     def paintEvent(self, e):
+        # 버튼 클릭 -> screen 전환
+        if Flag.m3_btn_clicked[1]:
+            self.central_widget.setCurrentIndex(0)
+            Flag.m3_page_num = 1
+            Flag.m3_screen[1] = False
+
         if Flag.m3_btn_clicked[2]:
             self.central_widget.setCurrentIndex(1)
-            Flag.m3_btn_clicked[2] = False
             Flag.m3_page_num = 2
+            Flag.m3_screen[2] = False
+
         if Flag.m3_btn_clicked[3]:
             self.central_widget.setCurrentIndex(2)
-            Flag.m3_btn_clicked[3] = False
             Flag.m3_page_num = 3
+            Flag.m3_screen[3] = False
+
         if Flag.m3_btn_clicked[4]:
             self.central_widget.setCurrentIndex(3)
-            Flag.m3_btn_clicked[4] = False
+            Flag.m3_screen[4] = False
             Flag.m3_page_num = 4
+
         if Flag.m3_btn_clicked[5]:
             self.central_widget.setCurrentIndex(4)
-            Flag.m3_btn_clicked[5] = False
+            Flag.m3_screen[5] = False
             Flag.m3_page_num = 5
+
         if Flag.m3_btn_clicked[6]:
             self.central_widget.setCurrentIndex(5)
-            Flag.m3_btn_clicked[6] = False
+            Flag.m3_screen[6] = False
             Flag.m3_page_num = 6
+
         if Flag.m3_btn_clicked[7]:
             self.central_widget.setCurrentIndex(0)
-            Flag.m3_btn_clicked[7] = False
+            Flag.m3_screen[7] = False
             Flag.m3_page_num = 7
+
         if Flag.m3_btn_clicked[8]:
             self.central_widget.setCurrentIndex(0)
-            Flag.m3_btn_clicked[8] = False
+            Flag.m3_screen[8] = False
             Flag.m3_page_num = 8
 
         self.central_widget.update()
 
-
+# 빈 page
 class tableNone(QWidget):
+    qss = """
+            QWidget {
+                background: rgb(221, 221, 221);   
+            }
+        """
     def __init__(self, parent=None):
         super(tableNone, self).__init__()
         self.setAttribute(Qt.WA_StyledBackground, True)
+        self.setStyleSheet(self.qss)
         self.parent = parent
 
+# 만족 / 불만족 button page
 class background(QWidget):
     qss = """
         QWidget {
@@ -575,38 +451,55 @@ class background(QWidget):
     def __init__(self, parent=None):
         super(background, self).__init__()
         self.setAttribute(Qt.WA_StyledBackground, True)
-        self.parent = parent
         self.setStyleSheet(self.qss)
-        label3 = QPushButton("만족")
-        label4 = QPushButton("불만족")
-        self.label5 = QPushButton("병행")
-        label3.setFixedSize(200, 40)
-        label4.setFixedSize(200, 40)
-        self.label5.setFixedSize(200, 40)
-        label3.setCursor(QCursor(Qt.PointingHandCursor))
-        label4.setCursor(QCursor(Qt.PointingHandCursor))
-        self.label5.setCursor(QCursor(Qt.PointingHandCursor))
-        label3.setStyleSheet("QPushButton::hover{ background-color: rgb(0, 176, 218)}")
-        label4.setStyleSheet("QPushButton::hover{ background-color: rgb(0, 176, 218)}")
-        self.label5.setStyleSheet("QPushButton::hover{ background-color: rgb(0, 176, 218)}")
+        self.btn_sat = QPushButton("만족")
+        self.btn_dsat = QPushButton("불만족")
+        self.btn_parallelism = QPushButton("병행")
+        self.setFixedHeight(70)
+        self.btn_sat.setFixedSize(200, 50)
+        self.btn_dsat.setFixedSize(200, 50)
+        self.btn_parallelism.setFixedSize(200, 50)
 
-        label3.clicked.connect(self.click_sat)
-        label4.clicked.connect(self.click_dsat)
-        self.label5.clicked.connect(self.click_dsat)
+        self.btn_sat.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btn_dsat.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btn_parallelism.setCursor(QCursor(Qt.PointingHandCursor))
+
+        self.btn_sat.setStyleSheet("QPushButton::hover{ background-color: rgb(0, 176, 218)}")
+        self.btn_dsat.setStyleSheet("QPushButton::hover{ background-color: rgb(0, 176, 218)}")
+        self.btn_parallelism.setStyleSheet("QPushButton::hover{ background-color: rgb(0, 176, 218)}")
+
+        self.btn_sat.clicked.connect(self.click_sat)
+        self.btn_dsat.clicked.connect(self.click_dsat)
+        self.btn_parallelism.clicked.connect(self.click_p)
 
         self.right_bottom = QHBoxLayout()
-        self.right_bottom.addWidget(label3)
-        self.right_bottom.addWidget(label4)
+
+        self.right_bottom.addWidget(self.btn_sat)
+        self.right_bottom.addWidget(self.btn_dsat)
+        self.right_bottom.addWidget(self.btn_parallelism)
 
         self.setLayout(self.right_bottom)
 
 
     def paintEvent(self, QPaintEvent):
-        if Flag.m3_page_num == 7:
-            self.right_bottom.addWidget(self.label5)
+        # 만족 button 추가
+        if Flag.m3_page_num in [2,3,4,5,6]:
+            self.btn_sat.show()
+            self.btn_parallelism.show()
+
+        else:
+            self.btn_sat.hide()
+            self.btn_parallelism.hide()
+
+        # 불만족 button 추가
+        if Flag.m3_page_num == 4 or Flag.m3_page_num == 6:
+            self.btn_dsat.show()
+        else:
+            self.btn_dsat.hide()
         self.update()
 
     def click_sat(self):
+        # 만족 button click
         if Flag.m3_page_num == 2:
             Flag.m3_btn_clicked[3] = True
             Flag.pg3_sat[2] = True
@@ -614,7 +507,7 @@ class background(QWidget):
             Flag.m3_btn_clicked[4] = True
             Flag.pg3_sat[3] = True
         if Flag.m3_page_num == 4:
-            Flag.m3_btn_clicked[5] = True
+            Flag.m3_btn_clicked[8] = True
             Flag.pg3_sat[4] = True
         if Flag.m3_page_num == 5:
             Flag.m3_btn_clicked[6] = True
@@ -622,42 +515,45 @@ class background(QWidget):
         if Flag.m3_page_num == 6:
             Flag.m3_btn_clicked[8] = True
             Flag.pg3_sat[6] = True
-        print("만족")
 
     def click_dsat(self):
-        if Flag.m3_page_num == 2:
-            Flag.m3_btn_clicked[3] = True
-            Flag.pg3_dsat[2] = True
-        if Flag.m3_page_num == 3:
-            Flag.m3_btn_clicked[4] = True
-            Flag.pg3_dsat[3] = True
+        # 불만족 button click
         if Flag.m3_page_num == 4:
             Flag.m3_btn_clicked[5] = True
             Flag.pg3_dsat[4] = True
-        if Flag.m3_page_num == 5:
-            Flag.m3_btn_clicked[6] = True
-            Flag.pg3_dsat[5] = True
         if Flag.m3_page_num == 6:
             Flag.m3_btn_clicked[7] = True
             Flag.pg3_dsat[6] = True
-        print("불만족")
+
+    def click_p(self):
+        # 병행 button click
+        if Flag.m3_page_num == 2:
+            Flag.m3_btn_clicked[3] = True
+            Flag.pg3_p[2] = True
+        if Flag.m3_page_num == 3:
+            Flag.m3_btn_clicked[4] = True
+            Flag.pg3_p[3] = True
+        if Flag.m3_page_num == 4:
+            Flag.m3_btn_clicked[8] = True
+            Flag.pg3_p[4] = True
+        if Flag.m3_page_num == 5:
+            Flag.m3_btn_clicked[6] = True
+            Flag.pg3_p[5] = True
+        if Flag.m3_page_num == 6:
+            Flag.m3_btn_clicked[8] = True
+            Flag.pg3_p[6] = True
 
 class AlignDelegate(QStyledItemDelegate):
     def initStyleOption(self, option, index):
         super(AlignDelegate, self).initStyleOption(option, index)
         option.displayAlignment = Qt.AlignCenter
 
-
 if __name__ == '__main__':
-    print('test')
     app = QApplication(sys.argv)
-    app.setStyle("fusion")  # +++
-    app.setStyleSheet(StyleSheet)
+    app.setStyle("fusion")
     window = MitigationMiddleArea_3()
     window.show()
     flow = FlowChart()
-
-    app.installEventFilter(flow.btn_1)
     font = QFontDatabase()
     font.addApplicationFont('./맑은 고딕.ttf')
     app.setFont(QFont('맑은 고딕'))

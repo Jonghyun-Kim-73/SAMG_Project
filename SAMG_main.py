@@ -2,6 +2,7 @@ import argparse
 import sys
 import os
 from multiprocessing.managers import BaseManager
+import multiprocessing
 
 from db import db_make
 from TOOL.TOOL_etc import p_
@@ -16,6 +17,7 @@ ip_reg = {
     # 자기 본래 아이피 : {'내부망 아이피' ...}
     '192.168.0.29': {'comip': '192.168.0.29', 'comport': 7105, 'cnsip':'192.168.0.101', 'cnsport': 7105},       # 대일
 }
+
 
 class Body:
     def __init__(self):
@@ -94,12 +96,13 @@ class SHMem:
                       'Prog_Result': {},
 
                       'Close': False,
+
                       }
         print('Trig 메모리 생성 완료')
         # 3] 변수 그래픽 표기용
         self.save_mem = {
             'KCNTOMS': [], 'UUPPPL': [], 'DCTMT': [], 'PCTMT': [], 'H2CONC': [], 'ZINST58': [], 'ZINST78': [],
-            'ZINST77': [], 'ZSUMP': [],
+            'ZINST77': [], 'ZSUMP': [], 'WAFWS1':[], 'WAFWS2': [],
         }
 
         # bi_CTMT_pressure_pred , PCTMT
@@ -199,5 +202,6 @@ class SHMem:
 
 
 if __name__ == '__main__':
+    multiprocessing.freeze_support()  # Pyinstaller Pack을 위해서 사용
     main_process = Body()
     main_process.start()

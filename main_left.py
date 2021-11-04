@@ -5,56 +5,63 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 
+from CustomButton import CustomButton
 from Flag import Flag
 
-from button import Custom
 from arrow import Arrow
 from Mitigation_01 import MitigationWindow
 
 
+def resource_path(relative_path):
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, relative_path)
+    return os.path.join(os.path.abspath("."), relative_path)
+
+
+source1 = resource_path("x_button.png")
+
+
 class MainLeft(QWidget):
+    qss = """
+            QWidget#main {
+                background: rgb(128, 128, 128);
+                border: 2px solid rgb(0, 0, 0); 
+            }
+            QWidget {
+                background: rgb(128, 128, 128);
+                border: 0px solid rgb(0, 0, 0); 
+            }
+        """
 
     def __init__(self, parent=None):
         super(MainLeft, self).__init__()
         self.setAttribute(Qt.WA_StyledBackground, True)  # 상위 스타일 상속
         self.parent = parent
         self.shmem = parent.shmem
+        self.setStyleSheet(self.qss)
 
-        # self.setMouseTracking(True)
-        #카운트
         # 크기 조정
         self.setMinimumHeight(900 - 40)
         self.setMinimumWidth(int(1920 * (2 / 3)))
-        # self.setStyleSheet(self.qss)
-        # self.setMaximumWidth(int(1920*(3/4)))
-        # self.setMinimumHeight(self.parent.height() - 40)
-        # self.setMinimumWidth(int(self.parent.width() * (2/3))
 
-        # 레이어 셋업 ====================================================================================================
+        # 레이어 셋업
         layout = QVBoxLayout(self)
-        layout.setContentsMargins(5, 5, 5, 5)
-        self.x = QCursor.pos().x()
-        self.y = QCursor.pos().y()
-
-        print("position", self.x, " , ", self.y)
-
-        # label1 = QLabel('전략 수행 제어도')
-        # label1.setFixedHeight(30)
-        # label1.setAlignment(Qt.AlignVCenter | Qt.AlignCenter)  # 텍스트 정렬
-        # label1.setStyleSheet("Color : white; font-size: 14pt; font-weight: bold")
-
+        layout.setContentsMargins(5, 0, 5, 0)
         label2 = FlowChartArea(self)
-
+        label2.setObjectName("main")
         layout.addWidget(label2)
         self.setLayout(layout)
-        # self.update()
+
 
 class FlowChartArea(QWidget,QThread):
     qss = """
+        QWidget#scroll {
+            background: rgb(128, 128, 128);
+            border: 2px solid rgb(0, 0, 0); 
+        }
         QWidget {
             background: rgb(128, 128, 128);
-        border: 2px solid rgb(0, 0, 0); 
-            
+            border: 0px solid rgb(0, 0, 0); 
         }
     """
 
@@ -63,707 +70,620 @@ class FlowChartArea(QWidget,QThread):
         self.setAttribute(Qt.WA_StyledBackground, True)
         self.parent = parent
         self.shmem = parent.shmem
-        self.setStyleSheet(self.qss)
-        self.setMouseTracking(True)
-        # self.filter = Custom(x=0, y=0, w=300, h=300, text='bibi', type=0)
-        # self.installEventFilter(self.filter)
+
         self.scroll = QScrollArea()
         self.scroll.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
         self.scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
-        # scroll.setWidgetResizable(True)
-
-
         flowchart = FlowChart(self)
-        #
         self.scroll.setWidget(flowchart)
-        # self.down()
-
-        #자동스크롤
-        #     vbar = aa.scroll.verticalScrollBar()
-        #     vbar.setValue(vbar.maximum())
-
         layout = QVBoxLayout()
         layout.addWidget(self.scroll)
-
         self.setLayout(layout)
 
+    # 자동 스크롤
     def paintEvent(self, e):
         if Flag.PAGE1:
             vbar = self.scroll.verticalScrollBar()
-            vbar.setValue((vbar.maximum())*9/20)
+            vbar.setValue((vbar.maximum())*8/20)
             Flag.PAGE1 = False
 
         if Flag.PAGE2:
             vbar = self.scroll.verticalScrollBar()
-            vbar.setValue((vbar.maximum()) * 29 / 30)
+            vbar.setValue((vbar.maximum()))
             Flag.PAGE2 = False
 
+        if Flag.PAGE3:
+            vbar = self.scroll.verticalScrollBar()
+            vbar.setValue((vbar.minimum()))
+            Flag.PAGE3 = False
+
+
 class FlowChart(QWidget):
-    qss = """
-            QWidget {
-                background: rgb(128, 128, 128);
-                border: 0px solid rgb(0, 0, 0); 
-
-            }
-        """
-
     def __init__(self, parent=None):
         super(FlowChart, self).__init__()
         self.parent = parent
         self.shmem = parent.shmem
+        self.setGeometry(0, 0, 1210, 2070)  # 1900*(3/4) = 1425
 
-        self.setGeometry(0, 0, 1150, 2300)  # 1900*(3/4) = 1425
-        self.setStyleSheet(self.qss)
-        self.setMouseTracking(True)
-
-        self.msg_box = QMessageBox()
-        # 버튼 색상
-        self.color_clicked = QColor(128, 128, 128)
-        self.color_click = QColor(0, 176, 218)
-
-        # 커스텀버튼추가===================================================================================================
-        # 예 line
-        self.line1 = Arrow(self, x=270, y=100, x2=270, y2=130, type=1)
-        self.line1 = Arrow(self, x=270, y=200, x2=270, y2=260, type=1)
-        self.line1 = Arrow(self, x=270, y=420, x2=270, y2=450, type=1)
-        self.line1 = Arrow(self, x=270, y=610, x2=270, y2=640, type=1)
-        self.line1 = Arrow(self, x=270, y=790, x2=270, y2=830, type=1)
-        self.line1 = Arrow(self, x=270, y=900, x2=270, y2=1020, type=1)
-        self.line1 = Arrow(self, x=270, y=1180, x2=270, y2=1210, type=1)
-        self.line1 = Arrow(self, x=270, y=1370, x2=270, y2=1400, type=1)
-        self.line1 = Arrow(self, x=270, y=1560, x2=270, y2=1590, type=1)
-        self.line1 = Arrow(self, x=270, y=1750, x2=270, y2=1780, type=1)
-        self.line1 = Arrow(self, x=270, y=1990, x2=270, y2=2140, type=1)
+        # Arrow
+        self.line1 = Arrow(self, x=270, y=100, x2=270, y2=123, type=1)
+        self.line1 = Arrow(self, x=270, y=210, x2=270, y2=243, type=1)
+        self.line1 = Arrow(self, x=270, y=370, x2=270, y2=403, type=1)
+        self.line1 = Arrow(self, x=270, y=530, x2=270, y2=563, type=1)
+        self.line1 = Arrow(self, x=270, y=690, x2=270, y2=723, type=1)
+        self.line1 = Arrow(self, x=270, y=850, x2=270, y2=883, type=1)
+        self.line1 = Arrow(self, x=270, y=1010, x2=270, y2=1043, type=1)
+        self.line1 = Arrow(self, x=270, y=1170, x2=270, y2=1203, type=1)
+        self.line1 = Arrow(self, x=270, y=130, x2=270, y2=1363, type=1)
+        self.line1 = Arrow(self, x=270, y=1750, x2=270, y2=1893, type=1)
 
         #아니오
-        self.line1 = Arrow(self, x=270, y=345, x2=730, y2=345, type=3)
-        self.line1 = Arrow(self, x=270, y=535, x2=730, y2=535, type=3)
-        self.line1 = Arrow(self, x=270, y=725, x2=730, y2=725, type=3)
-        self.line1 = Arrow(self, x=270, y=915, x2=730, y2=915, type=3)
-        self.line1 = Arrow(self, x=270, y=1105, x2=730, y2=1105, type=3)
-        self.line1 = Arrow(self, x=270, y=1295, x2=730, y2=1295, type=3)
-        self.line1 = Arrow(self, x=270, y=1485, x2=730, y2=1485, type=3)
-
+        self.line1 = Arrow(self, x=270, y=315, x2=663, y2=315, type=3)
+        self.line1 = Arrow(self, x=270, y=475, x2=663, y2=475, type=3)
+        self.line1 = Arrow(self, x=270, y=635, x2=663, y2=635, type=3)
+        self.line1 = Arrow(self, x=270, y=795, x2=663, y2=795, type=3)
+        self.line1 = Arrow(self, x=270, y=955, x2=663, y2=955, type=3)
+        self.line1 = Arrow(self, x=270, y=1115, x2=663, y2=1115, type=3)
+        self.line1 = Arrow(self, x=270, y=1275, x2=663, y2=1275, type=3)
 
         #돌아오기
-        self.line1 = Arrow(self, x=920, y=440, x2=280, y2=440, type=2)
-        self.line1 = Arrow(self, x=920, y=630, x2=280, y2=630, type=2)
-        self.line1 = Arrow(self, x=920, y=820, x2=280, y2=820, type=2)
-        self.line1 = Arrow(self, x=920, y=1010, x2=280, y2=1010, type=2)
-        self.line1 = Arrow(self, x=920, y=1200, x2=280, y2=1200, type=2)
-        self.line1 = Arrow(self, x=920, y=1390, x2=280, y2=1390, type=2)
-        self.line1 = Arrow(self, x=920, y=1580, x2=280, y2=1580, type=2)
-        self.line1 = Arrow(self, x=270, y=1850, x2=760, y2=1850, type=3)
-
-        # 커스텀버튼 type : 3 dia 2 cir 1 rec 0 round_rec
-
-        self.btn_11 = Custom(self, x=70, y=2140, w=400, h=100, text='종료-01\n“중대사고관리 종료“ 수행', type=1
-                                    , msg_text='종료-01 “중대사고관리 종료“ 수행'
-                                    , msg_text2="종료-01 “중대사고관리 종료“를 수행합니다."
-                                    )
-        self.btn_11.setObjectName("b18")
-        self.btn_10_1 = Custom(self, x=700, y=1815, w=400, h=70, text='안전변수 바로 아래로 이동', type=1
-                                      , msg_text='안전변수 바로 아래로 이동'
-                                      , msg_text2="안전변수 바로 아래로 이동합니다."
-                                      )
-        self.btn_10_1.setObjectName("b17")
-        self.btn_10 = Custom(self, x=20, y=1600, w=500, h=500,
-                                    text='● 노심출구온도 < [T01]\n그리고 안정 또는 감소\n\n●발전소부지 경계 선량 <[R01]\n그리고 안정 또는 감소\n\n● 격납건물 압력 < [P11]\n그리고 안정 또는 감소\n\n●격납건물 수소농도 < [H02]\n그리고 안정 또는 감소',
-                                    type=3, msg_text="",
-                                    msg_text2="",
-                                    msg_text3="",
-                                    connected_btn=self.btn_11)
-        self.btn_10.setObjectName("b16")
-        self.btn_9_1 = Custom(self, x=670, y=1435, w=500, h=100, text='완화-07\n“격납건물 냉각수 주입“ 수행', type=1
-                                     , msg_text='완화-07 “격납건물 냉각수 주입“ 수행'
-                                     , msg_text2="완화-07 “격납건물 냉각수 주입“을 수행합니다."
-                                     , connected_btn=self.btn_10)
-        self.btn_9_1.setObjectName("b15")
-        self.btn_9 = Custom(self, x=90, y=1410, w=360, h=150, text='격납건물 수위\n> [L06] m', type=3
-                                   , msg_text="격납건물 수위 확인"
-                                   , msg_text2='격납건물 수위 > [L06] m'
-                                   , msg_text3='격납건물 수위'
-                                   , connected_btn=self.btn_10, connected_btn_2=self.btn_9_1)
-        self.btn_9.setObjectName("b14")
-        self.btn_8_1 = Custom(self, x=670, y=1245, w=500, h=100, text='완화-06\n“증기발생기 급수 주입“ 수행', type=1
-                                     , msg_text='완화-06 “증기발생기 급수 주입“ 수행'
-                                     , msg_text2="완화-06 “증기발생기 급수 주입“을 수행합니다."
-                                     , connected_btn=self.btn_9)
-        self.btn_8_1.setObjectName("b13")
-
-        self.btn_8 = Custom(self, x=90, y=1220, w=360, h=150, text='모든 증기발생기 수위\n> [L01%] NR', type=3
-                                   , msg_text="모든 증기발생기 수위 확인"
-                                   , msg_text2='모든 증기발생기 수위 > [L01%] NR'
-                                   , msg_text3='SG1 수위 NR'
-                                   , msg_text4='SG2 수위 NR'
-                                   , connected_btn=self.btn_9, connected_btn_2=self.btn_8_1)
-
-        self.btn_8.setObjectName("b12")
-        self.btn_7_1 = Custom(self, x=670, y=1055, w=500, h=100, text='완화-05\n“원자로 냉각재 계통 감압“ 수행', type=1
-                                     , msg_text='완화-05 “원자로 냉각재 계통 감압“ 수행'
-                                     , msg_text2="완화-05 “원자로 냉각재 계통 감압“을 수행합니다."
-                                     , connected_btn=self.btn_8)
-        self.btn_7_1.setObjectName("b11")
-        self.btn_7 = Custom(self, x=90, y=1030, w=360, h=150, text='RCS 압력\n<[P04] psig', type=3
-                                   , msg_text="RCS 압력 확인"
-                                   , msg_text2='RCS 압력 <[P04] psig'
-                                   , msg_text3='RCS 압력'
-                                   , connected_btn=self.btn_8, connected_btn_2=self.btn_7_1)
-        self.btn_7.setObjectName("b10")
-        self.btn_6_1 = Custom(self, x=670, y=865, w=500, h=100, text='완화-04\n“원자로 냉각재 계통 냉각수 주입“ 수행', type=1
-                                     , msg_text='완화-04 “원자로 냉각재 계통 냉각수 주입“ 수행'
-                                     , msg_text2="완화-04 “원자로 냉각재 계통 냉각수 주입“을 수행합니다."
-                                     , connected_btn=self.btn_7)
-        self.btn_6_1.setObjectName("b9")
-
-        self.btn_6 = Custom(self, x=90, y=840, w=360, h=150, text='노심출구온도\n< [T01] °C', type=3
-                                   , msg_text="노심출구온도 확인"
-                                   , msg_text2='노심출구온도 < [T01] °C'
-                                   , msg_text3='노심출구온도'
-                                   , connected_btn=self.btn_7, connected_btn_2=self.btn_6_1)
-        self.btn_6.setObjectName("b8")
-        self.btn_5_1 = Custom(self, x=670, y=675, w=500, h=100, text='완화-03\n“격납건물내 수소 제어“ 수행', type=1
-                                     , msg_text='완화-03 “격납건물내 수소 제어“ 수행'
-                                     , msg_text2="완화-03 “격납건물내 수소 제어“를 수행합니다."
-                                     , connected_btn=self.btn_6)
-        self.btn_5_1.setObjectName("b8")
-        self.btn_5 = Custom(self, x=90, y=650, w=360, h=150, text='격납건물 수소농도\n< [H02]%', type=3
-                                   , msg_text="격납건물 수소농도 확인"
-                                   , msg_text2='격납건물 수소농도 < [H02]%'
-                                   , msg_text3='격납건물 수소농도'
-                                   , connected_btn=self.btn_6, connected_btn_2=self.btn_5_1)
-        self.btn_5.setObjectName("b7")
-        self.btn_4_1 = Custom(self, x=670, y=485, w=500, h=100, text='완화-02\n“격납건물 상태제어“ 수행', type=1
-                                     , msg_text='완화-02 “격납건물 상태제어“ 수행'
-                                     , msg_text2="완화-02 “격납건물 상태제어“를 수행합니다."
-                                     , connected_btn=self.btn_5)
-        self.btn_4_1.setObjectName("b6")
-        self.btn_4 = Custom(self, x=90, y=460, w=360, h=150, text='격납건물 압력\n< [P11] psig', type=3
-                                   , msg_text="격납건물 압력 확인"
-                                   , msg_text2='격납건물 압력 < [P11] psig'
-                                   , msg_text3="격납건물 압력"
-                                   , connected_btn=self.btn_5, connected_btn_2=self.btn_4_1)
-        self.btn_4.setObjectName("b5")
-        self.btn_3_1 = Custom(self, x=670, y=295, w=500, h=100, text='완화-01\n“핵분열생성물 방출 제어“ 수행', type=1
-                                     , msg_text="완화-01 “핵분열생성물 방출 제어“ 수행"
-                                     , msg_text2="완화-01 “핵분열생성물 방출 제어“를 수행합니다."
-                                     , connected_btn=self.btn_4)
-        self.btn_3_1.setObjectName("b4")
-
-        self.btn_3 = Custom(self, x=90, y=270, w=360, h=150, text='발전소 부지 경계 선량\n< [R01]', type=3
-                                   , msg_text="발전소 부지 경계 선량 확인"
-                                   , msg_text2="발전소 부지 경계 선량 < [R01]"
-                                   , msg_text3="발전소 부지 경계 선량"
-                                   , connected_btn=self.btn_4, connected_btn_2=self.btn_3_1,b=3)
-        self.btn_3.setObjectName("b3")
-
-        self.btn_2 = Custom(self, x=70, y=130, w=400, h=90, text='안전 변수\nR02, P09, H04 감시 시작', type=0,
-                                   msg_text='안전 변수 R02, P09, H04 감시 시작',
-                                   msg_text2="안전 변수 R02, P09, H04 감시를 시작합니다", connected_btn=self.btn_3,b=2)
-
-        self.btn_2.setObjectName("b2")
-
-        self.btn_1 = Custom(self, x=70, y=30, w=400, h=80, text='TSC “완화” 절차서 사용시작',
-                                   msg_text='TSC “완화” 절차서 사용시작', type=0,
-                                   msg_text2='TSC “완화” 절차서를 시작합니다.',connected_btn=self.btn_2, b=1)
-
-        # self.aa = MainLeft()
-        # self.btn_1.installEventFilter(self.btn_1)
-        self.btn_1.setObjectName("b1")
-        # self.btn_1.setEnabled(True)
-        # if self.btn_1
-        # self.btn_1.shapePath
-        # rect = QRect(0,0,100,100)
-        # app.removeEventFilter()
-        # self.setMouseTracking(True)
-
-        # if((x>100 and x<400) and (y<60 and y>30)):
-        #     print("ddd")
-        #     app.installEventFilter(self.btn_1)
-        # self.btn_2.setEnabled(False)
-
-
-        # app.installEventFilter(self.btn_1)
-        self.installEventFilter(self.btn_2)
-        self.installEventFilter(self.btn_3)
-        self.installEventFilter(self.btn_3_1)
-        self.installEventFilter(self.btn_4)
-        self.installEventFilter(self.btn_4_1)
-        self.installEventFilter(self.btn_5)
-        self.installEventFilter(self.btn_5_1)
-        self.installEventFilter(self.btn_6)
-        self.installEventFilter(self.btn_6_1)
-        self.installEventFilter(self.btn_7)
-        self.installEventFilter(self.btn_7_1)
-        self.installEventFilter(self.btn_8)
-        self.installEventFilter(self.btn_8_1)
-        self.installEventFilter(self.btn_9)
-        self.installEventFilter(self.btn_9_1)
-        self.installEventFilter(self.btn_10)
-        self.installEventFilter(self.btn_10_1)
-        self.installEventFilter(self.btn_11)
-
-
-        self.btn_1.clicked.connect(self.clicked1)
-        self.btn_2.clicked.connect(self.clicked2)
-        self.btn_3.clicked.connect(self.clicked3)
-        self.btn_3_1.clicked.connect(self.clicked3_1)
-        self.btn_4.clicked.connect(self.clicked4)
-        self.btn_4_1.clicked.connect(self.clicked4_1)
-        self.btn_5.clicked.connect(self.clicked5)
-        self.btn_5_1.clicked.connect(self.clicked5_1)
-        self.btn_6.clicked.connect(self.clicked6)
-        self.btn_6_1.clicked.connect(self.clicked6_1)
-        self.btn_7.clicked.connect(self.clicked7)
-        self.btn_7_1.clicked.connect(self.clicked7_1)
-        self.btn_8.clicked.connect(self.clicked8)
-        self.btn_8_1.clicked.connect(self.clicked8_1) #완화 06 페이지
-        self.btn_9.clicked.connect(self.clicked9)
-        self.btn_9_1.clicked.connect(self.clicked9_1)
-        self.btn_10.clicked.connect(self.clicked10)
-        self.btn_10_1.clicked.connect(self.clicked10_1)
-        self.btn_11.clicked.connect(self.clicked11)
-
-        # ==============================================================================================================
-
-    def clicked1(self):
-        self.btn_1.shapes.setColor(QColor(0, 176, 218))
-        self.btn_1.setObjectName("clicked")
-
-        # popup
-        self.popup = SubWindow(p_number=1,
-                               p_title="TSC “완화” 절차서 사용시작",
-                               p_content='\nTSC “완화” 절차서를 시작합니다.')
-        show = self.popup.showModal()
-
-        # 예
-        if Flag.btn_clicked[1]:
-            self.btn_1.shapes.setColor(self.color_clicked)
-            self.btn_2.btn_clicked()  # 클릭한것처럼
-            self.clicked2()
-
-    def clicked2(self):
-        self.btn_2.shapes.setColor(self.color_click)
-        self.btn_2.setObjectName("clicked")
-
-        # popup
-        self.popup = SubWindow(p_number=2,
-                               p_title="안전 변수 R02, P09, H04 감시 시작",
-                               p_content='\n안전 변수 R02, P09, H04 감시를 시작합니다')
-        show = self.popup.showModal()
-
-        # 예
-        if Flag.btn_clicked[2]:
-            self.btn_2.shapes.setColor(self.color_clicked)
-            self.btn_3.btn_clicked()  # 클릭한것처럼
-            self.clicked3()
-
-    def clicked3(self):
-        self.btn_3.shapes.setColor(self.color_click)
-        self.btn_3.setObjectName("clicked")
-
-        # popup
-        self.popup = SubWindow(p_number=3,
-                               p_title="발전소 부지 경계 선량 확인",
-                               p_content="\n발전소 부지 경계 선량 < R[01]",
-                               p_label1="현재 발전소 부지 경계 선량",
-                               p_value1=f"{self.shmem.get_shmem_val('DCTMT'):.2f}")
-        show = self.popup.showModal()
-
-        #예
-        if Flag.btn_clicked[3]:
-            self.btn_3.shapes.setColor(self.color_clicked)
-            self.btn_4.btn_clicked() #클릭한것처럼
-            self.clicked4()
-        #아니오
-        else:
-            self.btn_3.shapes.setColor(self.color_clicked)
-            self.btn_3_1.btn_clicked() #클릭한것처럼
-            self.clicked3_1()
-
-    def clicked3_1(self):
-        self.btn_3_1.shapes.setColor(QColor(0, 176, 218))
-        self.btn_3_1.setObjectName("clicked")
-
-        # popup
-        self.popup = SubWindow(p_number=31,
-                               p_title="완화-01 “핵분열생성물 방출 제어“ 수행",
-                               p_content="\n완화-01 “핵분열생성물 방출 제어“를 수행합니다.")
-        show = self.popup.showModal()
-
-        # 예 - 새로운 page
-        if Flag.btn_clicked_1[3]:
-            self.btn_3_1.shapes.setColor(self.color_clicked)
-            self.btn_4.btn_clicked()  # 클릭한것처럼
-            self.clicked4()
-            print("완화 01 페이지 open")
-        # 아니오 - 새로운 페이지 없으면 일단 넘어가기
-        else:
-            self.btn_3_1.shapes.setColor(self.color_clicked)
-            self.btn_4.btn_clicked()  # 클릭한것처럼
-            self.clicked4()
-
-    def clicked4(self):
-        self.btn_4.shapes.setColor(QColor(0, 176, 218))
-        self.btn_4.setObjectName("clicked")
-
-        # popup
-        self.popup = SubWindow(p_number=4,
-                               p_title="격납건물 압력 확인",
-                               p_content="\n격납건물 압력 < [P11] psig",
-                               p_label1="현재 격납건물 압력",
-                               p_value1=f"{self.shmem.get_shmem_val('PCTMT'):.2f}") #표에서 얻어오기
-        show = self.popup.showModal()
-
-        # 예
-        if Flag.btn_clicked[4]:
-            self.btn_4.shapes.setColor(self.color_clicked)
-            self.btn_5.btn_clicked()  # 클릭한것처럼
-            self.clicked5()
-        # 아니오
-        else:
-            self.btn_4.shapes.setColor(self.color_clicked)
-            self.btn_4_1.btn_clicked()  # 클릭한것처럼
-            self.clicked4_1()
-
-    def clicked4_1(self):
-        self.btn_4_1.shapes.setColor(QColor(0, 176, 218))
-        self.btn_4_1.setObjectName("clicked")
-
-        # popup
-        self.popup = SubWindow(p_number=41,
-                               p_title="완화-02 “격납건물 상태제어“ 수행",
-                               p_content="\n완화-02 “격납건물 상태제어“를 수행합니다.")
-        show = self.popup.showModal()
-
-        # 예 - 새로운 page
-        if Flag.btn_clicked_1[4]:
-            self.btn_4_1.shapes.setColor(self.color_clicked)
-            self.btn_5.btn_clicked()  # 클릭한것처럼
-            self.clicked5()
-            print("완화 02 페이지 open")
-        # 아니오 - 새로운 페이지 없으면 일단 넘어가기
-        else:
-            self.btn_4_1.shapes.setColor(self.color_clicked)
-            self.btn_5.btn_clicked()  # 클릭한것처럼
-            self.clicked5()
-
-    def clicked5(self):
-        self.btn_5.shapes.setColor(QColor(0, 176, 218))
-        self.btn_5.setObjectName("clicked")
-        Flag.PAGE1 = True
-        # popup
-        self.popup = SubWindow(p_number=5,
-                               p_title="격납건물 수소농도 확인",
-                               p_content="\n격납건물 수소농도 < [H02]%",
-                               p_label1="현재 격납건물 수소농도",
-                               p_value1=f"{self.shmem.get_shmem_val('H2CONC'):.2f}")  # 표에서 얻어오기
-        show = self.popup.showModal()
-
-        # 예
-        if Flag.btn_clicked[5]:
-            self.btn_5.shapes.setColor(self.color_clicked)
-            self.btn_6.btn_clicked()  # 클릭한것처럼
-            self.clicked6()
-        # 아니오
-        else:
-            self.btn_5.shapes.setColor(self.color_clicked)
-            self.btn_5_1.btn_clicked()  # 클릭한것처럼
-            self.clicked5_1()
-
-    def clicked5_1(self):
-        self.btn_5_1.shapes.setColor(QColor(0, 176, 218))
-        self.btn_5_1.setObjectName("clicked")
-        Flag.PAGE1 = True
-        # popup
-        self.popup = SubWindow(p_number=51,
-                               p_title="완화-03 “격납건물내 수소 제어“ 수행",
-                               p_content="\n완화-03 “격납건물내 수소 제어“를 수행합니다.")
-        show = self.popup.showModal()
-
-        # 예 - 새로운 page
-        if Flag.btn_clicked_1[5]:
-            self.btn_5_1.shapes.setColor(self.color_clicked)
-            self.btn_6.btn_clicked()  # 클릭한것처럼
-            self.clicked6()
-            print("완화 03 페이지 open")
-        # 아니오 - 새로운 페이지 없으면 일단 넘어가기
-        else:
-            self.btn_5_1.shapes.setColor(self.color_clicked)
-            self.btn_6.btn_clicked()  # 클릭한것처럼
-            self.clicked6()
-
-    def clicked6(self):
-        self.btn_6.shapes.setColor(QColor(0, 176, 218))
-        self.btn_6.setObjectName("clicked")
-
-        # popup
-        self.popup = SubWindow(p_number=6,
-                               p_title="노심출구온도 확인",
-                               p_content="\n노심출구온도 < [T01]°C",
-                               p_label1="현재 노심출구온도",
-                               p_value1=f"{self.shmem.get_shmem_val('UUPPPL'):.2f}")  # 표에서 얻어오기
-        show = self.popup.showModal()
-
-        # 예
-        if Flag.btn_clicked[6]:
-            self.btn_6.shapes.setColor(self.color_clicked)
-            self.btn_7.btn_clicked()  # 클릭한것처럼
-            self.clicked7()
-        # 아니오
-        else:
-            self.btn_6.shapes.setColor(self.color_clicked)
-            self.btn_6_1.btn_clicked()  # 클릭한것처럼
-            self.clicked6_1()
-
-    def clicked6_1(self):
-        self.btn_6_1.shapes.setColor(QColor(0, 176, 218))
-        self.btn_6_1.setObjectName("clicked")
-
-        # popup
-        self.popup = SubWindow(p_number=61,
-                               p_title="완화-04 “원자로 냉각재 계통 냉각수 주입“ 수행",
-                               p_content="\n완화-04 “원자로 냉각재 계통 냉각수 주입“을 수행합니다.")
-        show = self.popup.showModal()
-
-        # 예 - 새로운 page
-        if Flag.btn_clicked_1[6]:
-            self.btn_6_1.shapes.setColor(self.color_clicked)
-            self.btn_7.btn_clicked()  # 클릭한것처럼
-            self.clicked7()
-            print("완화 04 페이지 open")
-        # 아니오 - 새로운 페이지 없으면 일단 넘어가기
-        else:
-            self.btn_6_1.shapes.setColor(self.color_clicked)
-            self.btn_7.btn_clicked()  # 클릭한것처럼
-            self.clicked7()
-
-    def clicked7(self):
-        self.btn_7.shapes.setColor(QColor(0, 176, 218))
-        self.btn_7.setObjectName("clicked")
-
-        # popup
-        self.popup = SubWindow(p_number=7,
-                               p_title="RCS 압력 확인",
-                               p_content="\nRCS 압력 < [P04]psig",
-                               p_label1="현재 RCS 압력",
-                               p_value1=f"{self.shmem.get_shmem_val('ZINST58'):.2f}")  # 표에서 얻어오기
-        show = self.popup.showModal()
-
-        # 예
-        if Flag.btn_clicked[7]:
-            self.btn_7.shapes.setColor(self.color_clicked)
-            self.btn_8.btn_clicked()  # 클릭한것처럼
-            self.clicked8()
-        # 아니오
-        else:
-            self.btn_7.shapes.setColor(self.color_clicked)
-            self.btn_7_1.btn_clicked()  # 클릭한것처럼
-            self.clicked7_1()
-
-    def clicked7_1(self):
-        self.btn_7_1.shapes.setColor(QColor(0, 176, 218))
-        self.btn_7_1.setObjectName("clicked")
-
-        # popup
-        self.popup = SubWindow(p_number=71,
-                               p_title="완화-05 “원자로 냉각재 계통 감압“ 수행",
-                               p_content="\n완화-05 “원자로 냉각재 계통 감압“을 수행합니다.")
-        show = self.popup.showModal()
-
-        # 예 - 새로운 page
-        if Flag.btn_clicked_1[7]:
-            self.btn_7_1.shapes.setColor(self.color_clicked)
-            self.btn_8.btn_clicked()  # 클릭한것처럼
-            self.clicked8()
-            print("완화 05 페이지 open")
-        # 아니오 - 새로운 페이지 없으면 일단 넘어가기
-        else:
-            self.btn_7_1.shapes.setColor(self.color_clicked)
-            self.btn_8.btn_clicked()  # 클릭한것처럼
-            self.clicked8()
-
-    def clicked8(self):
-        self.btn_8.shapes.setColor(QColor(0, 176, 218))
-        self.btn_8.setObjectName("clicked")
-        # popup
-        self.popup = SubWindow(p_number=8,
-                               p_title="모든 증기발생기 수위 확인",
-                               p_content="\n모든 증기발생기 수위 < [L01%] NR",
-                               p_label1="SG 1 Level",
-                               p_value1=f"{self.shmem.get_shmem_val('ZINST78'):.2f}",
-                               p_label2="SG 2 Level",
-                               p_value2=f"{self.shmem.get_shmem_val('ZINST77'):.2f}")  # 표에서 얻어오기
-        show = self.popup.showModal()
-
-        # 예
-        if Flag.btn_clicked[8]:
-            self.btn_8.shapes.setColor(self.color_clicked)
-            self.btn_9.btn_clicked()  # 클릭한것처럼
-            self.clicked9()
-        # 아니오
-        else:
-            self.btn_8.shapes.setColor(self.color_clicked)
-            self.btn_8_1.btn_clicked()  # 클릭한것처럼
-            self.clicked8_1()
-
-    def clicked8_1(self):
-        self.btn_8_1.shapes.setColor(QColor(0, 176, 218))
-        self.btn_8_1.setObjectName("clicked")
-
-        # popup
-        self.popup = SubWindow(p_number=81,
-                               p_title="완화-06 “증기발생기 급수 주입“ 수행",
-                               p_content="\n완화-06 “증기발생기 급수 주입“을 수행합니다.")
-        show = self.popup.showModal()
-
-        # 예 - 새로운 page
-        if Flag.btn_clicked_1[8]:
-            self.btn_8_1.shapes.setColor(self.color_clicked)
-            # 완화 06 page open
-            self.mitigation06 = MitigationWindow(self)
-            self.mitigation06.show()
-            # self.btn_9.btn_clicked()  # 클릭한것처럼
-
-        # 아니오 - 새로운 페이지 없으면 일단 넘어가기
-        else:
-            self.btn_8_1.shapes.setColor(self.color_clicked)
-            self.btn_9.btn_clicked()  # 클릭한것처럼
-            self.clicked9()
-
-    def clicked9(self):
-        self.btn_9.shapes.setColor(QColor(0, 176, 218))
-        self.btn_9.setObjectName("clicked")
-        Flag.PAGE2 = True
-        # popup
-        self.popup = SubWindow(p_number=9,
-                               p_title="격납건물 수위 확인",
-                               p_content="\n격납건물 수위 > [L06] m",
-                               p_label1="현재 격납건물 수위",
-                               p_value1=f"{self.shmem.get_shmem_val('ZSUMP'):.2f}")  # 표에서 얻어오기
-        show = self.popup.showModal()
-
-        # 예
-        if Flag.btn_clicked[9]:
-            self.btn_9.shapes.setColor(self.color_clicked)
-            self.btn_10.btn_clicked()  # 클릭한것처럼
-            self.clicked10()
-        # 아니오
-        else:
-            self.btn_9.shapes.setColor(self.color_clicked)
-            self.btn_9_1.btn_clicked()  # 클릭한것처럼
-            self.clicked9_1()
-
-    def clicked9_1(self):
-        self.btn_9_1.shapes.setColor(QColor(0, 176, 218))
-        self.btn_9_1.setObjectName("clicked")
-        Flag.PAGE2 = True
-
-        # popup
-        self.popup = SubWindow(p_number=91,
-                               p_title="완화-07 “격납건물 냉각수 주입“ 수행",
-                               p_content="\n완화-07 “격납건물 냉각수 주입“을 수행합니다.")
-        show = self.popup.showModal()
-
-        # 예 - 새로운 page
-        if Flag.btn_clicked_1[9]:
-            self.btn_9_1.shapes.setColor(self.color_clicked)
-            self.btn_10.btn_clicked()  # 클릭한것처럼
-            self.clicked10()
-            print("완화 07 페이지 open")
-        # 아니오 - 새로운 페이지 없으면 일단 넘어가기
-        else:
-            self.btn_9_1.shapes.setColor(self.color_clicked)
-            self.btn_10.btn_clicked()  # 클릭한것처럼
-            self.clicked10()
-
-    # 추가 설명 필요
-    def clicked10(self):
-        self.btn_10.shapes.setColor(QColor(0, 176, 218))
-        self.btn_10.setObjectName("clicked")
-
-    def clicked10_1(self):
-        self.btn_10_1.shapes.setColor(QColor(0, 176, 218))
-        self.btn_10_1.setObjectName("clicked")
-
-    def clicked11(self):
-        self.btn_11.shapes.setColor(QColor(0, 176, 218))
-        self.btn_11.setObjectName("clicked")
-
-    def btn_count(self):
-        self.count = self.count+1
-
-    def btn8_controller(self):
-        if self.btn_8.isChecked():
-            self.App.show()
+        self.line1 = Arrow(self, x=895, y=396, x2=280, y2=396, type=2)
+        self.line1 = Arrow(self, x=895, y=556, x2=280, y2=556, type=2)
+        self.line1 = Arrow(self, x=895, y=716, x2=280, y2=716, type=2)
+        self.line1 = Arrow(self, x=895, y=876, x2=280, y2=876, type=2)
+        self.line1 = Arrow(self, x=895, y=1036, x2=280, y2=1036, type=2)
+        self.line1 = Arrow(self, x=895, y=1196, x2=280, y2=1196, type=2)
+        self.line1 = Arrow(self, x=895, y=1356, x2=280, y2=1356, type=2)
+        self.line1 = Arrow(self, x=1200, y=233, x2=280, y2=233, type=2)
+
+        # CustomButton
+        self.btn_1 = CustomButton(self, page=1, num=1, x=70, y=30, w=400, h=70, text='TSC “완화” 절차서 사용시작',type=0)
+        self.btn_2 = CustomButton(self, page=1, num=2, x=70, y=130, w=400, h=90, text='안전 변수<br/>R02, P09, H04 감시 시작', type=0)
+        self.btn_3 = CustomButton(self, page=1, num=3, x=70, y=250, w=400, h=130, text='발전소 부지 경계 선량<br/>&lt; 5분동안 0.5mSv/h', type=2)
+        self.btn_4 = CustomButton(self, page=1, num=4, x=70, y=410, w=400, h=130, text='격납건물 압력<br/>&lt; 4.97 psig', type=2)
+        self.btn_5 = CustomButton(self, page=1, num=5, x=70, y=570, w=400, h=130, text='격납건물 수소농도<br/>&lt; [H02]%', type=2)
+        self.btn_6 = CustomButton(self, page=1, num=6, x=70, y=730, w=400, h=130, text='노심출구온도<br/>&lt; 371.1°C', type=2)
+        self.btn_7 = CustomButton(self, page=1, num=7, x=70, y=890, w=400, h=130, text='RCS 압력<br/>&lt;28.12kg/cm2', type=2)
+        self.btn_8 = CustomButton(self, page=1, num=8, x=70, y=1050, w=400, h=130, text='모든 증기발생기 수위<br/>> 74% NR', type=2)
+        self.btn_9 = CustomButton(self, page=1, num=9, x=70, y=1210, w=400, h=130, text='격납건물 수위<br/>> 27.1%', type=2)
+        self.btn_10 = CustomButton(self, page=1, num=10, x=20, y=1370, w=500, h=500, text='● 노심출구온도 &lt; 371.1°C<br/><br/>그리고 안정 또는 감소<br/>●발전소부지 경계 선량 &lt;[R01]<br/><br/>그리고 안정 또는 감소<br/>● 격납건물 압력 &lt; [P11]<br/><br/>그리고 안정 또는 감소<br/>●격납건물 수소농도 &lt; [H02]<br/><br/>그리고 안정 또는 감소', type=2)
+        self.btn_11 = CustomButton(self, page=1, num=11, x=70, y=1900, w=400, h=90, text='종료-01<br/>“중대사고관리 종료“ 수행', type=1)
+
+        self.btn_3_1 = CustomButton(self, page=1, num=31, x=670, y=270, w=450, h=90, text='완화-01<br/>“핵분열생성물 방출 제어“ 수행')
+        self.btn_4_1 = CustomButton(self, page=1, num=41, x=670, y=430, w=450, h=90, text='완화-02<br/>“격납건물 상태제어“ 수행', type=1)
+        self.btn_5_1 = CustomButton(self, page=1, num=51, x=670, y=590, w=450, h=90, text='완화-03<br/>“격납건물내 수소 제어“ 수행', type=1)
+        self.btn_6_1 = CustomButton(self, page=1, num=61, x=670, y=750, w=450, h=90, text='완화-04<br/>“원자로 냉각재 계통 냉각수 주입“ 수행', type=1)
+        self.btn_7_1 = CustomButton(self, page=1, num=71, x=670, y=910, w=450, h=90, text='완화-05<br/>“원자로 냉각재 계통 감압“ 수행', type=1)
+        self.btn_8_1 = CustomButton(self, page=1, num=81, x=670, y=1070, w=450, h=90, text='완화-06<br/>“증기발생기 급수 주입“ 수행', type=1)
+        self.btn_9_1 = CustomButton(self, page=1, num=91, x=670, y=1230, w=450, h=90, text='완화-07<br/>“격납건물 냉각수 주입“ 수행', type=1)
 
     def paintEvent(self, event):
         p = QPainter(self)
-
         p.setPen(QPen(Qt.black))
         p.setFont(QFont('맑은 고딕', 14))
-        p.drawLine(920, 370, 920, 440)
-        p.drawText(470, 335, "아니오")
-        p.drawText(240, 445, "예")
+        p.drawLine(895, 350, 895, 396)
+        p.drawText(470, 305, "아니오")
+        p.drawText(240, 403, "예")
 
-        p.drawLine(920, 530, 920, 630)
+        p.drawLine(895, 500, 895, 556)
+        p.drawText(470, 465, "아니오")
+        p.drawText(240, 563, "예")
 
-        p.drawText(470, 525, "아니오")
-        p.drawText(240, 635, "예")
+        p.drawLine(895, 666, 895, 716)
+        p.drawText(470, 625, "아니오")
+        p.drawText(240, 723, "예")
 
-        p.drawLine(920, 720, 920, 820)
+        p.drawLine(895, 820, 895, 876)
+        p.drawText(470, 785, "아니오")
+        p.drawText(240, 883, "예")
 
-        p.drawText(470, 715, "아니오")
-        p.drawText(240, 825, "예")
+        p.drawLine(895, 990, 895, 1036)
+        p.drawText(470, 945, "아니오")
+        p.drawText(240, 1043, "예")
 
-        p.drawLine(920, 910, 920, 1010)
+        p.drawLine(895, 1140, 895, 1196)
+        p.drawText(470, 1105, "아니오")
+        p.drawText(240, 1203, "예")
 
-        p.drawText(470, 905, "아니오")
-        p.drawText(240, 1015, "예")
+        p.drawLine(895, 1300, 895, 1356)
+        p.drawText(470, 1265, "아니오")
+        p.drawText(240, 1363, "예")
 
-        p.drawLine(920, 1100, 920, 1200)
+        p.drawLine(270, 1620, 1200, 1620)
+        p.drawLine(1200, 233, 1200, 1620)
 
-        p.drawText(470, 1095, "아니오")
-        p.drawText(240, 1205, "예")
+        current = 0
+        # Popup open
+        if Flag.btn_clicked[1]:
+            self.popup = CustomPopup(p_number=1, p_title="TSC “완화” 절차서 사용시작", p_content='\nTSC “완화” 절차서를 시작합니다.')
+            Flag.btn_clicked[1] = False
+            self.btn_1.color()
+            Flag.color[1] = 2
+            Flag.close[1] = 0
 
-        p.drawLine(920, 1290, 920, 1390)
+            # 현재 실행중인 버튼 병행처리
+            current = self.together(1)
+            self.change(current)
 
-        p.drawText(470, 1285, "아니오")
-        p.drawText(240, 1395, "예")
+            show = self.popup.showModal()
+            if Flag.btn_yes[1] == 0 and Flag.close[1] == 0: #yes # 완료된 버튼 팝업 생성 방지
+                self.btn_1.complete()
+                Flag.color[1] = 3
 
-        p.drawLine(920, 1480, 920, 1580)
+                Flag.btn_clicked[2] = True
+                self.btn_2.color()
+                Flag.color[2] = 2
 
-        p.drawText(470, 1475, "아니오")
-        p.drawText(240, 1585, "예")
+        if Flag.btn_clicked[2]:
+            self.popup = CustomPopup(p_number=2, p_title="안전 변수 R02, P09, H04 감시 시작", p_content='\n안전 변수 R02, P09, H04 감시를 시작합니다.')
+            Flag.btn_clicked[2] = False
+            self.btn_2.color()
+            Flag.color[2] = 2
+            Flag.close[2] = 0
+            # 현재 실행중인 버튼 병행처리
+            current = self.together(2)
+            self.change(current)
 
-# 마름모 popup
-class SubWindow(QDialog):
+            show = self.popup.showModal()
+            if Flag.btn_yes[2] == 0 and Flag.close[2] == 0: # 완료된 버튼 팝업 생성 방지
+                self.btn_2.complete()
+                Flag.color[2] = 3
+
+                Flag.btn_clicked[3] = True
+                self.btn_3.color()
+                Flag.color[3] = 2
+
+        if Flag.btn_clicked[3]:
+            self.popup = CustomPopup(p_number=3, p_title="발전소 부지 경계 선량 확인",  p_content="\n발전소 부지 경계 선량 5분동안 < 0.5mSv/h", p_label1="현재 발전소 부지 경계 선량", p_value1=Flag.value1_1) #단위 추가 필요 "%d"%~
+            Flag.btn_clicked[3] = False
+            self.btn_3.color()
+            Flag.color[3] = 2
+            Flag.close[3] = 0  # 팝업 닫기
+            # 현재 실행중인 버튼 병행처리
+            current = self.together(3)
+            self.change(current)
+
+            show = self.popup.showModal()
+
+            if Flag.btn_yes[3] == 0 and Flag.close[3] == 0:  #yes
+                self.btn_3.complete()
+                Flag.color[3] = 3
+                Flag.btn_clicked[4] = True
+                self.btn_3_1.complete()
+                self.btn_4.color()
+                Flag.color[31] = 3
+                Flag.color[4] = 2
+
+            elif Flag.btn_yes[3] == 1 and Flag.close[3] == 0:  #no
+                self.btn_3.complete()
+                Flag.color[3] = 3
+                Flag.btn_clicked_1[31] = True
+                self.btn_3_1.color()
+                Flag.color[31] = 2
+
+        if Flag.btn_clicked[4]:
+            self.popup = CustomPopup(p_number=4, p_title="격납건물 압력 확인", p_content="\n격납건물 압력 < 4.97 psig", p_label1="현재 격납건물 압력", p_value1=Flag.value1_2)
+            Flag.btn_clicked[4] = False
+            self.btn_4.color()
+            Flag.color[4] = 2
+            Flag.close[4] = 0
+            # 현재 실행중인 버튼 병행처리
+            current = self.together(4)
+            self.change(current)
+
+            show = self.popup.showModal()
+
+            if Flag.btn_yes[4] == 0 and Flag.close[4] == 0:  # yes
+                self.btn_4.complete()
+                Flag.color[4] = 3
+                Flag.btn_clicked[5] = True
+                self.btn_4_1.complete()
+                self.btn_5.color()
+                Flag.color[41] = 3
+                Flag.color[5] = 2
+
+            elif Flag.btn_yes[4] == 1 and Flag.close[4] == 0:  # no
+                self.btn_4.complete()
+                Flag.color[4] = 3
+                Flag.btn_clicked_1[41] = True
+                self.btn_4_1.color()
+                Flag.color[41] = 2
+
+        if Flag.btn_clicked[5]:
+            self.popup = CustomPopup(p_number=5, p_title="격납건물 수소농도 확인", p_content="\n격납건물 수소농도 < [H02]%", p_label1="현재 격납건물 수소농도", p_value1=Flag.value2_4)
+            Flag.PAGE1 = True
+            Flag.btn_clicked[5] = False
+            self.btn_5.color()
+            Flag.color[5] = 2
+            Flag.close[5] = 0
+            # 현재 실행중인 버튼 병행처리
+            current = self.together(5)
+            self.change(current)
+
+            show = self.popup.showModal()
+
+            if Flag.btn_yes[5] == 0 and Flag.close[5] == 0:  # yes
+                self.btn_5.complete()
+                Flag.color[5] = 3
+                Flag.btn_clicked[6] = True
+                self.btn_5_1.complete()
+                self.btn_6.color()
+                Flag.color[51] = 3
+                Flag.color[6] = 2
+
+            elif Flag.btn_yes[5] == 1 and Flag.close[5] == 0:  # no
+                self.btn_5.complete()
+                Flag.color[5] = 3
+                Flag.btn_clicked_1[51] = True
+                self.btn_5_1.color()
+                Flag.color[51] = 2
+
+        if Flag.btn_clicked[6]:
+            self.popup = CustomPopup(p_number=6, p_title="노심출구온도 확인", p_content="\n노심출구온도 < 371.1°C", p_label1="현재 노심출구온도", p_value1=Flag.value1_3)
+            Flag.btn_clicked[6] = False
+            Flag.PAGE1 = True
+            self.btn_6.color()
+            Flag.color[6] = 2
+            Flag.close[6] = 0
+            # 현재 실행중인 버튼 병행처리
+            current = self.together(6)
+            self.change(current)
+
+            show = self.popup.showModal()
+
+            if Flag.btn_yes[6] == 0 and Flag.close[6] == 0:  # yes
+                self.btn_6.complete()
+                Flag.color[6] = 3
+                Flag.btn_clicked[7] = True
+                self.btn_6_1.complete()
+                self.btn_7.color()
+                Flag.color[61] = 3
+                Flag.color[7] = 2
+
+            elif Flag.btn_yes[6] == 1 and Flag.close[6] == 0:  # no
+                self.btn_6.complete()
+                Flag.color[6] = 3
+                Flag.btn_clicked_1[61] = True
+                self.btn_6_1.color()
+                Flag.color[61] = 2
+
+        if Flag.btn_clicked[7]:
+            self.popup = CustomPopup(p_number=7, p_title="RCS 압력 확인", p_content="\nRCS 압력 < 28.12kg/cm^2", p_label1="현재 RCS 압력", p_value1=Flag.value1_4)
+            Flag.btn_clicked[7] = False
+            self.btn_7.color()
+            Flag.color[7] = 2
+            Flag.close[7] = 0
+            # 현재 실행중인 버튼 병행처리
+            current = self.together(7)
+            self.change(current)
+
+            show = self.popup.showModal()
+
+            if Flag.btn_yes[7] == 0 and Flag.close[7] == 0:  # yes
+                self.btn_7.complete()
+                Flag.color[7] = 3
+                Flag.btn_clicked[8] = True
+                self.btn_7_1.complete()
+                self.btn_8.color()
+                Flag.color[71] = 3
+                Flag.color[8] = 2
+
+            elif Flag.btn_yes[7] == 1 and Flag.close[7] == 0:  # no
+                self.btn_7.complete()
+                Flag.color[7] = 3
+                Flag.btn_clicked_1[71] = True
+                self.btn_7_1.color()
+                Flag.color[71] = 2
+
+        if Flag.btn_clicked[8]:
+            self.popup = CustomPopup(p_number=8, p_title="모든 증기발생기 수위 확인", p_content="\n모든 증기발생기 수위 < 74% NR", p_label1="SG 1 Level", p_value1=Flag.value1_5, p_label2="SG 2 Level", p_value2=Flag.value1_6)
+            Flag.btn_clicked[8] = False
+            self.btn_8.color()
+            Flag.color[8] = 2
+            Flag.close[8] = 0
+            # 현재 실행중인 버튼 병행처리
+            current = self.together(8)
+            self.change(current)
+
+            show = self.popup.showModal()
+
+            if Flag.btn_yes[8] == 0 and Flag.close[8] == 0:  # yes
+                self.btn_8.complete()
+                Flag.color[8] = 3
+                Flag.btn_clicked[9] = True
+                self.btn_8_1.complete()
+                self.btn_9.color()
+                Flag.color[81] = 3
+                Flag.color[9] = 2
+
+            elif Flag.btn_yes[8] == 1 and Flag.close[8] == 0:  # no
+                self.btn_8.complete()
+                Flag.color[8] = 3
+                Flag.btn_clicked_1[81] = True
+                self.btn_8_1.color()
+                Flag.color[81] = 2
+
+        if Flag.btn_clicked[9]:
+            self.popup = CustomPopup(p_number=9, p_title="격납건물 수위 확인", p_content="\n격납건물 수위 > 27.1%", p_label1="현재 격납건물 수위", p_value1=Flag.value1_7)
+            Flag.btn_clicked[9] = False
+            Flag.PAGE2 = True
+            self.btn_9.color()
+            Flag.color[9] = 2
+            Flag.close[9] = 0
+            # 현재 실행중인 버튼 병행처리
+            current = self.together(9)
+            self.change(current)
+
+            show = self.popup.showModal()
+
+            if Flag.btn_yes[9] == 0 and Flag.close[9] == 0:  # yes
+                self.btn_9.complete()
+                Flag.color[9] = 3
+                Flag.btn_clicked[10] = True
+                self.btn_9_1.complete()
+                self.btn_10.color()
+                Flag.color[101] = 3
+                Flag.color[10] = 2
+
+            elif Flag.btn_yes[9] == 1 and Flag.close[9] == 0:  # no
+                self.btn_9.complete()
+                Flag.color[9] = 3
+                Flag.btn_clicked_1[91] = True
+                self.btn_9_1.color()
+                Flag.color[91] = 2
+
+        if Flag.btn_clicked[10]:
+            self.popup = CustomPopup(p_number=10, p_title="TOTAL", p_content="\nTOTAL",
+                                     p_label1="노심출구온도 < 371.1°C", p_value1=Flag.value2_1,
+                                     p_label2="발전소부지 경계 선량 30분동안 < 0.5mSv/h", p_value2=Flag.value2_2,
+                                     p_label3="격납건물 압력 < 4.97 psig", p_value3=Flag.value2_3,
+                                     p_label4="격납건물 수소농도 < [H02]", p_value4=Flag.value2_4)
+            Flag.btn_clicked[10] = False
+            self.btn_10.color()
+            Flag.color[10] = 2
+            Flag.close[10] = 0
+            # 현재 실행중인 버튼 병행처리
+            current = self.together(10)
+            self.change(current)
+
+            show = self.popup.showModal()
+
+            if Flag.btn_yes[10] == 0 and Flag.close[10] == 0:  # yes
+                self.btn_10.complete()
+                Flag.color[10] = 3
+                Flag.btn_clicked[11] = True
+                self.btn_11.color()
+                Flag.color[11] = 2
+
+            elif Flag.btn_yes[10] == 1 and Flag.close[10] == 0:  # no #안전변수로 이동(버튼 초기화)
+                Flag.PAGE3 = True
+                self.btn_1.complete()
+                self.btn_2.color()
+                self.btn_3.color_init()
+                self.btn_4.color_init()
+                self.btn_5.color_init()
+                self.btn_6.color_init()
+                self.btn_7.color_init()
+                self.btn_8.color_init()
+                self.btn_9.color_init()
+                self.btn_10.color_init()
+                self.btn_11.color_init()
+                self.btn_3_1.color_init()
+                self.btn_4_1.color_init()
+                self.btn_5_1.color_init()
+                self.btn_6_1.color_init()
+                self.btn_7_1.color_init()
+                self.btn_8_1.color_init()
+                self.btn_9_1.color_init()
+                for i in range(3, 12):
+                    Flag.btn_yes[i] = -1
+                    Flag.color[i] = 0
+                    Flag.color[i*10+1] = 0
+                Flag.color[1] = 3
+                Flag.color[2] = 2
+
+        if Flag.btn_clicked[11]:
+            Flag.btn_clicked[11] = False
+            self.btn_11.color()
+            Flag.color[11] = 2
+            Flag.close[11] = 0
+            # 현재 실행중인 버튼 병행처리
+            current = self.together(11)
+            self.change(current)
+
+        if Flag.btn_clicked_1[31]:
+            self.popup = CustomPopup(p_number=31, p_title="완화-01 “핵분열생성물 방출 제어“ 수행", p_content="\n완화-01 “핵분열생성물 방출 제어“를 수행합니다.")
+            Flag.btn_clicked_1[31] = False
+            self.btn_3_1.color()
+            Flag.color[31] = 2
+            Flag.close[31] = 0
+            # 현재 실행중인 버튼 병행처리
+            current = self.together(31)
+            self.change(current)
+
+            show = self.popup.showModal()
+
+            if Flag.btn_yes[31] == 0 and Flag.close[31] == 0:  # yes
+                self.btn_3_1.complete()
+                Flag.color[31] = 3
+                Flag.btn_clicked[4] = True
+                self.btn_4.color()
+                Flag.color[4] = 2
+
+        if Flag.btn_clicked_1[41]:
+            self.popup = CustomPopup(p_number=41, p_title="완화-02 “격납건물 상태제어“ 수행", p_content="\n완화-02 “격납건물 상태제어“를 수행합니다.")
+            Flag.btn_clicked_1[41] = False
+            self.btn_4_1.color()
+            Flag.color[41] = 2
+            Flag.close[41] = 0
+            # 현재 실행중인 버튼 병행처리
+            current = self.together(41)
+            self.change(current)
+
+            show = self.popup.showModal()
+
+            if Flag.btn_yes[41] == 0 and Flag.close[41] == 0:  # yes
+                self.btn_4_1.complete()
+                Flag.color[41] = 3
+                Flag.btn_clicked[5] = True
+                self.btn_5.color()
+                Flag.color[5] = 2
+
+        if Flag.btn_clicked_1[51]:
+            self.popup = CustomPopup(p_number=51, p_title="완화-03 “격납건물내 수소 제어“ 수행", p_content="\n완화-03 “격납건물내 수소 제어“를 수행합니다.")
+            Flag.btn_clicked_1[51] = False
+            self.btn_5_1.color()
+            Flag.color[51] = 2
+            Flag.close[51] = 0
+            # 현재 실행중인 버튼 병행처리
+            current = self.together(51)
+            self.change(current)
+
+            show = self.popup.showModal()
+
+            if Flag.btn_yes[51] == 0 and Flag.close[51] == 0:  # yes
+                self.btn_5_1.complete()
+                Flag.color[51] = 3
+                Flag.btn_clicked[6] = True
+                self.btn_6.color()
+                Flag.color[6] = 2
+
+        if Flag.btn_clicked_1[61]:
+            self.popup = CustomPopup(p_number=61, p_title="완화-04 “원자로 냉각재 계통 냉각수 주입“ 수행", p_content="\n완화-04 “원자로 냉각재 계통 냉각수 주입“을 수행합니다.")
+            Flag.btn_clicked_1[61] = False
+            self.btn_6_1.color()
+            Flag.color[61] = 2
+            Flag.close[61] = 0
+            # 현재 실행중인 버튼 병행처리
+            current = self.together(61)
+            self.change(current)
+
+            show = self.popup.showModal()
+
+            if Flag.btn_yes[61] == 0 and Flag.close[61] == 0:  # yes
+                self.btn_6_1.complete()
+                Flag.color[61] = 3
+                Flag.btn_clicked[7] = True
+                self.btn_7.color()
+                Flag.color[7] = 2
+
+        if Flag.btn_clicked_1[71]:
+            self.popup = CustomPopup(p_number=71, p_title="완화-05 “원자로 냉각재 계통 감압“ 수행", p_content="\n완화-05 “원자로 냉각재 계통 감압“을 수행합니다.")
+            Flag.btn_clicked_1[71] = False
+            self.btn_7_1.color()
+            Flag.color[71] = 2
+            Flag.close[71] = 0
+            # 현재 실행중인 버튼 병행처리
+            current = self.together(71)
+            self.change(current)
+
+            show = self.popup.showModal()
+
+            if Flag.btn_yes[71] == 0 and Flag.close[71] == 0:  # yes
+                self.btn_7_1.complete()
+                Flag.color[71] = 3
+                Flag.btn_clicked[8] = True
+                self.btn_8.color()
+                Flag.color[8] = 2
+
+        if Flag.btn_clicked_1[81]:
+            self.popup = CustomPopup(p_number=81, p_title="완화-06 “증기발생기 급수 주입“ 수행", p_content="\n완화-06 “증기발생기 급수 주입“을 수행합니다.")
+            Flag.btn_clicked_1[81] = False
+            self.btn_8_1.color()
+            Flag.color[81] = 2
+            Flag.close[81] = 0
+            # 현재 실행중인 버튼 병행처리
+            current = self.together(81)
+            self.change(current)
+
+            show = self.popup.showModal()
+
+            if Flag.btn_yes[81] == 0 and Flag.close[81] == 0:  # yes
+                self.btn_8_1.complete()
+                Flag.color[81] = 3
+                self.miti_win = MitigationWindow(self)  # self 필수
+                self.miti_win.show()
+
+        if Flag.btn_clicked_1[91]:
+            self.popup = CustomPopup(p_number=91, p_title="완화-07 “격납건물 냉각수 주입“ 수행", p_content="\n완화-07 “격납건물 냉각수 주입“을 수행합니다.")
+            Flag.PAGE2 = True
+            Flag.btn_clicked_1[91] = False
+            self.btn_9_1.color()
+            Flag.color[91] = 2
+            Flag.close[91] = 0
+            # 현재 실행중인 버튼 병행처리
+            current = self.together(91)
+            self.change(current)
+
+            show = self.popup.showModal()
+
+            if Flag.btn_yes[91] == 0 and Flag.close[91] == 0:  # yes
+                self.btn_9_1.complete()
+                Flag.color[91] = 3
+                Flag.btn_clicked[10] = True
+                self.btn_10.color()
+                Flag.color[10] = 2
+
+    def together(self, me):
+        for i in range(1, 12):
+            if Flag.color[i] == 2:  # 자기 자신 제외, 현재 진행중인 버튼 찾기
+                if i == me:
+                    pass
+                else:
+                    Flag.color[i] = 1  # 병행처리
+                    return i
+            if Flag.color[i*10+1] == 2:
+                if me == (i*10+1):
+                    pass
+                else:
+                    Flag.color[i*10+1] = 1  # 병행처리
+                    return i*10+1
+
+    def change(self, find):
+        if find == 1: self.btn_1.color2()
+        elif find == 2: self.btn_2.color2()
+        elif find == 3: self.btn_3.color2()
+        elif find == 4: self.btn_4.color2()
+        elif find == 5: self.btn_5.color2()
+        elif find == 6: self.btn_6.color2()
+        elif find == 7: self.btn_7.color2()
+        elif find == 8: self.btn_8.color2()
+        elif find == 9: self.btn_9.color2()
+        elif find == 10: self.btn_10.color2()
+        elif find == 11: self.btn_11.color2()
+        elif find == 31: self.btn_3_1.color2()
+        elif find == 41: self.btn_4_1.color2()
+        elif find == 51: self.btn_5_1.color2()
+        elif find == 61: self.btn_6_1.color2()
+        elif find == 71: self.btn_7_1.color2()
+        elif find == 81: self.btn_8_1.color2()
+        elif find == 91: self.btn_9_1.color2()
+
+
+class CustomPopup(QDialog):
     qss = """
             QWidget{
-        background : rgb(180, 180, 180)
-        }
+                background : rgb(180, 180, 180)
+            }
             QLabel#title {
                 font-size: 14pt; 
-
             }
             QLabel#data {
                 font-size:12pt;
                 border: 2px inset rgb(0, 0, 0);
                 background: rgb(255, 255, 255);
-
             }
             QDialog{
-            border: 2px solid rgb(0, 0, 0);       
+                border: 2px solid rgb(0, 0, 0);       
             }
             QPushButton {
                 color: rgb(0, 0, 0);
 	            background-color: white;
 	            border: 2px solid rgb(0, 0, 0);       
             }
+            """
 
-        """
-
-    def __init__(self, p_number=None, p_title = None, p_content = None, p_label1 = None, p_value1 = None, p_label2 = None, p_value2 = None):
+    def __init__(self, p_number=None, p_title=None, p_content=None, p_label1=None, p_value1=None, p_label2=None, p_value2=None, p_label3=None, p_value3=None, p_label4=None, p_value4=None):
         super().__init__()
         self.layout = QVBoxLayout()
 
@@ -775,12 +695,12 @@ class SubWindow(QDialog):
         self.p_value1 = p_value1
         self.p_label2 = p_label2
         self.p_value2 = p_value2
-        print(self.p_title)
-        self.layout.addWidget(MyBar(self, p_number=self.p_number, p_title=self.p_title, p_content=self.p_content, p_label1=self.p_label1,
-                                    p_value1=self.p_value1, p_label2=self.p_label2, p_value2=self.p_value2))
-        # self.layout.addWidget(
-        #     MyBar(self))
+        self.p_label3 = p_label3
+        self.p_value3 = p_value3
+        self.p_label4 = p_label4
+        self.p_value4 = p_value4
 
+        self.layout.addWidget(CustomPopupContent(self, p_number=self.p_number, p_title=self.p_title, p_content=self.p_content, p_label1=self.p_label1, p_value1=self.p_value1, p_label2=self.p_label2, p_value2=self.p_value2, p_label3=self.p_label3, p_value3=self.p_value3, p_label4=self.p_label4, p_value4=self.p_value4))
         self.setLayout(self.layout)
         self.layout.setContentsMargins(0, 0, 0, 0)
         self.setStyleSheet(self.qss)
@@ -789,84 +709,92 @@ class SubWindow(QDialog):
         self.setWindowFlags(Qt.FramelessWindowHint)
         self.pressing = False
 
-
-
-    def onOKButtonClicked(self):
-        print("오키")
-        self.close()
-
-    def onCancelButtonClicked(self):
-        print("새로운창")
-
     def showModal(self):
         return super().exec_()
 
-
-class MyBar(QWidget):
+class CustomPopupContent(QWidget):
     qss = """
         QWidget{
-        background : rgb(180, 180, 180)
+            background : rgb(180, 180, 180)
         }
         QPushButton{
-        background : rgb(218,218,218);
-        border: 1px solid rgb(0, 0, 0);       
+            background : rgb(218,218,218);
+            border: 1px solid rgb(0, 0, 0);       
         }
         QTableWidget {
-        gridline-color: rgb(0,0,0);
-        font-size: 12pt;
+            gridline-color: rgb(0,0,0);
+            font-size: 12pt;
+        }
+        QPushButton#xbutton {
+            background-color: none;
+            border: 2px solid rgb(0, 0, 0);       
         }
     """
-    def __init__(self, parent, p_number=None, p_title = None, p_content = None, p_label1 = None, p_value1 = None, p_label2 = None, p_value2 = None):
-    # def __init__(self,parent):
-        super(MyBar, self).__init__()
-        # self. cc = Custom.
+    def __init__(self, parent, p_number = None, p_title = None, p_content = None, p_label1=None, p_value1=None,
+                 p_label2=None, p_value2=None, p_label3=None, p_value3=None, p_label4=None, p_value4=None):
+        super(CustomPopupContent, self).__init__()
         self.parent = parent
         self.setStyleSheet(self.qss)
-        print(self.parent.width())
-        self.p_number = p_number
         self.layout = QVBoxLayout()
-        self.layout.setContentsMargins(0,0,0,0)
+        self.layout.setContentsMargins(0, 0, 0, 0)
+        self.setMinimumWidth(400)
+
+        self.p_number = p_number
+        self.p_label1 = p_label1
+        self.p_value1 = p_value1
+        self.p_label2 = p_label2
+        self.p_value2 = p_value2
+        self.p_label3 = p_label3
+        self.p_value3 = p_value3
+        self.p_label4 = p_label4
+        self.p_value4 = p_value4
+
+        self.layout_t = QHBoxLayout()
+        self.layout_t.setContentsMargins(0, 0, 0, 0)
         self.title = QLabel(p_title)
-
-        #
-        self.title.setFixedHeight(40)
         self.title.setAlignment(Qt.AlignCenter)
-        self.layout.addWidget(self.title)
+        self.title.setFixedSize(50, 40)
+        self.title.setStyleSheet(""" background-color: rgb(91,155,213); border: 2px solid rgb(0,0,0); color: white;font-size: 14pt; """)
+        btn_close = QPushButton()
+        btn_close.setIcon(QIcon(source1))
+        btn_close.setStyleSheet("border:0px")
+        btn_close.clicked.connect(self.close)
+        btn_close.setIconSize(QSize(25, 25))
+        btn_close.setFixedSize(40, 30)
+        btn_close.setObjectName('xbutton')
 
-        self.title.setStyleSheet("""
-            font-size: 14pt; 
-            background-color: rgb(91,155,213);
-            border: 2px solid rgb(0, 0, 0);       
-            color: white;
-        """)
-        #
+        self.layout_t.addWidget(self.title)
+        self.layout_t.addWidget(btn_close)
+
+        self.layout.addLayout(self.layout_t)
 
         self.label = QLabel(p_content)
         self.label.setObjectName("title")
 
         #테두리 제거용
-        self.label.setStyleSheet("""
-                margin : 3px;    
-            """)
+        self.label.setStyleSheet("margin : 3px;")
         self.label.setAlignment(Qt.AlignCenter)
         self.subsub = QHBoxLayout()
         self.subLayout = QHBoxLayout()
         self.layout.addWidget(self.label)
 
-        if self.p_number != 1 and self.p_number!=2 and self.p_number!=10\
-                and self.p_number != 31 and self.p_number!=41 and self.p_number!=51\
-                and self.p_number != 61 and self.p_number!=71 and self.p_number!=81\
+        if self.p_number != 1 and self.p_number != 2\
+                and self.p_number != 31 and self.p_number != 41 and self.p_number != 51\
+                and self.p_number != 61 and self.p_number != 71 and self.p_number != 81\
                 and self.p_number != 91:
             self.tableWidget = QTableWidget()
             self.tableWidget.setStyleSheet("background: rgb(221, 221, 221);"
                                            "border: 0px solid rgb(0, 0, 0);")
-            self.tableWidget.horizontalHeader().setVisible(False) #table 헤더 숨기기
+            self.tableWidget.horizontalHeader().setVisible(False)  #table 헤더 숨기기
             self.tableWidget.verticalHeader().setVisible(False)
             self.tableWidget.setContentsMargins(0, 0, 0, 0)
+
             if self.p_number == 8:
                 self.tableWidget.setRowCount(2)
                 self.tableWidget.setFixedSize(350, 60)
-
+            elif self.p_number == 10:
+                self.tableWidget.setRowCount(4)
+                self.tableWidget.setFixedSize(350, 120)
             else:
                 self.tableWidget.setRowCount(1)
                 self.tableWidget.setFixedSize(350, 30)
@@ -874,16 +802,41 @@ class MyBar(QWidget):
             self.tableWidget.setColumnCount(2)
             self.tableWidget.setColumnWidth(0,250)
             self.tableWidget.horizontalHeader().setStretchLastSection(True)
+
             # 편집 불가
             self.tableWidget.setEditTriggers(QAbstractItemView.NoEditTriggers)
             self.tableWidget.setFocusPolicy(Qt.NoFocus)
             self.tableWidget.setSelectionMode(QAbstractItemView.NoSelection)
 
-            self.tableWidget.setItem(0, 0, QTableWidgetItem(p_label1))
-            self.tableWidget.setItem(0, 1, QTableWidgetItem(p_value1))
-            self.tableWidget.setItem(1, 0, QTableWidgetItem(p_label2))
-            self.tableWidget.setItem(1, 1, QTableWidgetItem(p_value2))
-            self.tableWidget.setGeometry(30,30,30,30)
+            if self.p_number == 8:
+                item1_ = QTableWidgetItem(p_label1)
+                item2_ = QTableWidgetItem(p_value1)
+
+                if float(p_value1) <= 45:
+                    item1_.setBackground(QColor(252, 227, 112))
+                    item2_.setBackground(QColor(252, 227, 112))
+
+                item3_ = QTableWidgetItem(p_label2)
+                item4_ = QTableWidgetItem(p_value2)
+
+                if float(p_value2) <= 45:
+                    item3_.setBackground(QColor(252, 227, 112))
+                    item4_.setBackground(QColor(252, 227, 112))
+
+                self.tableWidget.setItem(0, 0, item1_)
+                self.tableWidget.setItem(0, 1, item2_)
+                self.tableWidget.setItem(1, 0, item3_)
+                self.tableWidget.setItem(1, 1, item4_)
+            else:
+                self.tableWidget.setItem(0, 0, QTableWidgetItem(p_label1))
+                self.tableWidget.setItem(0, 1, QTableWidgetItem(p_value1))
+                self.tableWidget.setItem(1, 0, QTableWidgetItem(p_label2))
+                self.tableWidget.setItem(1, 1, QTableWidgetItem(p_value2))
+            self.tableWidget.setItem(2, 0, QTableWidgetItem(p_label3))
+            self.tableWidget.setItem(2, 1, QTableWidgetItem(p_value3))
+            self.tableWidget.setItem(3, 0, QTableWidgetItem(p_label4))
+            self.tableWidget.setItem(3, 1, QTableWidgetItem(p_value4))
+            self.tableWidget.setGeometry(30, 30, 30, 30)
 
             # 테이블 정렬
             delegate = AlignDelegate()
@@ -893,61 +846,58 @@ class MyBar(QWidget):
             fnt.setPointSize(12)
             self.tableWidget.setFont(fnt)
 
-
             self.subsub.addWidget(self.tableWidget)
             self.layout.addLayout(self.subsub)
 
-
         self.btnOK = QPushButton("예")
-        self.btnCancel = QPushButton("아니오")
-
         self.btnOK.setFixedSize(100, 35)
-        self.btnCancel.setFixedSize(100, 35)
-
+        self.btnOK.setCursor(QCursor(Qt.PointingHandCursor))
         self.btnOK.clicked.connect(self.onOKButtonClicked)
+
+        self.btnCancel = QPushButton("아니오")
+        self.btnCancel.setFixedSize(100, 35)
+        self.btnCancel.setCursor(QCursor(Qt.PointingHandCursor))
         self.btnCancel.clicked.connect(self.onCancelButtonClicked)
+
         self.subLayout.setContentsMargins(50, 30, 50, 30)
-
         self.subLayout.addWidget(self.btnOK)
+        self.subLayout.addWidget(self.btnCancel)
 
-        if self.p_number!=1 and self.p_number!=2 and self.p_number!=10:
-            self.subLayout.addWidget(self.btnCancel)
-
+        if self.p_number == 1 or self.p_number == 2 or self.p_number == 31 or self.p_number == 41 or self.p_number == 51\
+                or self.p_number == 71 or self.p_number == 61 or self.p_number == 71\
+                or self.p_number == 81 or self.p_number == 91:
+            self.btnCancel.hide()
+        else:
+            self.btnCancel.show()
 
         self.layout.addLayout(self.subLayout)
         self.layout.addStretch(1)
         self.setLayout(self.layout)
 
+        #Popup move
         self.start = QPoint(0, 0)
         self.pressing = False
 
-    def onOKButtonClicked(self):
-        #flag
-        for i in range(1,12):
-            if self.p_number == i:
-                Flag.btn_clicked[i] = True
-            if self.p_number == i*10+1:
-                Flag.btn_clicked_1[i] = True
-            if self.p_number == i*100+1:
-                Flag.btn_clicked[i] = True #SCROLL
-                Flag.btn_clicked_1[i] = True
+    # 그냥 닫으면 병행 컬러로 바뀐다.
+    def close(self):
+        Flag.close[self.p_number] = 1
+        self.setDisabled(True)
+        self.parent.close()
 
+    def onOKButtonClicked(self):
+        Flag.btn_yes[self.p_number] = 0
         self.setDisabled(True)
         self.parent.close()
 
     def onCancelButtonClicked(self):
-        for i in range(1,12):
-            if self.p_number == i * 100 + 1:
-                Flag.btn_clicked[i] = True  # SCROLL
-                Flag.btn_clicked_1[i] = True
+        Flag.btn_yes[self.p_number] = 1
         self.parent.close()
-        print("새로운창")
 
     def showModal(self):
         return super().exec_()
 
     def resizeEvent(self, QResizeEvent):
-        super(MyBar, self).resizeEvent(QResizeEvent)
+        super(CustomPopupContent, self).resizeEvent(QResizeEvent)
         self.title.setFixedWidth(self.parent.width())
 
     def mousePressEvent(self, event):
@@ -967,28 +917,18 @@ class MyBar(QWidget):
     def mouseReleaseEvent(self, QMouseEvent):
         self.pressing = False
 
-    def btn_close_clicked(self):
-        self.parent.close()
-
-    def btn_max_clicked(self):
-        self.parent.showMaximized()
-
-    def btn_min_clicked(self):
-        self.parent.showMinimized()
 
 class AlignDelegate(QStyledItemDelegate):
     def initStyleOption(self, option, index):
         super(AlignDelegate, self).initStyleOption(option, index)
         option.displayAlignment = Qt.AlignCenter
+
+
 if __name__ == '__main__':
-    print('test')
     app = QApplication(sys.argv)
     window = MainLeft()
     window.show()
     flow = FlowChart()
-    # if(flow.btn_1):
-    # win = Custom(x=10, y=10, w=10,h=200)
-    app.installEventFilter(flow.btn_1)
     font = QFontDatabase()
     font.addApplicationFont('./맑은 고딕.ttf')
     app.setFont(QFont('맑은 고딕'))

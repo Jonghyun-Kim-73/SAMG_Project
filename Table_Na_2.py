@@ -4,30 +4,58 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 
+from Flag import Flag
+
+
 class tableNa_2(QWidget):
     qss = """
             QWidget {
                 background: rgb(221, 221, 221);
-
+                border : 0px solid black;
             }
             QLabel {
                 background: rgb(131, 131, 131);
                 border-radius: 6px;
                 color: rgb(255, 255, 255);
             }
-            QTableWidget {
+             QTableWidget {
                 background: rgb(221, 221, 221);
-
             }
             QPushButton{
                 background: rgb(221, 221, 221)
             }
-
-QScrollBar::vertical {
-    height:0px;
-    margin-top: 0px;
-    padding-top: 0px;
-}
+            QScrollBar::vertical {
+                height:0px;
+                margin-top: 0px;
+                padding-top: 0px;
+            }
+            QCheckBox {
+                margin-left:0px;
+                font-size:15px;
+            }
+            QTableWidget {
+               gridline-color : black;
+            }
+            QCheckBox::indicator {
+                width:  63px;
+                height: 80px;
+            }
+            QCheckBox::indicator::unchecked {
+                width:  63px;
+                height: 80px;
+                border : 0px solid;
+            }
+            QCheckBox::indicator::checked {
+                image : url(./check.png);
+                height:30px;
+                width:63px;
+            }
+            QTableView {
+                gridline-color : black;
+            }
+            QHeaderView::section {
+                background: black;
+            }
         """
 
     def __init__(self, parent=None):
@@ -55,11 +83,9 @@ QScrollBar::vertical {
 
         self.scrollTop.setWidget(table_header)
         self.scrollBottom.setWidget(para_table)
-        # layout.addWidget(label)
 
         layout.addWidget(self.scrollTop)
         layout.addWidget(self.scrollBottom)
-        # layout.addWidget(para_table)
 
 
 class TableHeader_Na_2(QTableWidget):
@@ -68,9 +94,8 @@ class TableHeader_Na_2(QTableWidget):
         self.setAttribute(Qt.WA_StyledBackground, True)
 
         # 테이블 프레임 모양 정의
-        self.horizontalHeader().setVisible(False)
-        self.verticalHeader().setVisible(False)  # Row 넘버 숨기기
-        self.setContentsMargins(0, 0, 0, 0)
+        self.horizontalHeader().setFixedHeight(1)
+        self.verticalHeader().setFixedWidth(1)
 
         self.setColumnCount(13)
         self.setRowCount(2)
@@ -82,7 +107,7 @@ class TableHeader_Na_2(QTableWidget):
         # 테이블 행 높이 조절
         self.setRowHeight(0, 60)
         self.setRowHeight(1, 40)
-        self.setColumnWidth(0, 82)
+        self.setColumnWidth(0, 80)
         for i in range(1, self.columnCount()):
             self.setColumnWidth(i, 63)
 
@@ -125,10 +150,9 @@ class ParaTable_Na_2(QTableWidget):
     def __init__(self, parent):
         super(ParaTable_Na_2, self).__init__(parent=parent)
         self.setAttribute(Qt.WA_StyledBackground, True)
-        self.horizontalHeader().setVisible(False)
-        self.verticalHeader().setVisible(False)  # Row 넘버 숨기기
+        self.horizontalHeader().setFixedHeight(1)
+        self.verticalHeader().setFixedWidth(1)
         self.setContentsMargins(0, 0, 0, 0)
-        # self.setStyleSheet(self.qss)
         self.setColumnCount(13)
         self.setRowCount(10)
         # 편집 불가
@@ -137,12 +161,12 @@ class ParaTable_Na_2(QTableWidget):
         self.setSelectionMode(QAbstractItemView.NoSelection)
 
         # 테이블 행 높이 조절
-        self.setColumnWidth(0, 82)
+        self.setColumnWidth(0, 80)
         for i in range(1, self.columnCount()):
             self.setColumnWidth(i, 63)
-
         self.setRowHeight(1, 60)
         self.setRowHeight(4, 80)
+        self.setRowHeight(9, 260)
         # SPAN 생성(타이틀)
         self.setSpan(0, 0, 1, 13)
         self.setSpan(5, 0, 1, 13)
@@ -151,7 +175,7 @@ class ParaTable_Na_2(QTableWidget):
 
         # SPAN 생성(이용 가능한 수단)
         self.setSpan(9, 0, 1, 3)
-        self.setSpan(9, 4, 1, 13)
+        self.setSpan(9, 3, 1, 13)
 
         # 행
         self.setItem(0, 0, QTableWidgetItem("밸브 이용 가능성"))
@@ -169,6 +193,35 @@ class ParaTable_Na_2(QTableWidget):
         self.setItem(9, 0, QTableWidgetItem("선정된 밸브"))
 
         # N/A표시
+        self.setItem(3, 11, QTableWidgetItem("N/A"))
+        self.setItem(3, 12, QTableWidgetItem("N/A"))
+        self.setItem(4, 1, QTableWidgetItem("N/A"))
+        self.setItem(4, 2, QTableWidgetItem("N/A"))
+        self.setItem(4, 3, QTableWidgetItem("N/A"))
+        self.setItem(4, 4, QTableWidgetItem("N/A"))
+        self.setItem(6, 1, QTableWidgetItem("N/A"))
+        self.setItem(6, 2, QTableWidgetItem("N/A"))
+        self.setItem(6, 3, QTableWidgetItem("N/A"))
+        self.setItem(6, 4, QTableWidgetItem("N/A"))
+        self.setItem(6, 11, QTableWidgetItem("N/A"))
+        self.setItem(6, 12, QTableWidgetItem("N/A"))
+
+        # 이용가능한 수단
+        self.text = []
+        self.text.append(QTextEdit(''))
+        self.setCellWidget(9, 3, self.text[0])
+
+        # 체크박스
+        count = 0
+        self.checkbox = []
+        for i in range(0, self.columnCount()):
+            for j in range(0, self.rowCount()):
+                if self.item(j, i) or (j in [0, 5, 7, 8, 9]):
+                    pass
+                else:
+                    self.checkbox.append(QCheckBox())
+                    self.setCellWidget(j, i, self.checkbox[count])
+                    count = count + 1
 
         # 테이블 정렬
         delegate = AlignDelegate()
@@ -177,19 +230,52 @@ class ParaTable_Na_2(QTableWidget):
         fnt = self.font()
         fnt.setBold(True)
         fnt.setPointSize(12)
-        self.item(8, 0).setFont(fnt)
-        self.item(9, 0).setFont(fnt)
+        self.setFont(fnt)
 
+        for checkbox in self.checkbox:
+            checkbox.stateChanged.connect(self.write_text)
+
+    def write_text(self):
+        check1 = [True] * 12
+        for i in range(0, 4):
+            for j in range(3):
+                check1[i] *= self.checkbox[i * 3 + j].isChecked()
+        for i in range(4, 10):
+            for j in range(5):
+                check1[i] *= self.checkbox[(i - 4) * 5 + j + 12].isChecked()
+        for i in range(10, 12):
+            for j in range(3):
+                check1[i] *= self.checkbox[(i - 10) * 3 + j + 42].isChecked()
+
+        for i in range(12):
+            if check1[i]:
+                Flag.s2_3_1[i][1] = True
+            else:
+                Flag.s2_3_1[i][1] = False
+        count1 = 1
+
+        for i in range(12):
+            if Flag.s2_3_1[i][1]:
+                Flag.s2_3_1_final += "%d. " % count1
+                Flag.s2_3_1_final += Flag.s2_3_1[i][0]
+                Flag.s2_3_1_final += "\n"
+                count1 += 1
+        # 마지막 공백 제거
+        Flag.s2_3_1_final = Flag.s2_3_1_final[:-1]
+
+        # 마지막 데이터 다른 클래스에서 사용
+        Flag.s2_3_1_backup = Flag.s2_3_1_final
+        self.text[0].setPlainText(Flag.s2_3_1_final)
+        Flag.s2_3_1_final = ""
 
 class AlignDelegate(QStyledItemDelegate):
     def initStyleOption(self, option, index):
         super(AlignDelegate, self).initStyleOption(option, index)
         option.displayAlignment = Qt.AlignCenter
 
-
 if __name__ == '__main__':
-    print('test')
     app = QApplication(sys.argv)
+    app.setStyle("fusion")
     window = tableNa_2()
     window.show()
     font = QFontDatabase()
